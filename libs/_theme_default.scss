@@ -1,0 +1,29 @@
+//
+// Optionals which used for css code generation --------------------------------
+//
+// All variables below triggers a css code generation. If you don't want
+// this then feel free to remove them.
+// WATCHOUT: If you use this variables in your code, then you need to remove
+//           them too.
+//
+$theme-layout-widths: (5, 10, 15, 25, 33, 66, 50, 75, 99);
+$theme-layout-space:  40px;
+
+// WATCHOUT: If you remove this, you can't use the layoutFor mixin anymore!
+$theme-layout-breakpoints: (
+    smartphones:    480px,
+    tablets:        992px,
+    desktops:       1200px,
+    large-desktops: 1600px
+);
+
+$theme-text-sizes: (
+    small-2x: 0.9rem,
+    small-3x: 0.8rem,
+    small-4x: 0.7rem,
+    small-5x: 0.5rem,
+    large-2x: 1.2rem,
+    large-3x: 1.4rem,
+    large-4x: 1.6rem,
+    large-5x: 1.8rem
+);

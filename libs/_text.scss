@@ -1,0 +1,37 @@
+$_textAttrName: text;
+
+
+//
+// Text Helpers ----------------------------------------------------------------
+//
+
+@function hill-text ($property) {
+    @return map-get($theme-text-sizes, $property);
+}
+
+
+
+
+
+//
+// Global Text Classes And Attributes ------------------------------------------
+//
+// Generates text attributes
+@if global-variable-exists(theme-text-sizes) {
+    @for $i from 1 through length($theme-text-sizes) {
+        $item:  nth($theme-text-sizes, $i);
+        $param: nth($item, 1);
+        $value: nth($item, 2);
+
+        @include _hillAttr ($_textAttrName, $param) {
+            font-size: $value;
+        };
+    }
+}
+
+@include _hillAttr ($_textAttrName, 'left')   {text-align:  left; }
+@include _hillAttr ($_textAttrName, 'right')  {text-align:  right; }
+@include _hillAttr ($_textAttrName, 'center') {text-align:  center; }
+
+@include _hillAttr ($_textAttrName, 'italic') {font-style:  italic; }
+@include _hillAttr ($_textAttrName, 'bold')   {font-weight: bold; }

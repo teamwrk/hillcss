@@ -1,0 +1,67 @@
+$_layoutAttrName: layout;
+
+
+//
+// Global Layout Mixins --------------------------------------------------------
+//
+
+@mixin layoutFor ($deviceType) {
+    @if global-variable-exists(theme-layout-breakpoints) {
+        @if map-has-key($theme-layout-breakpoints, $deviceType) {
+            @media (max-width: #{map-get($theme-layout-breakpoints, $deviceType)}) {
+                @content;
+            }
+        }
+        @else {
+            @warn "Device type -> #{$breakpoint} does not exists.";
+        }
+    }
+}
+
+
+
+
+
+//
+// Global Layout Classes And Attributes ----------------------------------------
+//
+
+// Generates container width attributes for layouting
+@if global-variable-exists(theme-layout-widths) {
+    @each $width in $theme-layout-widths {
+        @include _hillAttr ($_layoutAttrName, $width) {
+            width: #{$width + '%'};
+        }
+    }
+}
+
+@include _hillAttr ($_layoutAttrName, 'left')  { float:   left; }
+@include _hillAttr ($_layoutAttrName, 'right') { float:   right; }
+@include _hillAttr ($_layoutAttrName, 'hide')  { display: none; }
+
+// Spaces
+@if global-variable-exists(theme-layout-space) {
+    @include _hillAttr ($_layoutAttrName, 'space-top')    { margin-top:    $theme-layout-space; }
+    @include _hillAttr ($_layoutAttrName, 'space-right')  { margin-right:  $theme-layout-space; }
+    @include _hillAttr ($_layoutAttrName, 'space-bottom') { margin-bottom: $theme-layout-space; }
+    @include _hillAttr ($_layoutAttrName, 'space-left')   { margin-left:   $theme-layout-space; }
+}
+
+@include _hillAttr ($_layoutAttrName, 'clearfix') {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@include _hillAttr ($_layoutAttrName, 'stretch') {
+    position: absolute;
+    top:    0;
+    right:  0;
+    bottom: 0;
+    left:   0;
+}

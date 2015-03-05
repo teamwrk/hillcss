@@ -1,0 +1,31 @@
+%_hillListReset {
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+}
+
+%_hillLinkReset {
+    a {
+        text-decoration: none;
+        outline: none;
+    }
+}
+
+// Create "hill-*" attribute selectors from given $type and $propertyName.
+// Example:
+//
+// [hill-layout^="right"],
+// [hill-layout*=" right"] { ... }
+@mixin _hillAttr ($type, $propertyName) {
+
+    // This technique uses more selectors but have some advanteges:
+    // * comfortable layouting by setting the "hill-layout" attribute
+    // * seperates layouting from css classes and class attribute
+    // * layouting is focused only on the hill-layout attrubute
+    [hill-#{$type}^="#{$propertyName}"],
+    [hill-#{$type}*=" #{$propertyName}"] {
+        @content;
+    }
+}
