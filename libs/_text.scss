@@ -1,12 +1,11 @@
-$_textAttrName: text;
+$_textAttrName: hill-text;
 
 
 //
 // Text Helpers ----------------------------------------------------------------
 //
-
 @function hill-text ($property) {
-    @return map-get($theme-text-sizes, $property);
+    @return map-get($hill-text-sizes, $property);
 }
 
 
@@ -17,21 +16,18 @@ $_textAttrName: text;
 // Global Text Classes And Attributes ------------------------------------------
 //
 // Generates text attributes
-@if global-variable-exists(theme-text-sizes) {
-    @for $i from 1 through length($theme-text-sizes) {
-        $item:  nth($theme-text-sizes, $i);
+@if global-variable-exists(hill-text-sizes) {
+    @for $i from 1 through length($hill-text-sizes) {
+        $item:  nth($hill-text-sizes, $i);
         $param: nth($item, 1);
         $value: nth($item, 2);
 
-        @include _hillAttr ($_textAttrName, $param) {
+        [#{$_textAttrName}*="#{$param}"] {
             font-size: $value;
         };
     }
 }
 
-@include _hillAttr ($_textAttrName, 'left')   {text-align:  left; }
-@include _hillAttr ($_textAttrName, 'right')  {text-align:  right; }
-@include _hillAttr ($_textAttrName, 'center') {text-align:  center; }
-
-@include _hillAttr ($_textAttrName, 'italic') {font-style:  italic; }
-@include _hillAttr ($_textAttrName, 'bold')   {font-weight: bold; }
+[#{$_textAttrName}*="left"]   {text-align:  left; }
+[#{$_textAttrName}*="right"]  {text-align:  right; }
+[#{$_textAttrName}*="center"] {text-align:  center; }

@@ -1,4 +1,4 @@
-$_layoutAttrName: layout;
+$_layoutAttrName: hill-layout;
 
 
 //
@@ -6,9 +6,9 @@ $_layoutAttrName: layout;
 //
 
 @mixin layoutFor ($deviceType) {
-    @if global-variable-exists(theme-layout-breakpoints) {
-        @if map-has-key($theme-layout-breakpoints, $deviceType) {
-            @media (max-width: #{map-get($theme-layout-breakpoints, $deviceType)}) {
+    @if global-variable-exists(hill-layout-breakpoints) {
+        @if map-has-key($hill-layout-breakpoints, $deviceType) {
+            @media (max-width: #{map-get($hill-layout-breakpoints, $deviceType)}) {
                 @content;
             }
         }
@@ -27,27 +27,27 @@ $_layoutAttrName: layout;
 //
 
 // Generates container width attributes for layouting
-@if global-variable-exists(theme-layout-widths) {
-    @each $width in $theme-layout-widths {
-        @include _hillAttr ($_layoutAttrName, $width) {
+@if global-variable-exists(hill-layout-widths) {
+    @each $width in $hill-layout-widths {
+        [#{$_layoutAttrName}*="#{$width}"] {
             width: #{$width + '%'};
         }
     }
 }
 
-@include _hillAttr ($_layoutAttrName, 'left')  { float:   left; }
-@include _hillAttr ($_layoutAttrName, 'right') { float:   right; }
-@include _hillAttr ($_layoutAttrName, 'hide')  { display: none; }
+[#{$_layoutAttrName}*="left"]  {float:   left;}
+[#{$_layoutAttrName}*="right"] {float:   right;}
+[#{$_layoutAttrName}*="hide"]  {display: none;}
 
 // Spaces
-@if global-variable-exists(theme-layout-space) {
-    @include _hillAttr ($_layoutAttrName, 'space-top')    { margin-top:    $theme-layout-space; }
-    @include _hillAttr ($_layoutAttrName, 'space-right')  { margin-right:  $theme-layout-space; }
-    @include _hillAttr ($_layoutAttrName, 'space-bottom') { margin-bottom: $theme-layout-space; }
-    @include _hillAttr ($_layoutAttrName, 'space-left')   { margin-left:   $theme-layout-space; }
+@if global-variable-exists(hill-layout-space) {
+    [#{$_layoutAttrName}*="space-top"]    { margin-top:    $hill-layout-space; }
+    [#{$_layoutAttrName}*="space-right"]  { margin-right:  $hill-layout-space; }
+    [#{$_layoutAttrName}*="space-bottom"] { margin-bottom: $hill-layout-space; }
+    [#{$_layoutAttrName}*="space-left"]   { margin-left:   $hill-layout-space; }
 }
 
-@include _hillAttr ($_layoutAttrName, 'clearfix') {
+[#{$_layoutAttrName}*="clearfix"]  {
     &:before,
     &:after {
         content: " ";
@@ -58,7 +58,7 @@ $_layoutAttrName: layout;
     }
 }
 
-@include _hillAttr ($_layoutAttrName, 'stretch') {
+[#{$_layoutAttrName}*="stretch"]  {
     position: absolute;
     top:    0;
     right:  0;
