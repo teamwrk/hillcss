@@ -7,14 +7,15 @@
 //           them too.
 //
 $hill-layout-widths: (5, 10, 15, 25, 33, 66, 50, 75, 99);
+$hill-layout-min-max-width: false;
+$hill-layout-breakpoint-width: false;
 $hill-layout-space:  40px;
 
 // WATCHOUT: If you remove this, you can't use the layoutFor mixin anymore!
 $hill-layout-breakpoints: (
-    smartphones:    480px,
-    tablets:        992px,
-    desktops:       1200px,
-    large-desktops: 1600px
+    small:  480px,
+    medium: 992px,
+    large:  1200px
 );
 
 $hill-text-sizes: (

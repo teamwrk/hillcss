@@ -2,18 +2,87 @@ $_layoutAttrName: hill-layout;
 
 
 //
-// Global Layout Mixins --------------------------------------------------------
+// Private Mixins --------------------------------------------------------------
 //
 
-@mixin layoutFor ($deviceType) {
+@function _getFirstChar ($string) {
+    @return str_slice($string, 1, 1);
+}
+
+@function _removeFirstChar ($string) {
+    @return str_slice($string, 2, -(length($string)));
+}
+
+@function _equalOnce ($string, $matchers...) {
+    @each $matcher in $matchers {
+        @if ($string == $matcher) {
+            @return true;
+        }
+    }
+
+    @return false;
+}
+
+
+
+
+
+//
+// Public Mixins ---------------------------------------------------------------
+//
+
+@mixin layoutFor ($screens...) {
     @if global-variable-exists(hill-layout-breakpoints) {
-        @if map-has-key($hill-layout-breakpoints, $deviceType) {
-            @media (max-width: #{map-get($hill-layout-breakpoints, $deviceType)}) {
+        $length: length($screens);
+
+        @if ($length == 1) {
+            $param:     nth($screens, 1);
+            $condition: 'max-width';
+            $char:      _getFirstChar($param);
+
+            @if (_equalOnce($char, '<', '>')) {
+                $param: _removeFirstChar($param);
+
+                @if (_equalOnce($char, '>')) {
+                    $condition: 'min-width';
+                }
+            }
+
+            @media (#{$condition}: #{map-get($hill-layout-breakpoints, $param)}) {
+                @content;
+            }
+        }
+        @else if ($length == 2) {
+            $param1: nth($screens, 1);
+            $param2: nth($screens, 2);
+            $min: null;
+            $max: null;
+
+            @if (_equalOnce(_getFirstChar($param1), '<', '>')) {
+                $param1: _removeFirstChar($param1);
+            }
+            $param1: map-get($hill-layout-breakpoints, $param1);
+
+            @if (_equalOnce(_getFirstChar($param2), '<', '>')) {
+                $param2: _removeFirstChar($param2);
+            }
+            $param2: map-get($hill-layout-breakpoints, $param2);
+
+            @if ($param1 > $param2) {
+                $max: $param1;
+                $min: $param2;
+            }@else {
+                $max: $param2;
+                $min: $param1;
+            }
+
+            @media (min-width: #{$min}) and
+                   (max-width: #{$max}) {
                 @content;
             }
         }
         @else {
-            @warn "Device type -> #{$breakpoint} does not exists.";
+            @warn "More than two parameters given";
         }
     }
 }
@@ -32,6 +101,34 @@ $_layoutAttrName: hill-layout;
         [#{$_layoutAttrName}*="#{$width}"] {
             width: #{$width + '%'};
         }
+
+        @if global-variable-exists(hill-layout-min-max-width) {
+            @if($hill-layout-min-max-width) {
+                [#{$_layoutAttrName}*="<#{$width}"] {
+                    min-width: #{$width + '%'};
+                }
+
+                [#{$_layoutAttrName}*=">#{$width}"] {
+                    max-width: #{$width + '%'};
+                }
+            }
+        }
+    }
+}
+
+@if global-variable-exists(hill-layout-breakpoint-width) {
+    @if ($hill-layout-breakpoint-width) {
+        @each $breakpoint in $hill-layout-breakpoints {
+            $breakpointName: nth($breakpoint, 1);
+
+            @each $width in $hill-layout-widths {
+                @include layoutFor ($breakpointName) {
+                    [#{$_layoutAttrName}*="#{$breakpointName}-#{$width}"] {
+                        width: #{$width + '%'};
+                    }
+                };
+            }
+        }
     }
 }
 
@@ -39,7 +136,6 @@ $_layoutAttrName: hill-layout;
 [#{$_layoutAttrName}*="right"] {float:   right;}
 [#{$_layoutAttrName}*="hide"]  {display: none;}
 
-// Spaces
 @if global-variable-exists(hill-layout-space) {
     [#{$_layoutAttrName}*="space-top"]    { margin-top:    $hill-layout-space; }
     [#{$_layoutAttrName}*="space-right"]  { margin-right:  $hill-layout-space; }
@@ -56,12 +152,4 @@ $_layoutAttrName: hill-layout;
     &:after {
         clear: both;
     }
-}
-
-[#{$_layoutAttrName}*="stretch"]  {
-    position: absolute;
-    top:    0;
-    right:  0;
-    bottom: 0;
-    left:   0;
 }
