@@ -1,0 +1,42 @@
+/**
+ * SASS unittests for hill-layout module
+ */
+
+@import '../libs/layout.scss';
+
+/**
+ * layout - private mixins
+ */
+@include describe("Hill Layout Private Mixins") {
+
+    @include it("[_getFirstChar] should return the first char of a string") {
+        $string         : '>small';
+        $firstChar      : _getFirstChar($string);
+        $expectedChar   : '>';
+
+        @include should( expect($firstChar), to( be($expectedChar)));
+    }
+
+    @include it("[_removeFirstChar] should remove the first char of a string") {
+        $string             : '>small';
+        $stringAfterRemove  : _removeFirstChar($string);
+        $expectedString     : 'small';
+
+        @include should( expect($stringAfterRemove), to( be($expectedString)));
+    }
+
+    @include it("[_equalOnce] should compare a given char with others and return true if its equal") {
+        $matcher1           : '>';
+        $char               : '>';
+
+        @include should( expect(_equalOnce($char, $matcher1)), to( be-truthy()));
+    }
+
+    @include it("[_equalOnce] should compare mutiple chars") {
+        $matcher1           : '>';
+        $matcher2           : '<';
+        $char               : '<';
+
+        @include should( expect(_equalOnce($char, $matcher1, $matcher2)), to( be-truthy()));
+    }
+}

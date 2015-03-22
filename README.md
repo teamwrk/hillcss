@@ -1,2 +1,3 @@
-# hill
-A sass toolkit based on lazzer philosophy
+# hill.css
+
+A sass toolkit for intuitive layouting

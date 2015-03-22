@@ -1,0 +1,26 @@
+{
+  "name": "hill",
+  "version": "0.0.0",
+  "description": "A sass toolkit for intuitive layouting",
+  "author": "Andreas Klein <andy@ixis.io>",
+  "license": "MIT",
+  "main": "hill.scss",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:Vaddo/hill.git"
+  },
+  "keywords": [
+    "SASS",
+    "Layouting",
+    "Mixins"
+  ],
+  "devDependencies": {
+    "bootcamp": "^1.1.7",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^0.18.1"
+  }
+}
