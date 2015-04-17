@@ -1,0 +1,38 @@
+/**
+ * Return the first character of a string
+ * @private
+ * @param  {String} $string
+ * @return {String}
+ */
+@function _getFirstChar ($string) {
+    @return str_slice($string, 1, 1);
+}
+
+/**
+ * Remove the first character of a string
+ * and return it
+ * @private
+ * @param  {String} $string
+ * @return {String}
+ */
+@function _removeFirstChar ($string) {
+    @return str_slice($string, 2, -(length($string)));
+}
+
+/**
+ * Returns if a string is equal to a list of
+ * matcher Strings
+ * @private
+ * @param  {String} $string         String to test
+ * @param  {List}   $matchers...    List of Strings to test against
+ * @return {Boolean}                True or false if it matches.
+ */
+@function _equalOnce ($string, $matchers...) {
+    @each $matcher in $matchers {
+        @if ($string == $matcher) {
+            @return true;
+        }
+    }
+
+    @return false;
+}

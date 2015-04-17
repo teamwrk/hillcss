@@ -1,31 +1,7 @@
-$_layoutAttrName: hill-layout;
-
-
-//
-// Private Mixins --------------------------------------------------------------
-//
-
-@function _getFirstChar ($string) {
-    @return str_slice($string, 1, 1);
-}
-
-@function _removeFirstChar ($string) {
-    @return str_slice($string, 2, -(length($string)));
-}
-
-@function _equalOnce ($string, $matchers...) {
-    @each $matcher in $matchers {
-        @if ($string == $matcher) {
-            @return true;
-        }
-    }
-
-    @return false;
-}
-
-
-
-
+/**
+ * Default namespace
+ */
+$_layoutAttrName: hill-layout !default;
 
 //
 // Public Mixins ---------------------------------------------------------------

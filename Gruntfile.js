@@ -18,10 +18,18 @@ module.exports = function(grunt) {
         files: {
           'test-results.css': 'tests.scss'
         }
+      },
+      dist: {
+        options: {
+          style: 'compressed',
+        },
+        files: {
+          'hill.css': 'hill.scss'
+        }
       }
     },
 
-    // Bootcamp
+    // Bootcamp SCSS Unit Tests
     bootcamp: {
       test: {
         files: {
@@ -32,8 +40,8 @@ module.exports = function(grunt) {
 
     // Watch
     watch: {
-      dist: {
-        files: ['libs/*.scss', 'specs/*.scss'],
+      dev: {
+        files: ['*.scss', 'libs/*.scss', 'specs/*.scss'],
         tasks: ['sass', 'bootcamp']
       }
     }

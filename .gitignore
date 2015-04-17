@@ -2,4 +2,5 @@
 *.sass-cache
 
 node_modules
-test-results.css
+*.css
+*.css.map
