@@ -27,8 +27,7 @@ $_layoutAttrName: hill-layout !default;
             @media (#{$condition}: #{map-get($hill-layout-breakpoints, $param)}) {
                 @content;
             }
-        }
-        @else if ($length == 2) {
+        } @else if ($length == 2) {
             $param1: nth($screens, 1);
             $param2: nth($screens, 2);
             $min: null;
@@ -37,17 +36,19 @@ $_layoutAttrName: hill-layout !default;
             @if (_equalOnce(_getFirstChar($param1), '<', '>')) {
                 $param1: _removeFirstChar($param1);
             }
+
             $param1: map-get($hill-layout-breakpoints, $param1);
 
             @if (_equalOnce(_getFirstChar($param2), '<', '>')) {
                 $param2: _removeFirstChar($param2);
             }
+
             $param2: map-get($hill-layout-breakpoints, $param2);
 
             @if ($param1 > $param2) {
                 $max: $param1;
                 $min: $param2;
-            }@else {
+            } @else {
                 $max: $param2;
                 $min: $param1;
             }
@@ -56,8 +57,7 @@ $_layoutAttrName: hill-layout !default;
                    (max-width: #{$max}) {
                 @content;
             }
-        }
-        @else {
+        } @else {
             @warn "More than two parameters given";
         }
     }
