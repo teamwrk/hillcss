@@ -1,6 +1,6 @@
 {
-  "name": "hill",
-  "version": "0.0.0",
+  "name": "@ixisio/hill",
+  "version": "0.1.0",
   "description": "A sass toolkit for intuitive layouting",
   "author": "Andreas Klein <andy@ixis.io>",
   "license": "MIT",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:Vaddo/hill.git"
+    "url": "git+ssh://git@bitbucket.org/Vaddo/hill.git"
   },
   "keywords": [
     "SASS",
@@ -22,5 +22,13 @@
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^0.18.1"
-  }
+  },
+  "dependencies": {
+    "bootcamp": "^1.1.7",
+    "grunt": "^0.4.5",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-sass": "^0.18.1"
+  },
+  "homepage": "https://bitbucket.org/Vaddo/hill#readme"
 }
