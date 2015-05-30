@@ -23,12 +23,5 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^0.18.1"
   },
-  "dependencies": {
-    "bootcamp": "^1.1.7",
-    "grunt": "^0.4.5",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-sass": "^0.18.1"
-  },
   "homepage": "https://bitbucket.org/Vaddo/hill#readme"
 }
