@@ -1,8 +1,3 @@
-/**
- * Default namespace
- */
-$_layoutAttrName: hill-layout !default;
-
 //
 // Public Mixins ---------------------------------------------------------------
 //
@@ -74,17 +69,17 @@ $_layoutAttrName: hill-layout !default;
 // Generates container width attributes for layouting
 @if global-variable-exists(hill-layout-widths) {
     @each $width in $hill-layout-widths {
-        [#{$_layoutAttrName}*="#{$width}"] {
+        [#{$hill-layout-namespace}*="#{$width}"] {
             width: #{$width + '%'};
         }
 
         @if global-variable-exists(hill-layout-min-max-width) {
             @if($hill-layout-min-max-width) {
-                [#{$_layoutAttrName}*="<#{$width}"] {
+                [#{$hill-layout-namespace}*="<#{$width}"] {
                     min-width: #{$width + '%'};
                 }
 
-                [#{$_layoutAttrName}*=">#{$width}"] {
+                [#{$hill-layout-namespace}*=">#{$width}"] {
                     max-width: #{$width + '%'};
                 }
             }
@@ -99,7 +94,7 @@ $_layoutAttrName: hill-layout !default;
 
             @each $width in $hill-layout-widths {
                 @include layoutFor ($breakpointName) {
-                    [#{$_layoutAttrName}*="#{$breakpointName}-#{$width}"] {
+                    [#{$hill-layout-namespace}*="#{$breakpointName}-#{$width}"] {
                         width: #{$width + '%'};
                     }
                 };
@@ -108,18 +103,18 @@ $_layoutAttrName: hill-layout !default;
     }
 }
 
-[#{$_layoutAttrName}*="left"]  {float:   left;}
-[#{$_layoutAttrName}*="right"] {float:   right;}
-[#{$_layoutAttrName}*="hide"]  {display: none;}
+[#{$hill-layout-namespace}*="left"]  {float:   left;}
+[#{$hill-layout-namespace}*="right"] {float:   right;}
+[#{$hill-layout-namespace}*="hide"]  {display: none;}
 
 @if global-variable-exists(hill-layout-space) {
-    [#{$_layoutAttrName}*="space-top"]    { margin-top:    $hill-layout-space; }
-    [#{$_layoutAttrName}*="space-right"]  { margin-right:  $hill-layout-space; }
-    [#{$_layoutAttrName}*="space-bottom"] { margin-bottom: $hill-layout-space; }
-    [#{$_layoutAttrName}*="space-left"]   { margin-left:   $hill-layout-space; }
+    [#{$hill-layout-namespace}*="space-top"]    { margin-top:    $hill-layout-space; }
+    [#{$hill-layout-namespace}*="space-right"]  { margin-right:  $hill-layout-space; }
+    [#{$hill-layout-namespace}*="space-bottom"] { margin-bottom: $hill-layout-space; }
+    [#{$hill-layout-namespace}*="space-left"]   { margin-left:   $hill-layout-space; }
 }
 
-[#{$_layoutAttrName}*="clearfix"]  {
+[#{$hill-layout-namespace}*="clearfix"]  {
     &:before,
     &:after {
         content: " ";

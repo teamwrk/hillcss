@@ -1,5 +1,10 @@
 @import "libs/settings";
 @import "libs/utilities";
 
-@import "libs/text";
-@import "libs/layout";
+@if global-variable-exists(use-hill-text) and $use-hill-text == true {
+    @import "libs/text";
+}
+
+@if global-variable-exists(use-hill-layout) and $use-hill-layout == true {
+    @import "libs/layout";
+}

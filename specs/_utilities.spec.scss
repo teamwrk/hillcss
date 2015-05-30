@@ -1,13 +1,13 @@
 /**
- * SASS unittests for hill-layout module
+ * SASS unittests for private utilities functions
  */
 
-@import '../hill.scss';
+@import '../libs/utilities';
 
 /**
  * layout - private mixins
  */
-@include describe("Hill Layout Private Mixins") {
+@include describe("Hill Private Utilities Functions") {
 
     @include it("[_getFirstChar] should return the first char of a string") {
         $string         : '>small';

@@ -1,4 +1,4 @@
-$_textAttrName: hill-text;
+
 
 
 //
@@ -22,12 +22,12 @@ $_textAttrName: hill-text;
         $param: nth($item, 1);
         $value: nth($item, 2);
 
-        [#{$_textAttrName}*="#{$param}"] {
+        [#{$hill-text-namespace}*="#{$param}"] {
             font-size: $value;
         };
     }
 }
 
-[#{$_textAttrName}*="left"]   {text-align:  left; }
-[#{$_textAttrName}*="right"]  {text-align:  right; }
-[#{$_textAttrName}*="center"] {text-align:  center; }
+[#{$hill-text-namespace}*="left"]   {text-align:  left; }
+[#{$hill-text-namespace}*="right"]  {text-align:  right; }
+[#{$hill-text-namespace}*="center"] {text-align:  center; }
