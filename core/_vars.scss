@@ -11,10 +11,6 @@
 $hill-layout-namespace: hill-layout !default;
 $hill-text-namespace: hill-text !default;
 
-// Turn on/off main hill modules
-$use-hill-layout: true !default;
-$use-hill-text: true !default;
-
 //
 // Optionals which used for css code generation --------------------------------
 //
@@ -23,7 +19,7 @@ $use-hill-text: true !default;
 // WATCHOUT: If you use this variables in your code, then you need to remove
 //           them too.
 //
-$hill-layout-widths: (25, 33, 66, 50, 75, 100) !default;
+$hill-layout-widths: (25, 50, 75, 100) !default;
 $hill-layout-min-max-width: false !default;
 $hill-layout-breakpoint-width: false !default;
 $hill-layout-space:  40px !default;
@@ -39,10 +35,6 @@ $hill-text-sizes: (
     base:     1rem,
     small-2x: 0.9rem,
     small-3x: 0.8rem,
-    small-4x: 0.7rem,
-    small-5x: 0.5rem,
     large-2x: 1.2rem,
-    large-3x: 1.4rem,
-    large-4x: 1.6rem,
-    large-5x: 1.8rem
+    large-3x: 1.4rem
 ) !default;
