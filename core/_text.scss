@@ -1,17 +1,3 @@
-//
-// Text Helpers ----------------------------------------------------------------
-//
-@function hill-text ($property) {
-    @return map-get($hill-text-sizes, $property);
-}
-
-
-
-
-
-//
-// Global Text Classes And Attributes ------------------------------------------
-//
 // Generates text attributes
 @if global-variable-exists(hill-text-sizes) {
     @for $i from 1 through length($hill-text-sizes) {

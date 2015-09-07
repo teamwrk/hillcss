@@ -1,0 +1,65 @@
+//
+// NOTE: This helpers can used in your code to access the hill functionality/api.
+//       Hill itself depends on this helpers, so do not change this functions
+//
+
+
+@function hill-text ($property) {
+    @return map-get($hill-text-sizes, $property);
+}
+
+@mixin layoutFor ($screens...) {
+    @if global-variable-exists(hill-layout-breakpoints) {
+        $length: length($screens);
+
+        @if ($length == 1) {
+            $param:     nth($screens, 1);
+            $condition: 'max-width';
+            $char:      _getFirstChar($param);
+
+            @if (_equalOnce($char, '<', '>')) {
+                $param: _removeFirstChar($param);
+
+                @if (_equalOnce($char, '>')) {
+                    $condition: 'min-width';
+                }
+            }
+
+            @media (#{$condition}: #{map-get($hill-layout-breakpoints, $param)}) {
+                @content;
+            }
+        } @else if ($length == 2) {
+            $param1: nth($screens, 1);
+            $param2: nth($screens, 2);
+            $min: null;
+            $max: null;
+
+            @if (_equalOnce(_getFirstChar($param1), '<', '>')) {
+                $param1: _removeFirstChar($param1);
+            }
+
+            $param1: map-get($hill-layout-breakpoints, $param1);
+
+            @if (_equalOnce(_getFirstChar($param2), '<', '>')) {
+                $param2: _removeFirstChar($param2);
+            }
+
+            $param2: map-get($hill-layout-breakpoints, $param2);
+
+            @if ($param1 > $param2) {
+                $max: $param1;
+                $min: $param2;
+            } @else {
+                $max: $param2;
+                $min: $param1;
+            }
+
+            @media (min-width: #{$min}) and
+                   (max-width: #{$max}) {
+                @content;
+            }
+        } @else {
+            @warn "More than two parameters given";
+        }
+    }
+}
