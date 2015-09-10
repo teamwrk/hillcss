@@ -68,7 +68,7 @@
 // @return {String} rem value
 //
 //
-@function rem($pixel, $base: 1rem) {
+@function rem($pixel, $base: 16px) {
     @return strip-unit($pixel) / strip-unit($base) * 1rem;
 }
 
