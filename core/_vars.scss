@@ -1,16 +1,16 @@
-/**
- * Default Settings
- * Overwrite these settings without the `!default`
- * flag in your project.
- * See examples for more informations
- *
- * e.g `$hill-layout-namespace: myprj-layout;`
- */
+//
+// Default Settings
+// Overwrite these settings without the `!default`
+// flag in your project.
+// See examples for more informations
+//
+// e.g `$hill-layout-attribute-name: myprj-layout;`
+//
 
 
 // Default hill namespaces
-$hill-layout-namespace: hill-layout !default;
-$hill-text-namespace: hill-text !default;
+$hill-layout-attribute-name: hill-layout !default;
+$hill-text-attribute-name:   hill-text !default;
 
 //
 // Optionals which used for css code generation --------------------------------
@@ -20,18 +20,18 @@ $hill-text-namespace: hill-text !default;
 // WATCHOUT: If you use this variables in your code, then you need to remove
 //           them too.
 //
-$hill-layout-widths: (25, 50, 75, 100) !default;
-$hill-layout-min-max-width: false !default;
-$hill-layout-breakpoint-width: false !default;
-$hill-layout-space:  40px !default;
-
-// WATCHOUT: If you remove this, you can't use the layoutFor mixin anymore!
+$hill-layout-widths:             (25, 50, 75, 100) !default; // overwrite with empty array -> () to disable
+$hill-layout-general-helpers:    true !default;
+$hill-layout-min-max-helpers:    false !default;
+$hill-layout-breakpoint-helpers: false !default;
+$hill-layout-space:              40px !default;
 $hill-layout-breakpoints: (
     small:  480px,
     medium: 992px,
     large:  1200px
-) !default;
+) !default; // overwrite with empty array -> () to disable
 
+$hill-text-general-helpers:      true !default;
 $hill-text-sizes: (
     base:     1rem,
     small-2x: 0.9rem,

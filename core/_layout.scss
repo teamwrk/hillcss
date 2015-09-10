@@ -1,58 +1,51 @@
 // Generates container width attributes for layouting
-@if global-variable-exists(hill-layout-widths) {
-    @each $width in $hill-layout-widths {
-        [#{$hill-layout-namespace}*="#{$width}"] {
-            width: #{$width + '%'};
+@each $width in $hill-layout-widths {
+    [#{$hill-layout-attribute-name}*="width-#{$width}"] {
+        width: #{$width + '%'};
+    }
+
+    // Create min and max html helper attributes, if they are wished
+    @if($hill-layout-min-max-helpers) {
+        [#{$hill-layout-attribute-name}*="<width-#{$width}"] {
+            min-width: #{$width + '%'};
         }
 
-        @if global-variable-exists(hill-layout-min-max-width) {
-            @if($hill-layout-min-max-width) {
-                [#{$hill-layout-namespace}*="<#{$width}"] {
-                    min-width: #{$width + '%'};
+        [#{$hill-layout-attribute-name}*=">width-#{$width}"] {
+            max-width: #{$width + '%'};
+        }
+    }
+}
+
+@if ($hill-layout-breakpoint-helpers) {
+    @each $breakpoint in $hill-layout-breakpoints {
+        $breakpointName: nth($breakpoint, 1);
+
+        @each $width in $hill-layout-widths {
+            @include layoutFor ($breakpointName) {
+                [#{$hill-layout-attribute-name}*="#{$breakpointName}-#{$width}"] {
+                    width: #{$width + '%'};
                 }
-
-                [#{$hill-layout-namespace}*=">#{$width}"] {
-                    max-width: #{$width + '%'};
-                }
-            }
+            };
         }
     }
 }
 
-@if global-variable-exists(hill-layout-breakpoint-width) {
-    @if ($hill-layout-breakpoint-width) {
-        @each $breakpoint in $hill-layout-breakpoints {
-            $breakpointName: nth($breakpoint, 1);
-
-            @each $width in $hill-layout-widths {
-                @include layoutFor ($breakpointName) {
-                    [#{$hill-layout-namespace}*="#{$breakpointName}-#{$width}"] {
-                        width: #{$width + '%'};
-                    }
-                };
-            }
+@if ($hill-layout-general-helpers) {
+    [#{$hill-layout-attribute-name}*="space-top"]    { margin-top:    $hill-layout-space; }
+    [#{$hill-layout-attribute-name}*="space-right"]  { margin-right:  $hill-layout-space; }
+    [#{$hill-layout-attribute-name}*="space-bottom"] { margin-bottom: $hill-layout-space; }
+    [#{$hill-layout-attribute-name}*="space-left"]   { margin-left:   $hill-layout-space; }
+    [#{$hill-layout-attribute-name}*="left"]         { float:   left;  }
+    [#{$hill-layout-attribute-name}*="right"]        { float:   right; }
+    [#{$hill-layout-attribute-name}*="hide"]         { display: none;  }
+    [#{$hill-layout-attribute-name}*="clearfix"]  {
+        &:before,
+        &:after {
+            content: " ";
+            display: table;
         }
-    }
-}
-
-[#{$hill-layout-namespace}*="left"]  {float:   left;}
-[#{$hill-layout-namespace}*="right"] {float:   right;}
-[#{$hill-layout-namespace}*="hide"]  {display: none;}
-
-@if global-variable-exists(hill-layout-space) {
-    [#{$hill-layout-namespace}*="space-top"]    { margin-top:    $hill-layout-space; }
-    [#{$hill-layout-namespace}*="space-right"]  { margin-right:  $hill-layout-space; }
-    [#{$hill-layout-namespace}*="space-bottom"] { margin-bottom: $hill-layout-space; }
-    [#{$hill-layout-namespace}*="space-left"]   { margin-left:   $hill-layout-space; }
-}
-
-[#{$hill-layout-namespace}*="clearfix"]  {
-    &:before,
-    &:after {
-        content: " ";
-        display: table;
-    }
-    &:after {
-        clear: both;
+        &:after {
+            clear: both;
+        }
     }
 }

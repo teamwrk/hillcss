@@ -16,7 +16,8 @@ module.exports = function(grunt) {
           style: 'expanded',
         },
         files: {
-          'test-results.css': 'tests.scss'
+          'test-results.css': 'tests.scss',
+          './examples/styles.css': './examples/styles.scss'
         }
       },
       dist: {

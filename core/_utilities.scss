@@ -4,35 +4,35 @@
 //
 
 
-/**
- * Return the first character of a string
- * @private
- * @param  {String} $string
- * @return {String}
- */
+//
+// Return the first character of a string
+// @private
+// @param  {String} $string
+// @return {String}
+//
 @function _getFirstChar ($string) {
     @return str_slice($string, 1, 1);
 }
 
-/**
- * Remove the first character of a string
- * and return it
- * @private
- * @param  {String} $string
- * @return {String}
- */
+//
+// Remove the first character of a string
+// and return it
+// @private
+// @param  {String} $string
+// @return {String}
+//
 @function _removeFirstChar ($string) {
     @return str_slice($string, 2, -(length($string)));
 }
 
-/**
- * Returns if a string is equal to a list of
- * matcher Strings
- * @private
- * @param  {String} $string         String to test
- * @param  {List}   $matchers...    List of Strings to test against
- * @return {Boolean}                True or false if it matches.
- */
+//
+// Returns if a string is equal to a list of
+// matcher Strings
+// @private
+// @param  {String} $string         String to test
+// @param  {List}   $matchers...    List of Strings to test against
+// @return {Boolean}                True or false if it matches.
+//
 @function _equalOnce ($string, $matchers...) {
     @each $matcher in $matchers {
         @if ($string == $matcher) {
@@ -43,35 +43,47 @@
     @return false;
 }
 
-/**
- * rem($pixel[, $base])
- * Calculates and returns a rem value based on pixel input
- *
- * Examples:
- * width: rem(200px);       // width: 12.5rem;
- * margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
- *
- * @param {String} $pixel
- * @param {String} $base Optional rem value to get the right scope
- * @return {String} rem value
- *
-*/
+//
+// strip-unit($val)
+// Returns the number without unit. E.g. 30px -> 30
+//
+// @param  {String} $val
+// @return {Number}
+//
+@function strip-unit($val) {
+  // Borrowed from Zurb Foundation _globals.scss
+  @return $val / ($val * 0 + 1);
+}
+
+//
+// rem($pixel[, $base])
+// Calculates and returns a rem value based on pixel input
+//
+// Examples:
+// width: rem(200px);       // width: 12.5rem;
+// margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
+//
+// @param {String} $pixel
+// @param {String} $base Optional rem value to get the right scope
+// @return {String} rem value
+//
+//
 @function rem($pixel, $base: 1rem) {
     @return strip-unit($pixel) / strip-unit($base) * 1rem;
 }
 
-/**
- * halfen($number)
- * Halfen the given number
- *
- * Examples:
- * margin-left: halfen(40px);       // margin-right: 20px;
- * margin-left: halfen($space-var); // margin-right: half of the variable;
- *
- * @param {String} $number
- * @return {String} halfen value
- *
-*/
+//
+// halfen($number)
+// Halfen the given number
+//
+// Examples:
+// margin-left: halfen(40px);       // margin-right: 20px;
+// margin-left: halfen($space-var); // margin-right: half of the variable;
+//
+// @param {String} $number
+// @return {String} halfen value
+//
+//
 @function halfen($number) {
     @return $number / 2;
 }
