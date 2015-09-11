@@ -15,12 +15,12 @@
         @if ($length == 1) {
             $param:     nth($screens, 1);
             $condition: 'max-width';
-            $char:      _getFirstChar($param);
+            $char:      getFirstChar($param);
 
-            @if (_equalOnce($char, '<', '>')) {
-                $param: _removeFirstChar($param);
+            @if (equalOnce($char, '<', '>')) {
+                $param: removeFirstChar($param);
 
-                @if (_equalOnce($char, '>')) {
+                @if (equalOnce($char, '>')) {
                     $condition: 'min-width';
                 }
             }
@@ -34,14 +34,14 @@
             $min: null;
             $max: null;
 
-            @if (_equalOnce(_getFirstChar($param1), '<', '>')) {
-                $param1: _removeFirstChar($param1);
+            @if (equalOnce(getFirstChar($param1), '<', '>')) {
+                $param1: removeFirstChar($param1);
             }
 
             $param1: map-get($hill-layout-breakpoints, $param1);
 
-            @if (_equalOnce(_getFirstChar($param2), '<', '>')) {
-                $param2: _removeFirstChar($param2);
+            @if (equalOnce(getFirstChar($param2), '<', '>')) {
+                $param2: removeFirstChar($param2);
             }
 
             $param2: map-get($hill-layout-breakpoints, $param2);
