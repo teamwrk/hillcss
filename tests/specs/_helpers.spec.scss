@@ -1,0 +1,25 @@
+// SASS unittests for helpers functions
+
+// Dependencies
+@import '../../core/vars';
+@import '../../core/helpers';
+
+// Contains helpers for unittesting like should/expect abstractions
+@import '../test-helpers';
+
+@include describe("Hill Helpers Functions") {
+
+    @include it("[hill-text] should return correct font-size for given 'small-2x' keyname") {
+        $value    : hill-text('small-2x');
+        $expected : 0.9rem;
+
+        @include shouldBe($value, $expected);
+    }
+
+    @include it("[hill-text] should return correct font-size for given 'large-2x' keyname") {
+        $value    : hill-text('large-2x');
+        $expected : 1.2rem;
+
+        @include shouldBe($value, $expected);
+    }
+}
