@@ -1,42 +1,79 @@
-/**
- * SASS unittests for private utilities functions
- */
+// SASS unittests for private utilities functions
 
-@import '../libs/utilities';
+// Specs
+@import '../../core/utilities';
 
-/**
- * layout - private mixins
- */
-@include describe("Hill Private Utilities Functions") {
+// Contains helpers for unittesting like should/expect abstractions
+@import '../test-helpers';
 
-    @include it("[_getFirstChar] should return the first char of a string") {
-        $string         : '>small';
-        $firstChar      : _getFirstChar($string);
-        $expectedChar   : '>';
+@include describe("Hill Utilities Functions") {
 
-        @include should( expect($firstChar), to( be($expectedChar)));
+    @include it("[getFirstChar] should return the first char of a string") {
+        $value    : getFirstChar('>small');
+        $expected : '>';
+
+        @include shouldBe($value, $expected);
     }
 
-    @include it("[_removeFirstChar] should remove the first char of a string") {
-        $string             : '>small';
-        $stringAfterRemove  : _removeFirstChar($string);
-        $expectedString     : 'small';
+    @include it("[removeFirstChar] should remove the first char of a string") {
+        $value    : removeFirstChar('>small');
+        $expected : 'small';
 
-        @include should( expect($stringAfterRemove), to( be($expectedString)));
+        @include shouldBe($value, $expected);
     }
 
-    @include it("[_equalOnce] should compare a given char with others and return true if its equal") {
-        $matcher1           : '>';
-        $char               : '>';
+    @include it("[equalOnce] should compare a given char with others and return true if its equal") {
+        $value   : '>';
+        $matcher : '>';
 
-        @include should( expect(_equalOnce($char, $matcher1)), to( be-truthy()));
+        @include shouldBeTruthy(equalOnce($value, $matcher));
     }
 
-    @include it("[_equalOnce] should compare mutiple chars") {
-        $matcher1           : '>';
-        $matcher2           : '<';
-        $char               : '<';
+    @include it("[equalOnce] should compare a given char with others and return false if its not equal") {
+        $value   : '>';
+        $matcher : '<';
 
-        @include should( expect(_equalOnce($char, $matcher1, $matcher2)), to( be-truthy()));
+        @include shouldBeFalsy(equalOnce($value, $matcher));
+    }
+
+    @include it("[equalOnce] should compare mutiple chars") {
+        $value    : '<';
+        $matcher1 : '>';
+        $matcher2 : '<';
+
+        @include shouldBeTruthy(equalOnce($value, $matcher1, $matcher2));
+    }
+
+    @include it("[stripUnit] should remove px unit characters") {
+        $value    : 100px;
+        $expected : 100;
+
+        @include shouldBe(stripUnit($value), $expected);
+    }
+
+    @include it("[stripUnit] should remove rem unit characters") {
+        $value    : 10rem;
+        $expected : 10;
+
+        @include shouldBe(stripUnit($value), $expected);
+    }
+
+    @include it("[rem] should transform px values into rems") {
+        $value    : 16px;
+        $expected : 1rem;
+
+        @include shouldBe(rem($value), $expected);
+
+        $value    : 32px;
+        $expected : 2rem;
+
+        @include shouldBe(rem($value), $expected);
+    }
+
+    @include it("[halfen] should halven given number value") {
+        $value    : 16;
+        $expected : 8;
+
+        @include shouldBe(halfen($value), $expected);
     }
 }

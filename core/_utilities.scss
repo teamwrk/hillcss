@@ -6,34 +6,31 @@
 
 //
 // Return the first character of a string
-// @private
 // @param  {String} $string
 // @return {String}
 //
-@function _getFirstChar ($string) {
+@function getFirstChar ($string) {
     @return str_slice($string, 1, 1);
 }
 
 //
 // Remove the first character of a string
 // and return it
-// @private
 // @param  {String} $string
 // @return {String}
 //
-@function _removeFirstChar ($string) {
+@function removeFirstChar ($string) {
     @return str_slice($string, 2, -(length($string)));
 }
 
 //
 // Returns if a string is equal to a list of
 // matcher Strings
-// @private
 // @param  {String} $string         String to test
 // @param  {List}   $matchers...    List of Strings to test against
 // @return {Boolean}                True or false if it matches.
 //
-@function _equalOnce ($string, $matchers...) {
+@function equalOnce ($string, $matchers...) {
     @each $matcher in $matchers {
         @if ($string == $matcher) {
             @return true;
@@ -44,13 +41,13 @@
 }
 
 //
-// strip-unit($val)
+// stripUnit($val)
 // Returns the number without unit. E.g. 30px -> 30
 //
 // @param  {String} $val
 // @return {Number}
 //
-@function strip-unit($val) {
+@function stripUnit($val) {
   // Borrowed from Zurb Foundation _globals.scss
   @return $val / ($val * 0 + 1);
 }
@@ -67,9 +64,8 @@
 // @param {String} $base Optional rem value to get the right scope
 // @return {String} rem value
 //
-//
 @function rem($pixel, $base: 16px) {
-    @return strip-unit($pixel) / strip-unit($base) * 1rem;
+    @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
 
 //
@@ -82,7 +78,6 @@
 //
 // @param {String} $number
 // @return {String} halfen value
-//
 //
 @function halfen($number) {
     @return $number / 2;

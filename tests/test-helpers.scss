@@ -1,0 +1,29 @@
+// Helpers for unit testing
+
+//
+// Checks, if first given parameter has expected value
+// @param  {String} $checkedValue  Value to check
+// @param  {String} $expectedValue Value which is expected to be
+// @return {Boolean}
+//
+@mixin shouldBe ($checkedValue, $expectedValue) {
+    @include should( expect($checkedValue), to( be($expectedValue)));
+}
+
+//
+// Checks, if given parameter is truthy
+// @param  {String} $checkedValue  Value to check
+// @return {Boolean}
+//
+@mixin shouldBeTruthy ($checkedValue) {
+    @include should( expect($checkedValue), to( be-truthy()));
+}
+
+//
+// Checks, if given parameter is falsy
+// @param  {String} $checkedValue  Value to check
+// @return {Boolean}
+//
+@mixin shouldBeFalsy ($checkedValue) {
+    @include should( expect($checkedValue), to( be-falsy()));
+}
