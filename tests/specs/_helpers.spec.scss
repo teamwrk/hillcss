@@ -13,13 +13,13 @@
         $value    : hill-text('small-2x');
         $expected : 0.9rem;
 
-        @include shouldBe($value, $expected);
+        @include shouldBeEqual($value, $expected);
     }
 
     @include it("[hill-text] should return correct font-size for given 'large-2x' keyname") {
         $value    : hill-text('large-2x');
         $expected : 1.2rem;
 
-        @include shouldBe($value, $expected);
+        @include shouldBeEqual($value, $expected);
     }
 }

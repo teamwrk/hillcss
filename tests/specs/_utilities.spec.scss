@@ -12,14 +12,14 @@
         $value    : getFirstChar('>small');
         $expected : '>';
 
-        @include shouldBe($value, $expected);
+        @include shouldBeEqual($value, $expected);
     }
 
     @include it("[removeFirstChar] should remove the first char of a string") {
         $value    : removeFirstChar('>small');
         $expected : 'small';
 
-        @include shouldBe($value, $expected);
+        @include shouldBeEqual($value, $expected);
     }
 
     @include it("[equalOnce] should compare a given char with others and return true if its equal") {
@@ -48,32 +48,32 @@
         $value    : 100px;
         $expected : 100;
 
-        @include shouldBe(stripUnit($value), $expected);
+        @include shouldBeEqual(stripUnit($value), $expected);
     }
 
     @include it("[stripUnit] should remove rem unit characters") {
         $value    : 10rem;
         $expected : 10;
 
-        @include shouldBe(stripUnit($value), $expected);
+        @include shouldBeEqual(stripUnit($value), $expected);
     }
 
     @include it("[rem] should transform px values into rems") {
         $value    : 16px;
         $expected : 1rem;
 
-        @include shouldBe(rem($value), $expected);
+        @include shouldBeEqual(rem($value), $expected);
 
         $value    : 32px;
         $expected : 2rem;
 
-        @include shouldBe(rem($value), $expected);
+        @include shouldBeEqual(rem($value), $expected);
     }
 
     @include it("[halfen] should halven given number value") {
         $value    : 16;
         $expected : 8;
 
-        @include shouldBe(halfen($value), $expected);
+        @include shouldBeEqual(halfen($value), $expected);
     }
 }

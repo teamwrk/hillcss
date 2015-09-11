@@ -6,7 +6,7 @@
 // @param  {String} $expectedValue Value which is expected to be
 // @return {Boolean}
 //
-@mixin shouldBe ($checkedValue, $expectedValue) {
+@mixin shouldBeEqual ($checkedValue, $expectedValue) {
     @include should( expect($checkedValue), to( be($expectedValue)));
 }
 
