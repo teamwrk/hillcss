@@ -69,11 +69,4 @@
 
         @include shouldBeEqual(rem($value), $expected);
     }
-
-    @include it("[halfen] should halven given number value") {
-        $value    : 16;
-        $expected : 8;
-
-        @include shouldBeEqual(halfen($value), $expected);
-    }
 }

@@ -61,18 +61,3 @@
 @function rem($pixel, $base: 16px) {
     @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
-
-//
-// halfen($number)
-// Halfen the given number
-//
-// Examples:
-// margin-left: halfen(40px);       // margin-right: 20px;
-// margin-left: halfen($space-var); // margin-right: half of the variable;
-//
-// @param {String} $number
-// @return {String} halfen value
-//
-@function halfen($number) {
-    @return $number / 2;
-}
