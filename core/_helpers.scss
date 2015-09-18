@@ -4,12 +4,29 @@
 //
 
 //
-// Functions and mixins
+// Return the font size of the given key
+// @param   {String} $property
+// @return  {String} Font size
+// @Example
+//           .example {
+//               font-size: textSizeIs('small')
+//           }
 //
 @function textSizeIs ($property) {
     @return map-get($hill-text-sizes, $property);
 }
 
+//
+// Return content with the representive media query wrap
+// @param  {String} $screens
+// @return {CSS}    Content CSS with media query
+// @Example
+//           .example {
+//               layoutFor('small') {
+//                   color: red;
+//               }
+//           }
+//
 @mixin layoutFor ($screens...) {
     @if global-variable-exists(hill-layout-breakpoints) {
         $length: length($screens);

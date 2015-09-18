@@ -4,22 +4,34 @@
 // flag in your project.
 // See examples for more informations
 //
-// e.g `$hill-layout-attribute-name: myprj-layout;`
-//
 
 // TODO: Implement legacy support switcher. Global overwrites in mixins?
 // $hill-legacy-support:        false !default;
 
+// Attribute name for html -> <div hill-layout="..."></div>
 $hill-layout-attribute-name: hill-layout !default;
+
+// Attribute name for html -> <a hill-text="..."></a>
 $hill-text-attribute-name:   hill-text !default;
-$hill-layout-boxes:          (25, 50, 75, 100) !default; // overwrite with empty array -> () to disable
+
+// Box width sizes for usage in html -> .."box-50"..
+$hill-layout-boxes:          (25, 50, 75, 100) !default;
+
+// Box space definition. Set to 0, if you want to disable spaces between boxes.
 $hill-layout-boxes-space:    2% !default;
+
+// Space definition for usage in html -> .."space-right"..
+// Percentage values can be defined here too.
 $hill-layout-space:          40px !default;
+
+// Breakpoints for html -> .."box-small-100".. and the 'layoutFor' helper
 $hill-layout-breakpoints: (
     small:  480px,
     medium: 992px,
     large:  1280px
 ) !default;
+
+// Text sizes for html -> .."small-2x".. and the 'textSizeIs' helper
 $hill-text-sizes: (
     base:     1rem,
     small-2x: 0.9rem,
@@ -30,10 +42,11 @@ $hill-text-sizes: (
 
 
 
-// To configure the output css, overwrite these variables in your e.g. custom settings file
-$hill-layout-css-general:     true !default; // generates general selectors like 'width-50'
-$hill-layout-css-helpers:     true !default; // generates helpers like 'right'
+// To configure the output css, overwrite these variables in
+// your custom settings file. For more check out the examples.
+$hill-layout-css-general:     true !default;
+$hill-layout-css-helpers:     true !default;
 $hill-layout-css-min-max:     false !default;
 $hill-layout-css-breakpoints: false !default;
-$hill-text-css-general:       true !default; // generates general selectors like 'small-2x'
-$hill-text-css-helpers:       true !default; // generates ghelpers like 'center'
+$hill-text-css-general:       true !default;
+$hill-text-css-helpers:       true !default;
