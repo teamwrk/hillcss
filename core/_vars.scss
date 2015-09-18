@@ -7,31 +7,19 @@
 // e.g `$hill-layout-attribute-name: myprj-layout;`
 //
 
+// TODO: Implement legacy support switcher. Global overwrites in mixins?
+// $hill-legacy-support:        false !default;
 
-// Default hill namespaces
 $hill-layout-attribute-name: hill-layout !default;
 $hill-text-attribute-name:   hill-text !default;
-
-//
-// Optionals which used for css code generation --------------------------------
-//
-// All variables below triggers a css code generation. If you don't want
-// this then feel free to remove them.
-// WATCHOUT: If you use this variables in your code, then you need to remove
-//           them too.
-//
-$hill-layout-widths:             (25, 50, 75, 100) !default; // overwrite with empty array -> () to disable
-$hill-layout-general-helpers:    true !default;
-$hill-layout-min-max-helpers:    false !default;
-$hill-layout-breakpoint-helpers: false !default;
-$hill-layout-space:              40px !default;
+$hill-layout-boxes:          (25, 50, 75, 100) !default; // overwrite with empty array -> () to disable
+$hill-layout-boxes-space:    2% !default;
+$hill-layout-space:          40px !default;
 $hill-layout-breakpoints: (
     small:  480px,
     medium: 992px,
     large:  1200px
-) !default; // overwrite with empty array -> () to disable
-
-$hill-text-general-helpers:      true !default;
+) !default;
 $hill-text-sizes: (
     base:     1rem,
     small-2x: 0.9rem,
@@ -39,3 +27,13 @@ $hill-text-sizes: (
     large-2x: 1.2rem,
     large-3x: 1.4rem
 ) !default;
+
+
+
+// To configure the output css, overwrite these variables in your e.g. custom settings file
+$hill-layout-css-general:     true !default; // generates general selectors like 'width-50'
+$hill-layout-css-helpers:     true !default; // generates helpers like 'right'
+$hill-layout-css-min-max:     false !default;
+$hill-layout-css-breakpoints: false !default;
+$hill-text-css-general:       true !default; // generates general selectors like 'small-2x'
+$hill-text-css-helpers:       true !default; // generates ghelpers like 'center'

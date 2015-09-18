@@ -1,11 +1,58 @@
+@import 'utilities';
+
+@function recalcWidth($width) {
+    // Calculate the possible box count
+    $boxCount:    100 / $width;
+    // One space less than boxes
+    $spacesCount: $boxCount - 1;
+    // Calculate the new witdth minus the space
+    $newWidth:    ($width - (($hill-layout-boxes-space * $spacesCount) / $boxCount));
+
+    @return #{$newWidth};
+}
+
+//
+// Added to reduce css output
+//
+%_marginRight {
+    &:not(:last-child) {
+        margin-right: #{$hill-layout-boxes-space};
+    }
+}
+
+%_floatLeft {
+    float: left;
+}
+
+%_clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
 // Generates container width attributes for layouting
-@each $width in $hill-layout-widths {
-    [#{$hill-layout-attribute-name}*="width-#{$width}"] {
-        width: #{$width + '%'};
+@each $width in $hill-layout-boxes {
+    @if ($hill-layout-css-general) {
+        [#{$hill-layout-attribute-name}*="width-#{$width}"] {
+
+            // Generate boxes without spaces between, if space width is 0%
+            @if(stripUnit($hill-layout-boxes-space) > 0) {
+                @extend %_marginRight;
+
+                width: recalcWidth($width);
+            } @else {
+                width: #{$width + '%'};
+            }
+        }
     }
 
     // Create min and max html helper attributes, if they are wished
-    @if($hill-layout-min-max-helpers) {
+    @if($hill-layout-css-min-max) {
         [#{$hill-layout-attribute-name}*="<width-#{$width}"] {
             min-width: #{$width + '%'};
         }
@@ -16,36 +63,46 @@
     }
 }
 
-@if ($hill-layout-breakpoint-helpers) {
+@if ($hill-layout-css-general) {
+    [#{$hill-layout-attribute-name}*="row"]  {
+        [#{$hill-layout-attribute-name}*="width-"] {
+            @extend %_floatLeft;
+        }
+
+        @extend %_clearfix;
+    }
+}
+
+@if ($hill-layout-css-breakpoints) {
     @each $breakpoint in $hill-layout-breakpoints {
         $breakpointName: nth($breakpoint, 1);
 
-        @each $width in $hill-layout-widths {
+        @each $width in $hill-layout-boxes {
             @include layoutFor ($breakpointName) {
-                [#{$hill-layout-attribute-name}*="#{$breakpointName}-#{$width}"] {
-                    width: #{$width + '%'};
+                [#{$hill-layout-attribute-name}*="width-#{$breakpointName}-#{$width}"] {
+                    // Generate boxes without spaces between, if space width is 0%
+                    // XXX: Copied from code block above
+                    @if(stripUnit($hill-layout-boxes-space) > 0) {
+                        @extend %_marginRight;
+
+                        width: recalcWidth($width);
+                    } @else {
+                        width: #{$width + '%'};
+                    }
                 }
             };
         }
     }
 }
 
-@if ($hill-layout-general-helpers) {
-    [#{$hill-layout-attribute-name}*="space-top"]    { margin-top:    $hill-layout-space; }
-    [#{$hill-layout-attribute-name}*="space-right"]  { margin-right:  $hill-layout-space; }
-    [#{$hill-layout-attribute-name}*="space-bottom"] { margin-bottom: $hill-layout-space; }
-    [#{$hill-layout-attribute-name}*="space-left"]   { margin-left:   $hill-layout-space; }
-    [#{$hill-layout-attribute-name}*="left"]         { float:   left;  }
-    [#{$hill-layout-attribute-name}*="right"]        { float:   right; }
-    [#{$hill-layout-attribute-name}*="hide"]         { display: none;  }
-    [#{$hill-layout-attribute-name}*="clearfix"]  {
-        &:before,
-        &:after {
-            content: " ";
-            display: table;
-        }
-        &:after {
-            clear: both;
-        }
-    }
+@if ($hill-layout-css-helpers) {
+    [#{$hill-layout-attribute-name}*="space-top"]    { margin-top:    #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-right"]  { margin-right:  #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-bottom"] { margin-bottom: #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-left"]   { margin-left:   #{$hill-layout-space}; }
+
+    [#{$hill-layout-attribute-name}*="position-left"]  { @extend %_floatLeft; }
+    [#{$hill-layout-attribute-name}*="position-right"] { float:   right; }
+    [#{$hill-layout-attribute-name}*="hide"]           { display: none;  }
+    [#{$hill-layout-attribute-name}*="clear"]          { @extend %_clearfix; }
 }

@@ -3,8 +3,10 @@
 //       Hill itself depends on this helpers, so do not change this functions
 //
 
-
-@function hill-text ($property) {
+//
+// Functions and mixins
+//
+@function textSizeIs ($property) {
     @return map-get($hill-text-sizes, $property);
 }
 
