@@ -1,5 +1,12 @@
 @import 'utilities';
 
+
+
+//
+// Subtracts the defined box spacing from the given width.
+// @param  {Number} $width
+// @return {String} The new width
+//
 @function recalcWidth($width) {
     // Calculate the possible box count
     $boxCount:    100 / $width;
@@ -11,15 +18,11 @@
     @return #{$newWidth};
 }
 
+
+
 //
 // Added to reduce css output
 //
-%_marginRight {
-    &:not(:last-child) {
-        margin-right: #{$hill-layout-boxes-space};
-    }
-}
-
 %_floatLeft {
     float: left;
 }
@@ -35,15 +38,18 @@
     }
 }
 
-// Generates container width attributes for layouting
+
+
+//
+// Generates box width and box min/max css attributes
+//
 @each $width in $hill-layout-boxes {
     @if ($hill-layout-css-general) {
-        [#{$hill-layout-attribute-name}*="width-#{$width}"] {
+        // -> box-100, box-50 ...
+        [#{$hill-layout-attribute-name}*="box-#{$width}"] {
 
             // Generate boxes without spaces between, if space width is 0%
             @if(stripUnit($hill-layout-boxes-space) > 0) {
-                @extend %_marginRight;
-
                 width: recalcWidth($width);
             } @else {
                 width: #{$width + '%'};
@@ -51,21 +57,41 @@
         }
     }
 
-    // Create min and max html helper attributes, if they are wished
+    // -> <box-100, >box-50 ...
     @if($hill-layout-css-min-max) {
-        [#{$hill-layout-attribute-name}*="<width-#{$width}"] {
+        [#{$hill-layout-attribute-name}*="<box-#{$width}"] {
             min-width: #{$width + '%'};
         }
 
-        [#{$hill-layout-attribute-name}*=">width-#{$width}"] {
+        [#{$hill-layout-attribute-name}*=">box-#{$width}"] {
             max-width: #{$width + '%'};
         }
     }
 }
 
+
+
+//
+// Generates space for all boxes
+//
+@if ($hill-layout-css-general or $hill-layout-css-breakpoints) {
+    @if(stripUnit($hill-layout-boxes-space) > 0) {
+        [#{$hill-layout-attribute-name}*="box-"] {
+            &:not(:last-child) {
+                margin-right: #{$hill-layout-boxes-space};
+            }
+        }
+    }
+}
+
+
+
+//
+// Generates box row to float boxes inside
+//
 @if ($hill-layout-css-general) {
     [#{$hill-layout-attribute-name}*="row"]  {
-        [#{$hill-layout-attribute-name}*="width-"] {
+        [#{$hill-layout-attribute-name}*="box-"] {
             @extend %_floatLeft;
         }
 
@@ -73,28 +99,45 @@
     }
 }
 
+
+
+//
+// Generates box breakpoints with relevant width sizes
+//
 @if ($hill-layout-css-breakpoints) {
     @each $breakpoint in $hill-layout-breakpoints {
         $breakpointName: nth($breakpoint, 1);
 
+        // -> box-small-100, box-medium-50 ...
         @each $width in $hill-layout-boxes {
             @include layoutFor ($breakpointName) {
-                [#{$hill-layout-attribute-name}*="width-#{$breakpointName}-#{$width}"] {
-                    // Generate boxes without spaces between, if space width is 0%
-                    // XXX: Copied from code block above
+                [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-#{$width}"] {
                     @if(stripUnit($hill-layout-boxes-space) > 0) {
-                        @extend %_marginRight;
-
                         width: recalcWidth($width);
                     } @else {
                         width: #{$width + '%'};
                     }
                 }
+
             };
+        }
+
+        // -> box-small-hide
+        @include layoutFor ($breakpointName) {
+            [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-hide"] {
+                // Tried to exclude this into a placeholder. But this after that
+                // this selector is not rendered inside a media query condition
+                display: none;
+            }
         }
     }
 }
 
+
+
+//
+// Generates different layout helpers
+//
 @if ($hill-layout-css-helpers) {
     [#{$hill-layout-attribute-name}*="space-top"]    { margin-top:    #{$hill-layout-space}; }
     [#{$hill-layout-attribute-name}*="space-right"]  { margin-right:  #{$hill-layout-space}; }
@@ -103,6 +146,6 @@
 
     [#{$hill-layout-attribute-name}*="position-left"]  { @extend %_floatLeft; }
     [#{$hill-layout-attribute-name}*="position-right"] { float:   right; }
-    [#{$hill-layout-attribute-name}*="hide"]           { display: none;  }
+    [#{$hill-layout-attribute-name}*="hide"]           { display: none; }
     [#{$hill-layout-attribute-name}*="clear"]          { @extend %_clearfix; }
 }
