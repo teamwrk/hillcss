@@ -1,0 +1,55 @@
+$box-back-color--default: #e0e0e0;
+
+[layout="row"] {
+    position: relative;
+    margin-top: rem(20px);
+    margin-bottom: rem(20px);
+
+    & > .button-add--dashed,
+    & > .button-remove {
+        display: none;
+    }
+
+    &[state="is-empty"] {
+        min-height: rem(180px);
+        margin: 0;
+        border: dashed 2px $box-back-color--default;
+        border-radius: 6px;
+
+        & + & {
+            border-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        & > .button-add--dashed,
+        & > .button-remove {
+            display: block;
+        }
+    }
+}
+
+[layout*="box-"] {
+    position: relative;
+    background-color: $box-back-color--default;
+    min-height: rem(180px);
+    transition: all .4s ease;
+    margin-bottom: rem(20px);
+
+    // .button-add--dashed {
+    //     height: rem(20px);
+    //     width: rem(20px);
+    // }
+
+    [class*="button-"] {
+        opacity: 0;
+
+    }
+
+    &:hover {
+        [class*="button-"] {
+            opacity: .4;
+        }
+    }
+
+}

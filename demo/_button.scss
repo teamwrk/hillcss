@@ -1,0 +1,53 @@
+[class*="button-"] {
+    background-size: 100%;
+    display: block;
+    transition: opacity .4s ease;
+    cursor: pointer;
+    background-repeat: no-repeat;
+
+    &:hover {
+        opacity: 1 !important;
+    }
+}
+
+.button-add,
+.button-remove,
+.button-large-device,
+.button-medium-device,
+.button-small-device,
+.button-color {
+    opacity: .4;
+    height: rem(20px);
+    width: rem(20px);
+}
+
+.button-add {
+    background-image: url('images/square-plus.svg');
+}
+
+.button-add--dashed {
+    opacity: .4;
+    background-image: url('images/marquee-plus.svg');
+    height: rem(40px);
+    width: rem(40px);
+}
+
+.button-remove {
+    background-image: url('images/trash.svg');
+}
+
+.button-large-device {
+    background-image: url('images/device-desktop.svg');
+}
+
+.button-medium-device {
+    background-image: url('images/device-tablet.svg');
+}
+
+.button-small-device {
+    background-image: url('images/device-phone.svg');
+}
+
+.button-color {
+    background-image: url('images/drop.svg');
+}

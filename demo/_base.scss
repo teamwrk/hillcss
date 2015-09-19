@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    font-size: textSizeIs('small-2x');
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    font-size: textSizeIs('small-2x');
+    padding: rem(20px);
+}

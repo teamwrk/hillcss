@@ -1,0 +1,53 @@
+@import '../core/helpers';
+
+$list-back-color: #ababab;
+$list-fore-color: #fff;
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: $list-back-color;
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: $list-fore-color;
+    transition: all .4s ease;
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    position: absolute;
+    left: rem(-6px);
+    top: rem(52px);
+
+    &:before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border: solid 6px transparent;
+        border-bottom: solid 6px $list-back-color;
+        position: absolute;
+        top: rem(-12px);
+        left: rem(10px);
+    }
+
+    li {
+        margin-top: 4px;
+        cursor: pointer;
+
+        &:hover,
+        &[state="is-active"] {
+            color: #000;
+        }
+    }
+}
+
+.list-container-value {
+    font-size: textSizeIs('small-3x');
+}
+
+.button-large-device,
+.button-medium-device,
+.button-small-device {
+    padding-top: rem(24px);
+}

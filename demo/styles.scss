@@ -1,0 +1,101 @@
+// Import first your custom project/hill settings here!
+@import 'settings';
+
+// You can also include here for example themes!
+// @import 'theme';
+
+// @import '../node_modules/normalize.css/normalize.css';
+
+// Hill full toolkit import. This file generates CSS helper classes.
+// If you not need them, then overwrite the default hill setting or
+// import the "hill-api.scss" here.
+@import '../hill';
+
+@import 'base';
+@import 'box';
+@import 'button';
+@import 'list';
+
+.layout-app {
+    max-width: $page-max-width;
+}
+
+.layout-remove-all {
+    height: rem(26px);
+    width: rem(26px);
+    position: absolute;
+    right: rem(20px);
+    top: rem(20px);
+}
+
+.layout-add-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.layout-add-top {
+    margin: 0 auto rem(10px) auto;
+}
+
+.layout-add-bottom {
+    margin: rem(10px) auto 0 auto;
+}
+
+.layout-remove {
+    position: absolute;
+    top: rem(10px);
+    right: rem(10px);
+}
+
+.layout-color {
+    position: absolute;
+    bottom: rem(10px);
+    right: rem(10px);
+}
+
+[layout*="box-"] {
+    [class*="layout-add-"] {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .layout-add-top {
+        margin-top: rem(-25px);
+    }
+    .layout-add-right {
+        margin-left: rem(-25px);
+    }
+    .layout-add-bottom {
+        margin-top: rem(25px);
+    }
+    .layout-add-left {
+        margin-left: rem(25px);
+    }
+}
+
+[class*="layout-list-container-"] {
+    text-align: center;
+    position: absolute;
+    top: rem(10px);
+
+    &:hover .list {
+        opacity: 1;
+        max-height: rem(300px);
+        visibility: visible;
+    }
+}
+
+.layout-list-container-large {
+    left: rem(65px);
+}
+
+.layout-list-container-medium {
+    left: rem(35px);
+}
+
+.layout-list-container-small {
+    left: rem(10px);
+}
