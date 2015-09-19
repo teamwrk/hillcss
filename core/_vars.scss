@@ -2,7 +2,7 @@
 // Default Settings
 // Overwrite these settings without the `!default`
 // flag in your project.
-// See examples for more informations
+// See demo for more informations
 //
 
 // TODO: Implement legacy support switcher. Global overwrites in mixins?
@@ -43,7 +43,7 @@ $hill-text-sizes: (
 
 
 // To configure the output css, overwrite these variables in
-// your custom settings file. For more check out the examples.
+// your custom settings file. For more check out the demo.
 $hill-layout-css-general:     true !default;
 $hill-layout-css-helpers:     true !default;
 $hill-layout-css-min-max:     false !default;

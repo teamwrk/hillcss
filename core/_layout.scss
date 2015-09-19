@@ -117,8 +117,11 @@
                     } @else {
                         width: #{$width + '%'};
                     }
-                }
 
+                    // Tried to exclude this into a placeholder. But this after that
+                    // this selector is not rendered inside a media query condition
+                    display: block;
+                }
             };
         }
 
