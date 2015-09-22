@@ -58,8 +58,11 @@ $(function () {
                         '</div>' +
                         '<div class="logic-content"></div>' +
                     '</div>',
+
+        _$app: $('#app'),
+
         init: function () {
-            $('#app').html(this._rowMarkup);
+            this._$app.html(this._rowMarkup);
             this._initEvents();
         },
         _initEvents: function () {
@@ -94,11 +97,10 @@ $(function () {
                 $newRow.find('.logic-add-box').trigger('click');
 
             }).on('click', '.logic-add-below', function () {
-                var $newRow = $(self._rowMarkup);
                 var $thisRow = $(this).parents('[layout="row"]');
+                var $newRow = $thisRow.clone();
 
                 $thisRow.after($newRow);
-                $newRow.find('.logic-add-box').trigger('click');
 
             }).on('click', '.logic-remove', function () {
                 var $parent = $(this).parent();
@@ -133,7 +135,7 @@ $(function () {
 
                 $(this).parent().css('backgroundColor', colors[randomColorIndex]);
             }).on('click', '.logic-remove-all', function () {
-                $('#app').html(self._rowMarkup);
+                self._$app.html(self._rowMarkup);
             })
         }
     };

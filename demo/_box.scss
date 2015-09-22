@@ -41,9 +41,10 @@ $box-back-color--default: #e0e0e0;
     //     width: rem(20px);
     // }
 
-    [class*="button-"] {
+    [class*="button-add"],
+    .button-remove,
+    .button-color {
         opacity: 0;
-
     }
 
     &:hover {

@@ -20,6 +20,36 @@
     max-width: $page-max-width;
 }
 
+.layout-size-indicator {
+    position: absolute;
+    left: rem(30px);
+    top: rem(16px);
+    color: darken(#fff, 30);
+    font-family: Verdana;
+
+    &:after {
+        content: '';
+        display: inline-block;
+        background-size: 100%;
+        height: rem(30px);
+        width: rem(30px);
+        opacity: .4;
+        margin: 0 0 rem(-8px) rem(6px);
+
+        @include layoutFor('small') {
+            background-image: url('images/device-phone.svg');
+        }
+
+        @include layoutFor('medium') {
+            background-image: url('images/device-tablet.svg');
+        }
+
+        @include layoutFor('large') {
+            background-image: url('images/device-desktop.svg');
+        }
+    }
+}
+
 .layout-remove-all {
     height: rem(26px);
     width: rem(26px);
