@@ -5,14 +5,23 @@
     </head>
     <body>
         <span class="layout-size-indicator" href="#">Device</span>
-        <a class="logic-remove-all button-remove layout-remove-all" href="#"></a>
-        <a class="logic-add-top button-add layout-add-top" href="#"></a>
+        <a title="Reset and clear all" class="logic-remove-all button-remove layout-remove-all" href="#"></a>
+        <a title="Add row above" class="logic-add-top button-add layout-add-top" href="#"></a>
         <div id="app" class="layout-app"></div>
-        <a class="logic-add-bottom button-add layout-add-bottom" href="#"></a>
+        <a title="Add row below" class="logic-add-bottom button-add layout-add-bottom" href="#"></a>
+
+        <div id="modal" class="modal">
+            <textarea id="modalInput" class="modal-input" placeholder="Add HTML content here ..."></textarea>
+            <div layout="clear">
+                <a title="Add content now" class="logic-button-add-content button-add" href=""></a>
+                <a title="Cancel and close modal" class="logic-button-cancel button-cancel" href=""></a>
+            </div>
+        </div>
+
+        <span class="hill-text">Hill Toolkit - Griddl v0.5</span>
 
         <script src="http://localhost:1338/livereload.js"></script>
         <script src="js/jquery-2.1.4.min.js"></script>
-        <script src="js/interact-1.2.5.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

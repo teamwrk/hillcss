@@ -15,7 +15,9 @@
 .button-large-device,
 .button-medium-device,
 .button-small-device,
-.button-color {
+.button-color,
+.button-content,
+.button-cancel {
     opacity: .4;
     height: rem(20px);
     width: rem(20px);
@@ -50,4 +52,12 @@
 
 .button-color {
     background-image: url('images/drop.svg');
+}
+
+.button-content {
+    background-image: url('images/download.svg');
+}
+
+.button-cancel {
+    background-image: url('images/square-cross.svg');
 }

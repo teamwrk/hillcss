@@ -1,0 +1,36 @@
+.modal {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: rem(20px);
+    border-radius: 10px;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, .1);
+
+    &[state="is-visible"] {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    [class*="button-"] {
+        float: right;
+        margin-left: rem(6px);
+        margin-top: rem(10px);
+    }
+}
+
+.modal-input {
+    border: solid 1px #efefef;
+    resize: none;
+    width: rem(300px);
+    height: rem(200px);
+
+    &:focus {
+        outline: none;
+        border-color: darken(#efefef, 10);
+    }
+}

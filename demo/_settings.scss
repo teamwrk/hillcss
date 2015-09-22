@@ -15,3 +15,12 @@ $hill-text-css-helpers:       false;
 $hill-layout-space:           20px;
 
 $page-max-width:             1280px;
+
+$hill-text-sizes: (
+    base:     1rem,
+    small-2x: 0.9rem,
+    small-3x: 0.8rem,
+    small-4x: 0.6rem,
+    large-2x: 1.2rem,
+    large-3x: 1.4rem
+) !default;

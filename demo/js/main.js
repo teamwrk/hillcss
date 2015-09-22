@@ -1,22 +1,20 @@
 $(function () {
     var hillGriddl = {
-        // Nice to have
-        // '<span class="logic-add-row button-add--dashed layout-add-center"></span>' +
-        //
         _rowMarkup: '<div layout="row" state="is-empty">' +
-                        '<span class="logic-add-box button-add--dashed layout-add-center"></span>' +
-                        '<span class="logic-remove button-remove layout-remove"></span>' +
+                        '<span title="Add box" class="logic-add-box button-add--dashed layout-add-center"></span>' +
+                        '<span title="Remove row container" class="logic-remove button-remove layout-remove"></span>' +
                     '</div>',
         _boxMarkup: '<div layout="box-25">' +
-                        '<span class="logic-add-right button-add layout-add-right"></span>' +
-                        '<span class="logic-add-left button-add layout-add-left"></span>' +
-                        '<span class="logic-add-above button-add layout-add-top"></span>' +
-                        '<span class="logic-add-below button-add layout-add-bottom"></span>' +
-                        '<span class="logic-remove button-remove layout-remove"></span>' +
-                        '<span class="logic-color button-color layout-color"></span>' +
+                        '<span title="Add box right" class="logic-add-right button-add layout-add-right"></span>' +
+                        '<span title="Add box left" class="logic-add-left button-add layout-add-left"></span>' +
+                        '<span title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></span>' +
+                        '<span title="Add HTML content" class="logic-add-content button-content layout-add-content"></span>' +
+                        '<span title="Dublicate row and append" class="logic-add-below button-add layout-add-bottom"></span>' +
+                        '<span title="Remove box" class="logic-remove button-remove layout-remove"></span>' +
+                        '<span title="Random background color" class="logic-color button-color layout-color"></span>' +
 
                         '<div class="layout-list-container-small">' +
-                            '<span class="button-small-device list-container-value">100</span>' +
+                            '<span class="button-small-device list-container-value">25</span>' +
                             '<ul class="layout-list list">' +
                                 '<li value="box-small-hide">0</li>' +
                                 '<li value="box-small-25" state="is-active">25</li>' +
@@ -30,7 +28,7 @@ $(function () {
                         '</div>' +
 
                         '<div class="layout-list-container-medium">' +
-                            '<span class="button-medium-device list-container-value">100</span>' +
+                            '<span class="button-medium-device list-container-value">25</span>' +
                             '<ul class="layout-list list">' +
                                 '<li value="box-medium-hide">0</li>' +
                                 '<li value="box-medium-25" state="is-active">25</li>' +
@@ -44,7 +42,7 @@ $(function () {
                         '</div>' +
 
                         '<div class="layout-list-container-large">' +
-                            '<span class="button-large-device list-container-value">100</span>' +
+                            '<span class="button-large-device list-container-value">25</span>' +
                             '<ul class="layout-list list">' +
                                 '<li value="box-large-hide">0</li>' +
                                 '<li value="box-large-25" state="is-active">25</li>' +
@@ -60,34 +58,63 @@ $(function () {
                     '</div>',
 
         _$app: $('#app'),
+        _storageID: 'HillGriddl',
+        _$modal: $('#modal'),
+        _$modalInput: $('#modalInput'),
 
         init: function () {
-            this._$app.html(this._rowMarkup);
+            if (this._isStored()) {
+                this._loadFromStorage();
+            } else {
+                this._$app.html(this._rowMarkup);
+            }
+
             this._initEvents();
+        },
+        _store: function () {
+            var markup = this._$app.html();
+
+            localStorage.setItem(this._storageID, markup);
+        },
+        _clearStorage: function () {
+            localStorage.setItem(this._storageID, '');
+        },
+        _loadFromStorage: function () {
+            var markup = localStorage.getItem(this._storageID);
+
+            this._$app.html(markup);
+        },
+        _isStored: function () {
+            return (localStorage.getItem(this._storageID));
         },
         _initEvents: function () {
             var self = this;
 
             $('body').on('click', '.logic-add-top', function () {
                 self._$app.prepend(self._rowMarkup);
+                self._store();
 
             }).on('click', '.logic-add-bottom', function () {
                 self._$app.append(self._rowMarkup);
+                self._store();
 
             }).on('click', '.logic-add-box', function () {
                 $(this).parents('[layout="row"]')
                        .removeAttr('state')
                        .append(self._boxMarkup);
+                self._store();
 
             }).on('click', '.logic-add-right', function () {
                 var $box = $(this).parent();
 
                 $box.after($box.clone());
+                self._store();
 
             }).on('click', '.logic-add-left', function () {
                 var $box = $(this).parent();
 
                 $box.before($box.clone());
+                self._store();
 
             }).on('click', '.logic-add-above', function () {
                 var $newRow = $(self._rowMarkup);
@@ -95,12 +122,14 @@ $(function () {
 
                 $thisRow.before($newRow);
                 $newRow.find('.logic-add-box').trigger('click');
+                self._store();
 
             }).on('click', '.logic-add-below', function () {
                 var $thisRow = $(this).parents('[layout="row"]');
                 var $newRow = $thisRow.clone();
 
                 $thisRow.after($newRow);
+                self._store();
 
             }).on('click', '.logic-remove', function () {
                 var $parent = $(this).parent();
@@ -113,6 +142,8 @@ $(function () {
                        .not('.logic-add-box, .logic-remove').length === 0) {
                     $row.attr('state', 'is-empty');
                 }
+                self._store();
+
             }).on('click', '.layout-list li', function () {
                 var $ul = $(this).parent();
                 var $listContainer = $ul.parent();
@@ -128,14 +159,35 @@ $(function () {
                            $actives.eq(2).attr('value');
 
                 $box.attr('layout', attr);
+                self._store();
+
             }).on('click', '.logic-color', function () {
                 var colors = ['#da9a9a', '#f7e17d', '#9ad5da',
                               '#cbec88', '#f2c082'];
                 var randomColorIndex = Math.floor(Math.random() * colors.length) + 0;
 
                 $(this).parent().css('backgroundColor', colors[randomColorIndex]);
+                self._store();
+
             }).on('click', '.logic-remove-all', function () {
                 self._$app.html(self._rowMarkup);
+                self._clearStorage();
+            }).on('click', '.logic-add-content', function () {
+                self._$modal.attr('state', 'is-visible');
+                $(this).siblings('.logic-content').attr('id', 'contentHere');
+            }).on('click', '.logic-button-cancel', function () {
+                self._$modal.removeAttr('state');
+                $('#contentHere').removeAttr('id');
+                return false;
+            })
+            .on('click', '.logic-button-add-content ', function () {
+                var content = self._$modalInput.val();
+                $('#contentHere').html(content);
+                $('#contentHere').removeAttr('id');
+                self._$modal.removeAttr('state');
+                self._store();
+
+                return false;
             })
         }
     };
