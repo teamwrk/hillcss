@@ -1,10 +1,10 @@
 $(function () {
     var hillGriddl = {
-        _rowMarkup: '<div layout="row" state="is-empty">' +
+        _rowTemplate: '<div layout="row" state="is-empty">' +
                         '<span title="Add box" class="logic-add-box button-add--dashed layout-add-center"></span>' +
                         '<span title="Remove row container" class="logic-remove button-remove layout-remove"></span>' +
                     '</div>',
-        _boxMarkup: '<div layout="box-25">' +
+        _boxTemplate: '<div layout="box-25">' +
                         '<span title="Add box right" class="logic-add-right button-add layout-add-right"></span>' +
                         '<span title="Add box left" class="logic-add-left button-add layout-add-left"></span>' +
                         '<span title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></span>' +
@@ -54,19 +54,16 @@ $(function () {
                                 '<li value="box-large-100">100</li>' +
                             '</ul>' +
                         '</div>' +
-                        '<div class="logic-content"></div>' +
                     '</div>',
 
         _$app: $('#app'),
         _storageID: 'HillGriddl',
-        _$modal: $('#modal'),
-        _$modalInput: $('#modalInput'),
 
         init: function () {
             if (this._isStored()) {
                 this._loadFromStorage();
             } else {
-                this._$app.html(this._rowMarkup);
+                this._$app.html(this._rowTemplate);
             }
 
             this._initEvents();
@@ -91,17 +88,17 @@ $(function () {
             var self = this;
 
             $('body').on('click', '.logic-add-top', function () {
-                self._$app.prepend(self._rowMarkup);
+                self._$app.prepend(self._rowTemplate);
                 self._store();
 
             }).on('click', '.logic-add-bottom', function () {
-                self._$app.append(self._rowMarkup);
+                self._$app.append(self._rowTemplate);
                 self._store();
 
             }).on('click', '.logic-add-box', function () {
                 $(this).parents('[layout="row"]')
                        .removeAttr('state')
-                       .append(self._boxMarkup);
+                       .append(self._boxTemplate);
                 self._store();
 
             }).on('click', '.logic-add-right', function () {
@@ -117,7 +114,7 @@ $(function () {
                 self._store();
 
             }).on('click', '.logic-add-above', function () {
-                var $newRow = $(self._rowMarkup);
+                var $newRow = $(self._rowTemplate);
                 var $thisRow = $(this).parents('[layout="row"]');
 
                 $thisRow.before($newRow);
@@ -170,27 +167,75 @@ $(function () {
                 self._store();
 
             }).on('click', '.logic-remove-all', function () {
-                self._$app.html(self._rowMarkup);
+                self._$app.html(self._rowTemplate);
                 self._clearStorage();
-            }).on('click', '.logic-add-content', function () {
-                self._$modal.attr('state', 'is-visible');
-                $(this).siblings('.logic-content').attr('id', 'contentHere');
-            }).on('click', '.logic-button-cancel', function () {
-                self._$modal.removeAttr('state');
-                $('#contentHere').removeAttr('id');
-                return false;
-            })
-            .on('click', '.logic-button-add-content ', function () {
-                var content = self._$modalInput.val();
-                $('#contentHere').html(content);
-                $('#contentHere').removeAttr('id');
-                self._$modal.removeAttr('state');
-                self._store();
-
-                return false;
             })
         }
     };
 
+    var silverUtils = {
+        _iFrameTemplate: '<iframe src="iframe.html" frameborder="0" height="100%" width="100%" class="logic-content layout-content"></iframe>',
+        _$modal: $('#modal'),
+        _$modalHTMLInput: $('#modalHTMLInput'),
+
+        init: function () {
+            if (hillGriddl._isStored()) {
+                this._initIframeContent();
+            }
+
+            this._initEvents();
+        },
+
+        _initEvents: function () {
+            var self = this;
+
+            $('body').on('click', '.logic-button-add-content ', function () {
+                var content = self._$modalHTMLInput.val();
+                var $target = $('#contentHere');
+                var height = $target.attr('data-src', content)
+                                    .contents()
+                                    .find('body')
+                                    .html(content).innerHeight();
+
+                $target.parent().height(height);
+                $target.removeAttr('id');
+                self._$modal.removeAttr('state');
+                hillGriddl._store();
+
+                return false;
+            }).on('click', '.logic-add-content', function () {
+                var me = $(this);
+
+                me.parent().append(self._iFrameTemplate);
+                self._$modal.attr('state', 'is-visible');
+
+                var content = me.siblings('.logic-content')
+                                .attr('id', 'contentHere')
+                                .attr('data-src');
+
+                self._$modalHTMLInput.val(content);
+
+            }).on('click', '.logic-button-cancel', function () {
+                self._$modal.removeAttr('state');
+                $('#contentHere').removeAttr('id');
+
+                return false;
+            })
+        },
+        _initIframeContent: function () {
+            setTimeout(function () {
+                $('iframe').each(function () {
+                    if($(this).attr('data-src').length > 0) {
+                        $(this).attr('data-src', $(this).attr('data-src'))
+                               .contents()
+                               .find('body')
+                               .html($(this).attr('data-src'));
+                    }
+                });
+            }, 600);
+        }
+    };
+
     hillGriddl.init();
+    silverUtils.init();
 });

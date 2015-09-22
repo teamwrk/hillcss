@@ -53,6 +53,10 @@ module.exports = function(grunt) {
                     livereload: 1338
                 }
             },
+            js: {
+                files: ['**/*.js'],
+                tasks: ['babel']
+            }
         },
 
         cmq: {
@@ -65,9 +69,20 @@ module.exports = function(grunt) {
                 }
             }
         }
+
+        babel: {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    'demo/dist/main.js': 'demo/js/main.js'
+                }
+            }
+        }
     });
 
     // Tasks
-    grunt.registerTask('default', ['sass', 'cmq', 'bootcamp', 'watch']);
+    grunt.registerTask('default', ['sass', 'babel', 'cmq', 'bootcamp', 'watch']);
     grunt.registerTask('test',    ['sass', 'bootcamp']);
 };

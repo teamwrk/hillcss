@@ -23,10 +23,11 @@
     }
 }
 
-.modal-input {
+[class*="modal-input--"] {
     border: solid 1px #efefef;
+    padding: rem(6px) rem(10px);
     resize: none;
-    width: rem(300px);
+    width: rem(400px);
     height: rem(200px);
 
     &:focus {

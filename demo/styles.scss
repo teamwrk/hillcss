@@ -19,6 +19,7 @@
 
 .layout-app {
     max-width: $page-max-width;
+    margin-top: rem(20px);
 }
 
 .layout-size-indicator {
@@ -51,6 +52,14 @@
     }
 }
 
+.layout-add-styles {
+    height: rem(26px);
+    width: rem(26px);
+    position: absolute;
+    right: rem(50px);
+    top: rem(20px);
+}
+
 .layout-remove-all {
     height: rem(26px);
     width: rem(26px);
@@ -71,7 +80,7 @@
 }
 
 .layout-add-bottom {
-    margin: rem(10px) auto 0 auto;
+    margin: rem(20px) auto 0 auto;
 }
 
 .layout-remove {
@@ -135,4 +144,11 @@
     font-size: textSizeIs('small-4x');
     font-family: Verdana;
     opacity: .3;
+}
+
+// Silvertours specific code
+.layout-content {
+    overflow:hidden;
+    height:100%;
+    width:100%
 }
