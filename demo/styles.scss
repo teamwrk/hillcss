@@ -11,11 +11,11 @@
 // import the "hill-api.scss" here.
 @import '../hill';
 
-@import 'base';
-@import 'box';
-@import 'button';
-@import 'list';
-@import 'modal';
+@import 'components/base';
+@import 'components/box';
+@import 'components/button';
+@import 'components/list';
+@import 'components/modal';
 
 .layout-app {
     max-width: $page-max-width;

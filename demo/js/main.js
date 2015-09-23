@@ -192,12 +192,10 @@ $(function () {
             $('body').on('click', '.logic-button-add-content ', function () {
                 var content = self._$modalHTMLInput.val();
                 var $target = $('#contentHere');
-                var height = $target.attr('data-src', content)
-                                    .contents()
-                                    .find('body')
-                                    .html(content).innerHeight();
 
-                $target.parent().height(height);
+                self._setFrameContent($target, content);
+                self._updateBoxHeight($target);
+
                 $target.removeAttr('id');
                 self._$modal.removeAttr('state');
                 hillGriddl._store();
@@ -223,6 +221,8 @@ $(function () {
             })
         },
         _initIframeContent: function () {
+            var self = this;
+
             setTimeout(function () {
                 $('iframe').each(function () {
                     if($(this).attr('data-src').length > 0) {
@@ -231,8 +231,23 @@ $(function () {
                                .find('body')
                                .html($(this).attr('data-src'));
                     }
+                    self._updateBoxHeight($(this));
                 });
             }, 600);
+        },
+        _updateBoxHeight: function ($iframe) {
+            var height = $iframe.contents().find('body').innerHeight();
+
+            $iframe.parent().height(height);
+        },
+        _setFrameContent: function ($iframe, content) {
+            $iframe.attr('data-src', content)
+                   .contents()
+                   .find('body')
+                   .html(content);
+        },
+        _getFrameContent: function ($iframe) {
+            return $iframe.attr('data-src');
         }
     };
 

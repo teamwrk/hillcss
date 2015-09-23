@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('bootcamp');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-combine-media-queries');
 
     // Grunt Tasks
@@ -18,7 +19,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'test-results.css': './tests/tests.scss',
-                    './demo/styles.css': './demo/styles.scss'
+                    './demo/dist/styles.css': './demo/styles.scss'
                 }
             },
             dist: {
@@ -65,10 +66,10 @@ module.exports = function(grunt) {
             },
             css: {
                 files: {
-                    './demo': ['demo/*.css']
+                    './demo': ['demo/dist/*.css']
                 }
             }
-        }
+        },
 
         babel: {
             options: {

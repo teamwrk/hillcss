@@ -24,40 +24,40 @@
 }
 
 .button-add {
-    background-image: url('images/square-plus.svg');
+    background-image: url('../images/square-plus.svg');
 }
 
 .button-add--dashed {
     opacity: .4;
-    background-image: url('images/marquee-plus.svg');
+    background-image: url('../images/marquee-plus.svg');
     height: rem(40px);
     width: rem(40px);
 }
 
 .button-remove {
-    background-image: url('images/trash.svg');
+    background-image: url('../images/trash.svg');
 }
 
 .button-large-device {
-    background-image: url('images/device-desktop.svg');
+    background-image: url('../images/device-desktop.svg');
 }
 
 .button-medium-device {
-    background-image: url('images/device-tablet.svg');
+    background-image: url('../images/device-tablet.svg');
 }
 
 .button-small-device {
-    background-image: url('images/device-phone.svg');
+    background-image: url('../images/device-phone.svg');
 }
 
 .button-color {
-    background-image: url('images/drop.svg');
+    background-image: url('../images/drop.svg');
 }
 
 .button-content {
-    background-image: url('images/download.svg');
+    background-image: url('../images/download.svg');
 }
 
 .button-cancel {
-    background-image: url('images/square-cross.svg');
+    background-image: url('../images/square-cross.svg');
 }
