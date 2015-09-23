@@ -18,11 +18,45 @@
 
 //
 // Return content with the representive media query wrap
-// @param  {String} $screens
-// @return {CSS}    Content CSS with media query
+// @param  {String} $screens    Exact, greater than, lower that or ranges
+//                              of breakpoints (see examples)
+// @return {CSS}                CSS contents with inside of
+//                              the given media query
 // @Example
+//
+//           // 1) Simple MediaQuery for small screens only
 //           .example {
-//               layoutFor('small') {
+//               color: blue;
+//
+//               @include layoutFor('small') {
+//                   color: red;
+//               }
+//           }
+//
+//           // 2) MediaQuery for screensizes greater than `small` breakpoint
+//           .example {
+//               color: blue;
+//
+//               @include layoutFor('>small') {
+//                   color: red;
+//               }
+//           }
+//
+//           // 3) MediaQuery for screensizes smaller than `large` breakpoint
+//           .example {
+//               color: blue;
+//
+//               @include layoutFor('<large') {
+//                   color: red;
+//               }
+//           }
+//
+//           // 4) MediaQuery for screensizes between `small`
+//           //    and `large` breakpoints
+//           .example {
+//               color: blue;
+//
+//               @include layoutFor('>small', '<large') {
 //                   color: red;
 //               }
 //           }
