@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('bootcamp');
-    grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-combine-media-queries');
 
     // Grunt Tasks
@@ -55,8 +55,8 @@ module.exports = function(grunt) {
                 }
             },
             js: {
-                files: ['**/*.js'],
-                tasks: ['babel']
+                files: ['demo/js/*.js'],
+                tasks: ['browserify']
             }
         },
 
@@ -66,24 +66,28 @@ module.exports = function(grunt) {
             },
             css: {
                 files: {
-                    './demo': ['demo/dist/*.css']
+                    './demo/dist': ['demo/dist/*.css']
                 }
             }
         },
 
-        babel: {
-            options: {
-                sourceMap: true
-            },
+        browserify: {
             dist: {
+                options: {
+                    transform: [
+                        ["babelify", {
+                            loose: "all"
+                        }]
+                    ]
+                },
                 files: {
-                    'demo/dist/main.js': 'demo/js/main.js'
+                    'demo/dist/app.js': 'demo/js/app.js'
                 }
             }
-        }
+        },
     });
 
     // Tasks
-    grunt.registerTask('default', ['sass', 'babel', 'cmq', 'bootcamp', 'watch']);
+    grunt.registerTask('default', ['sass', 'browserify', 'cmq', 'bootcamp', 'watch']);
     grunt.registerTask('test',    ['sass', 'bootcamp']);
 };

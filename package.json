@@ -18,13 +18,17 @@
     "Mixins"
   ],
   "devDependencies": {
+    "babelify": "^6.3.0",
     "bootcamp": "^1.1.7",
     "grunt": "^0.4.5",
-    "grunt-babel": "^5.0.3",
+    "grunt-browserify": "^4.0.1",
     "grunt-combine-media-queries": "^1.0.19",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^0.18.1",
     "normalize.css": "^3.0.3"
   },
-  "homepage": "https://bitbucket.org/Vaddo/hill#readme"
+  "homepage": "https://bitbucket.org/Vaddo/hill#readme",
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
 }

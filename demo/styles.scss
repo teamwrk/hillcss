@@ -39,15 +39,15 @@
         margin: 0 0 rem(-8px) rem(6px);
 
         @include layoutFor('small') {
-            background-image: url('images/device-phone.svg');
+            background-image: url('../images/device-phone.svg');
         }
 
         @include layoutFor('medium') {
-            background-image: url('images/device-tablet.svg');
+            background-image: url('../images/device-tablet.svg');
         }
 
         @include layoutFor('large') {
-            background-image: url('images/device-desktop.svg');
+            background-image: url('../images/device-desktop.svg');
         }
     }
 }
