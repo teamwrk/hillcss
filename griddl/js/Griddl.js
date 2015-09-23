@@ -1,17 +1,16 @@
 import $ from 'jquery';
 import GriddlMarkup from './GriddlMarkup';
-import GriddlHelper from './GriddlHelper';
+import GriddlStorage from './GriddlStorage';
 
 class Griddl {
     constructor () {
         this.Markup = new GriddlMarkup();
-        this.Helper = new GriddlHelper();
+        this.Store  = new GriddlStorage('Hill-Griddl');
         this.$app   = $('#app');
+        let markup  = this.Markup.getRow();
 
-        let markup = this.Markup.getRow();
-
-        if (this.Helper.isDataStored()) {
-            markup = this.Helper.getStoredData();
+        if (this.Store.hasData()) {
+            markup = this.Store.getData();
         }
 
         this.$app.html(markup);
@@ -126,28 +125,28 @@ class Griddl {
         event.preventDefault();
 
         this.$app.html(this.Markup.getRow());
-        this.Helper.clearData();
+        this.Store.clear();
     }
 
     addRowAbove (event) {
         event.preventDefault();
 
         this.$app.prepend(this.Markup.getRow());
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     addRowBelow (event) {
         event.preventDefault();
 
         this.$app.append(this.Markup.getRow());
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     removeRow (event) {
         event.preventDefault();
 
         $(event.target).parents('[layout="row"]').remove();
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     addBoxToRow (event) {
@@ -156,25 +155,25 @@ class Griddl {
         $(event.target).parents('[layout="row"]')
                        .removeAttr('state')
                        .append(this.Markup.getBox());
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     addBoxBefore (event) {
         event.preventDefault();
 
-        var $box = $(event.target).parents('.box');
+        var $box = this._getBox($(event.target));
 
         $box.before($box.clone());
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     addBoxAfter (event) {
         event.preventDefault();
 
-        let $box = $(event.target).parents('.box');
+        let $box = this._getBox($(event.target));
 
         $box.after($box.clone());
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     addBoxRowBefore (event) {
@@ -182,7 +181,7 @@ class Griddl {
 
         this._addBoxRow($(event.target).parents('[layout="row"]'),
                         'above');
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     addBoxRowAfter (event) {
@@ -190,13 +189,13 @@ class Griddl {
 
         this._addBoxRow($(event.target).parents('[layout="row"]'),
                         'below');
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     removeBox (event) {
         event.preventDefault();
 
-        let $box = $(event.target).parents('.box');
+        let $box = this._getBox($(event.target));
 
         if ($box.siblings('.box').length === 0) {
             $box.parents('[layout="row"]')
@@ -204,7 +203,7 @@ class Griddl {
         }
 
         $box.remove();
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     changeDeviceSizeSettings (event) {
@@ -213,7 +212,7 @@ class Griddl {
         let $me            = $(event.target);
         let $list          = $me.parents('.list');
         let $listContainer = $list.parents('.list-container');
-        let $box           = $listContainer.parents('.box');
+        let $box           = this._getBox($listContainer);
 
         $list.find('[state="is-active"]').removeAttr('state');
         $me.attr('state', 'is-active');
@@ -225,15 +224,19 @@ class Griddl {
                    $actives.eq(2).attr('value');
 
         $box.attr('layout', attr);
-        this.Helper.storeData(this.$app.html());
+        this.Store.store(this.$app.html());
     }
 
     changeBoxColor () {
         event.preventDefault();
 
-        $(event.target).parents('.box')
-              .css('backgroundColor', this.Helper.randomHexColor());
-        this.Helper.storeData(this.$app.html());
+        this._getBox($(event.target))
+              .css('backgroundColor', this._randomHexColor());
+        this.Store.store(this.$app.html());
+    }
+
+    _getBox ($item) {
+        return $item.parents('.box');
     }
 
     _addBoxRow ($row, position) {
@@ -244,6 +247,13 @@ class Griddl {
         } else {
             $row.after($newRow);
         }
+    }
+
+    _randomHexColor () {
+        var colors = ['#da9a9a', '#f7e17d', '#9ad5da',
+                      '#cbec88', '#f2c082'];
+
+        return colors[Math.floor(Math.random() * colors.length) + 0];
     }
 }
 

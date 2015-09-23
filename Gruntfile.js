@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'test-results.css': './tests/tests.scss',
-                    './demo/dist/styles.css': './demo/styles.scss'
+                    './griddl/dist/styles.css': './griddl/styles.scss'
                 }
             },
             dist: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
                 }
             },
             js: {
-                files: ['demo/js/*.js'],
+                files: ['griddl/js/*.js'],
                 tasks: ['browserify']
             }
         },
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: {
-                    './demo/dist': ['demo/dist/*.css']
+                    './griddl/dist': ['griddl/dist/*.css']
                 }
             }
         },
@@ -81,7 +81,7 @@ module.exports = function(grunt) {
                     ]
                 },
                 files: {
-                    'demo/dist/app.js': 'demo/js/app.js'
+                    'griddl/dist/app.js': 'griddl/js/app.js'
                 }
             }
         },
