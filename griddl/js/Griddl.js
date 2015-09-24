@@ -5,7 +5,7 @@ import GriddlStorage from './GriddlStorage';
 class Griddl {
     constructor () {
         this.Markup = new GriddlMarkup();
-        this.Store  = new GriddlStorage('Hill-Griddl');
+        this.Store  = new GriddlStorage();
         this.$app   = $('#app');
         let markup  = this.Markup.getRow();
 
@@ -14,8 +14,6 @@ class Griddl {
         }
 
         this.$app.html(markup);
-
-        let self = this;
 
         // Global events
         $('body').on('click', '.logic-remove-all', $.proxy(this.removeAll, this))
@@ -34,91 +32,6 @@ class Griddl {
                  .on('click', '.logic-remove',      $.proxy(this.removeBox, this))
                  .on('click', '.layout-list li',    $.proxy(this.changeDeviceSizeSettings, this))
                  .on('click', '.logic-color',       $.proxy(this.changeBoxColor, this));
-
-
-
-
-
-        // var silverUtils = {
-        //     _iFrameTemplate: '<iframe src="iframe.html" frameborder="0" height="100%" width="100%" class="logic-content layout-content"></iframe>',
-        //     _$modal: $('#modal'),
-        //     _$modalHTMLInput: $('#modalHTMLInput'),
-
-        //     init: function () {
-        //         if (hillGriddl._isStored()) {
-        //             this._initIframeContent();
-        //         }
-
-        //         this._initEvents();
-        //     },
-
-        //     _initEvents: function () {
-        //         var self = this;
-
-        //         $('body').on('click', '.logic-button-add-content ', function () {
-        //             var content = self._$modalHTMLInput.val();
-        //             var $target = $('#contentHere');
-
-        //             self._setFrameContent($target, content);
-        //             self._updateBoxHeight($target);
-
-        //             $target.removeAttr('id');
-        //             self._$modal.removeAttr('state');
-        //             hillGriddl._store();
-
-        //             return false;
-        //         }).on('click', '.logic-add-content', function () {
-        //             var me = $(this);
-
-        //             me.parent().append(self._iFrameTemplate);
-        //             self._$modal.attr('state', 'is-visible');
-
-        //             var content = me.siblings('.logic-content')
-        //                             .attr('id', 'contentHere')
-        //                             .attr('data-src');
-
-        //             self._$modalHTMLInput.val(content);
-
-        //         }).on('click', '.logic-button-cancel', function () {
-        //             self._$modal.removeAttr('state');
-        //             $('#contentHere').removeAttr('id');
-
-        //             return false;
-        //         })
-        //     },
-        //     _initIframeContent: function () {
-        //         var self = this;
-
-        //         setTimeout(function () {
-        //             $('iframe').each(function () {
-        //                 if($(this).attr('data-src').length > 0) {
-        //                     $(this).attr('data-src', $(this).attr('data-src'))
-        //                            .contents()
-        //                            .find('body')
-        //                            .html($(this).attr('data-src'));
-        //                 }
-        //                 self._updateBoxHeight($(this));
-        //             });
-        //         }, 600);
-        //     },
-        //     _updateBoxHeight: function ($iframe) {
-        //         var height = $iframe.contents().find('body').innerHeight();
-
-        //         $iframe.parent().height(height);
-        //     },
-        //     _setFrameContent: function ($iframe, content) {
-        //         $iframe.attr('data-src', content)
-        //                .contents()
-        //                .find('body')
-        //                .html(content);
-        //     },
-        //     _getFrameContent: function ($iframe) {
-        //         return $iframe.attr('data-src');
-        //     }
-        // };
-
-        // hillGriddl.init();
-        // silverUtils.init();
     }
 
     removeAll (event) {
@@ -145,23 +58,22 @@ class Griddl {
     removeRow (event) {
         event.preventDefault();
 
-        $(event.target).parents('[layout="row"]').remove();
+        this.getRow($(event.target)).remove();
         this.Store.store(this.$app.html());
     }
 
     addBoxToRow (event) {
         event.preventDefault();
 
-        $(event.target).parents('[layout="row"]')
-                       .removeAttr('state')
-                       .append(this.Markup.getBox());
+        this.getRow($(event.target)).removeAttr('state')
+                                     .append(this.Markup.getBox());
         this.Store.store(this.$app.html());
     }
 
     addBoxBefore (event) {
         event.preventDefault();
 
-        var $box = this._getBox($(event.target));
+        var $box = this.getBox($(event.target));
 
         $box.before($box.clone());
         this.Store.store(this.$app.html());
@@ -170,7 +82,7 @@ class Griddl {
     addBoxAfter (event) {
         event.preventDefault();
 
-        let $box = this._getBox($(event.target));
+        let $box = this.getBox($(event.target));
 
         $box.after($box.clone());
         this.Store.store(this.$app.html());
@@ -179,26 +91,24 @@ class Griddl {
     addBoxRowBefore (event) {
         event.preventDefault();
 
-        this._addBoxRow($(event.target).parents('[layout="row"]'),
-                        'above');
+        this._addBoxRow(this.getRow($(event.target)), 'above');
         this.Store.store(this.$app.html());
     }
 
     addBoxRowAfter (event) {
         event.preventDefault();
 
-        this._addBoxRow($(event.target).parents('[layout="row"]'),
-                        'below');
+        this._addBoxRow(this.getRow($(event.target)), 'below');
         this.Store.store(this.$app.html());
     }
 
     removeBox (event) {
         event.preventDefault();
 
-        let $box = this._getBox($(event.target));
+        let $box = this.getBox($(event.target));
 
         if ($box.siblings('.box').length === 0) {
-            $box.parents('[layout="row"]')
+            this.getRow($box)
                 .attr('state', 'is-empty');
         }
 
@@ -212,7 +122,7 @@ class Griddl {
         let $me            = $(event.target);
         let $list          = $me.parents('.list');
         let $listContainer = $list.parents('.list-container');
-        let $box           = this._getBox($listContainer);
+        let $box           = this.getBox($listContainer);
 
         $list.find('[state="is-active"]').removeAttr('state');
         $me.attr('state', 'is-active');
@@ -230,13 +140,17 @@ class Griddl {
     changeBoxColor () {
         event.preventDefault();
 
-        this._getBox($(event.target))
+        this.getBox($(event.target))
               .css('backgroundColor', this._randomHexColor());
         this.Store.store(this.$app.html());
     }
 
-    _getBox ($item) {
+    getBox ($item) {
         return $item.parents('.box');
+    }
+
+    getRow ($item) {
+        return $item.parents('[layout="row"]');
     }
 
     _addBoxRow ($row, position) {

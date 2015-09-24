@@ -1,3 +1,7 @@
+$image-path: '../../images/';
+
+@import '../styles';
+
 .modal {
     opacity: 0;
     visibility: hidden;
@@ -33,5 +37,38 @@
     &:focus {
         outline: none;
         border-color: darken(#efefef, 10);
+    }
+}
+
+.button-content {
+    background-image: url($image-path + 'download.svg');
+}
+
+.button-cancel {
+    background-image: url($image-path + 'square-cross.svg');
+}
+
+.box-with-content {
+    background-color: transparent;
+}
+
+.box:hover:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    opacity: .9;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: solid 3px #efefef;
+}
+
+.list-container {
+    opacity: 0;
+
+    [layout*="box-"]:hover & {
+        opacity: 1;
     }
 }

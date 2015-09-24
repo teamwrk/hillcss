@@ -4,60 +4,42 @@
     transition: opacity .4s ease;
     cursor: pointer;
     background-repeat: no-repeat;
+    opacity: .4;
+    height: rem(20px);
+    width: rem(20px);
 
     &:hover {
         opacity: 1 !important;
     }
 }
 
-.button-add,
-.button-remove,
-.button-large-device,
-.button-medium-device,
-.button-small-device,
-.button-color,
-.button-content,
-.button-cancel {
-    opacity: .4;
-    height: rem(20px);
-    width: rem(20px);
-}
-
 .button-add {
-    background-image: url('../images/square-plus.svg');
+    background-image: url($image-path + 'square-plus.svg');
 }
 
 .button-add--dashed {
     opacity: .4;
-    background-image: url('../images/marquee-plus.svg');
+    background-image: url($image-path + 'marquee-plus.svg');
     height: rem(40px);
     width: rem(40px);
 }
 
 .button-remove {
-    background-image: url('../images/trash.svg');
+    background-image: url($image-path + 'trash.svg');
 }
 
 .button-large-device {
-    background-image: url('../images/device-desktop.svg');
+    background-image: url($image-path + 'device-desktop.svg');
 }
 
 .button-medium-device {
-    background-image: url('../images/device-tablet.svg');
+    background-image: url($image-path + 'device-tablet.svg');
 }
 
 .button-small-device {
-    background-image: url('../images/device-phone.svg');
+    background-image: url($image-path + 'device-phone.svg');
 }
 
 .button-color {
-    background-image: url('../images/drop.svg');
-}
-
-.button-content {
-    background-image: url('../images/download.svg');
-}
-
-.button-cancel {
-    background-image: url('../images/square-cross.svg');
+    background-image: url($image-path + 'drop.svg');
 }

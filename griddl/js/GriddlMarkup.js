@@ -11,7 +11,6 @@ class GriddlMarkup {
                     '<span title="Add box right" class="logic-add-right button-add layout-add-right"></span>' +
                     '<span title="Add box left" class="logic-add-left button-add layout-add-left"></span>' +
                     '<span title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></span>' +
-                    '<span title="Add HTML content" class="logic-add-content button-content layout-add-content"></span>' +
                     '<span title="Dublicate row and append" class="logic-add-below button-add layout-add-bottom"></span>' +
                     '<span title="Remove box" class="logic-remove button-remove layout-remove"></span>' +
                     '<span title="Random background color" class="logic-color button-color layout-color"></span>' +

@@ -11,11 +11,12 @@
 // import the "hill-api.scss" here.
 @import '../hill';
 
+$image-path: '../images/' !default;
+
 @import 'components/base';
 @import 'components/box';
 @import 'components/button';
 @import 'components/list';
-@import 'components/modal';
 
 .layout-app {
     max-width: $page-max-width;
@@ -39,15 +40,15 @@
         margin: 0 0 rem(-8px) rem(6px);
 
         @include layoutFor('small') {
-            background-image: url('../images/device-phone.svg');
+            background-image: url($image-path + 'device-phone.svg');
         }
 
         @include layoutFor('medium') {
-            background-image: url('../images/device-tablet.svg');
+            background-image: url($image-path + 'device-tablet.svg');
         }
 
         @include layoutFor('large') {
-            background-image: url('../images/device-desktop.svg');
+            background-image: url($image-path + 'device-desktop.svg');
         }
     }
 }
@@ -144,11 +145,4 @@
     font-size: textSizeIs('small-4x');
     font-family: Verdana;
     opacity: .3;
-}
-
-// Silvertours specific code
-.layout-content {
-    overflow:hidden;
-    height:100%;
-    width:100%
 }

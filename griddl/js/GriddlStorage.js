@@ -1,6 +1,6 @@
 class GriddlStorage {
-    constructor (storageID) {
-        this.storageID = storageID;
+    constructor () {
+        this.storageID = 'Hill-Griddl';
     }
 
     getData () {
