@@ -66,6 +66,7 @@ $image-path: '../../images/';
 }
 
 .list-container {
+    transition: opacity .4s ease;
     opacity: 0;
 
     [layout*="box-"]:hover & {

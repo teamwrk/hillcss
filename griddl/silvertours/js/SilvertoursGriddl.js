@@ -28,7 +28,10 @@ class SilvertoursGriddl extends Griddl {
         setTimeout(function () {
             $iFrameContainers.each(function () {
                 content = $(this).attr('data-content');
-                self._setIFrameContent($(this), content);
+
+                if (content) {
+                    self._setIFrameContent($(this), content);
+                }
             });
         }, 500);
     }
