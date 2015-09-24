@@ -29,7 +29,16 @@ $box-back-color--default: #e0e0e0;
     }
 }
 
-[layout*="box-"] {
+.is-second-level {
+    margin: 0;
+    padding: rem(40px) rem(40px) 0 rem(40px);
+
+    .box {
+        margin-bottom: rem(40px);
+    }
+}
+
+.box {
     position: relative;
     background-color: $box-back-color--default;
     min-height: rem(180px);
@@ -39,11 +48,28 @@ $box-back-color--default: #e0e0e0;
     [class*="button-add"],
     .button-remove,
     .button-content,
-    .button-color {
+    .button-color,
+    .button-clear {
         opacity: 0;
     }
 
     &:hover [class*="button-"] {
         opacity: .4;
+    }
+}
+
+.box-with-row {
+    & > .list-container,
+    & > [class*="button-"] {
+        display: none;
+    }
+}
+
+.list-container {
+    transition: opacity .4s ease;
+    opacity: 0;
+
+    [layout*="box-"]:hover & {
+        opacity: 1;
     }
 }

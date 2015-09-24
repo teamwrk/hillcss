@@ -53,14 +53,6 @@ $image-path: '../images/' !default;
     }
 }
 
-.layout-add-styles {
-    height: rem(26px);
-    width: rem(26px);
-    position: absolute;
-    right: rem(50px);
-    top: rem(20px);
-}
-
 .layout-remove-all {
     height: rem(26px);
     width: rem(26px);
@@ -126,6 +118,7 @@ $image-path: '../images/' !default;
         opacity: 1;
         max-height: rem(300px);
         visibility: visible;
+        z-index: 10;
     }
 }
 

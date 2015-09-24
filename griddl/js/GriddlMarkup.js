@@ -1,22 +1,23 @@
 class GriddlMarkup {
     getRow () {
         return '<div layout="row" state="is-empty">' +
-                    '<span title="Add box" class="logic-add-box button-add--dashed layout-add-center"></span>' +
-                    '<span title="Remove row container" class="logic-remove-row button-remove layout-remove"></span>' +
+                    '<a title="Add box" class="logic-add-box button-add--dashed layout-add-center"></a>' +
+                    '<a title="Remove row container" class="logic-remove-row button-remove layout-remove"></a>' +
                 '</div>';
     }
 
     getBox () {
         return '<div class="box" layout="box-small-25 box-medium-25 box-large-25">' +
-                    '<span title="Add box right" class="logic-add-right button-add layout-add-right"></span>' +
-                    '<span title="Add box left" class="logic-add-left button-add layout-add-left"></span>' +
-                    '<span title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></span>' +
-                    '<span title="Dublicate row and append" class="logic-add-below button-add layout-add-bottom"></span>' +
-                    '<span title="Remove box" class="logic-remove button-remove layout-remove"></span>' +
-                    '<span title="Random background color" class="logic-color button-color layout-color"></span>' +
+                    '<a title="Add box right" class="logic-add-right button-add layout-add-right"></a>' +
+                    '<a title="Add box left" class="logic-add-left button-add layout-add-left"></a>' +
+                    '<a title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></a>' +
+                    '<a title="Dublicate row and append" class="logic-add-below button-add layout-add-bottom"></a>' +
+                    '<a title="Add box inside" class="logic-add-box-inside button-add layout-add-box"></a>' +
+                    '<a title="Remove box" class="logic-remove button-remove layout-remove"></a>' +
+                    '<a title="Random background color" class="logic-color button-color layout-color"></a>' +
 
                     '<div class="list-container layout-list-container-small">' +
-                        '<span class="button-small-device list-container-value">25</span>' +
+                        '<span title="Size on small devices" class="button-small-device list-container-value">25</span>' +
                         '<ul class="layout-list list">' +
                             '<li value="box-small-hide">0</li>' +
                             '<li value="box-small-25" state="is-active">25</li>' +
@@ -30,7 +31,7 @@ class GriddlMarkup {
                     '</div>' +
 
                     '<div class="list-container layout-list-container-medium">' +
-                        '<span class="button-medium-device list-container-value">25</span>' +
+                        '<span title="Size on large devices" class="button-medium-device list-container-value">25</span>' +
                         '<ul class="layout-list list">' +
                             '<li value="box-medium-hide">0</li>' +
                             '<li value="box-medium-25" state="is-active">25</li>' +
@@ -44,7 +45,7 @@ class GriddlMarkup {
                     '</div>' +
 
                     '<div class="list-container layout-list-container-large">' +
-                        '<span class="button-large-device list-container-value">25</span>' +
+                        '<span title="Size on large devices" class="button-large-device list-container-value">25</span>' +
                         '<ul class="layout-list list">' +
                             '<li value="box-large-hide">0</li>' +
                             '<li value="box-large-25" state="is-active">25</li>' +

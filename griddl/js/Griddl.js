@@ -25,13 +25,14 @@ class Griddl {
                  .on('click', '.logic-add-box',    $.proxy(this.addBoxToRow, this))
 
         // Box events
-                 .on('click', '.logic-add-right',   $.proxy(this.addBoxAfter, this))
-                 .on('click', '.logic-add-left',    $.proxy(this.addBoxBefore, this))
-                 .on('click', '.logic-add-above',   $.proxy(this.addBoxRowBefore, this))
-                 .on('click', '.logic-add-below',   $.proxy(this.addBoxRowAfter, this))
-                 .on('click', '.logic-remove',      $.proxy(this.removeBox, this))
-                 .on('click', '.layout-list li',    $.proxy(this.changeDeviceSizeSettings, this))
-                 .on('click', '.logic-color',       $.proxy(this.changeBoxColor, this));
+                 .on('click', '.logic-add-right',      $.proxy(this.addBoxAfter, this))
+                 .on('click', '.logic-add-left',       $.proxy(this.addBoxBefore, this))
+                 .on('click', '.logic-add-above',      $.proxy(this.addBoxRowBefore, this))
+                 .on('click', '.logic-add-below',      $.proxy(this.addBoxRowAfter, this))
+                 .on('click', '.logic-remove',         $.proxy(this.removeBox, this))
+                 .on('click', '.logic-add-box-inside', $.proxy(this.addBoxInside, this))
+                 .on('click', '.layout-list li',       $.proxy(this.changeDeviceSizeSettings, this))
+                 .on('click', '.logic-color',          $.proxy(this.changeBoxColor, this));
     }
 
     removeAll (event) {
@@ -46,6 +47,16 @@ class Griddl {
 
         this.$app.prepend(this.Markup.getRow());
         this.Store.store(this.$app.html());
+    }
+
+    addBoxInside (event) {
+        let $thisBox = this.getBox($(event.target));
+        let $newRow  = $(this.Markup.getRow()).removeAttr('state')
+                                              .addClass('is-second-level');
+
+        $thisBox.addClass('box-with-row').append($newRow);
+        $thisBox.find('[layout="row"]')
+                .append(this.Markup.getBox());
     }
 
     addRowBelow (event) {
@@ -108,8 +119,16 @@ class Griddl {
         let $box = this.getBox($(event.target));
 
         if ($box.siblings('.box').length === 0) {
-            this.getRow($box)
-                .attr('state', 'is-empty');
+            let $parentRow = this.getRow($box);
+
+            if ($parentRow.hasClass('is-second-level')) {
+                $parentRow.parent('.box-with-row')
+                          .removeClass('box-with-row')
+                $parentRow.remove();
+            } else {
+                this.getRow($box)
+                    .attr('state', 'is-empty');
+            }
         }
 
         $box.remove();
@@ -120,8 +139,8 @@ class Griddl {
         event.preventDefault();
 
         let $me            = $(event.target);
-        let $list          = $me.parents('.list');
-        let $listContainer = $list.parents('.list-container');
+        let $list          = $me.parent('.list');
+        let $listContainer = $list.parent('.list-container');
         let $box           = this.getBox($listContainer);
 
         $list.find('[state="is-active"]').removeAttr('state');
@@ -146,11 +165,11 @@ class Griddl {
     }
 
     getBox ($item) {
-        return $item.parents('.box');
+        return $item.parent('.box');
     }
 
     getRow ($item) {
-        return $item.parents('[layout="row"]');
+        return $item.parent('[layout="row"]');
     }
 
     _addBoxRow ($row, position) {
