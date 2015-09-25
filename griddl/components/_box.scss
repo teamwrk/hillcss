@@ -59,9 +59,10 @@ $box-back-color--default: #e0e0e0;
 }
 
 .box-with-row {
+    // Hide buttons, if row has another box
     & > .list-container,
     & > [class*="button-"] {
-        display: none;
+        display: none !important;
     }
 }
 

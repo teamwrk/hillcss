@@ -165,11 +165,11 @@ class Griddl {
     }
 
     getBox ($item) {
-        return $item.parent('.box');
+        return $item.closest('.box');
     }
 
     getRow ($item) {
-        return $item.parent('[layout="row"]');
+        return $item.closest('[layout="row"]');
     }
 
     _addBoxRow ($row, position) {
