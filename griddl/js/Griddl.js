@@ -84,7 +84,7 @@ class Griddl {
     addBoxBefore (event) {
         event.preventDefault();
 
-        var $box = this.getBox($(event.target));
+        let $box = this.getBox($(event.target));
 
         $box.before($box.clone());
         this.Store.store(this.$app.html());
@@ -183,7 +183,7 @@ class Griddl {
     }
 
     _randomHexColor () {
-        var colors = ['#da9a9a', '#f7e17d', '#9ad5da',
+        let colors = ['#da9a9a', '#f7e17d', '#9ad5da',
                       '#cbec88', '#f2c082'];
 
         return colors[Math.floor(Math.random() * colors.length) + 0];
