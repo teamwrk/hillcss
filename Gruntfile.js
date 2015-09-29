@@ -29,14 +29,6 @@ module.exports = function(grunt) {
                 files: {
                     'hill.css': 'hill.scss'
                 }
-            },
-            silvertours: {
-                options: {
-                    style: 'expanded',
-                },
-                files: {
-                    './griddl/silvertours/dist/styles.css': './griddl/silvertours/styles.scss'
-                }
             }
         },
 
@@ -76,11 +68,6 @@ module.exports = function(grunt) {
                 files: {
                     './griddl/dist': ['griddl/dist/*.css']
                 }
-            },
-            silvertours: {
-                files: {
-                    './griddl/silvertours/dist': ['griddl/silvertours/dist/*.css']
-                }
             }
         },
 
@@ -96,17 +83,11 @@ module.exports = function(grunt) {
                 files: {
                     'griddl/dist/app.js': 'griddl/js/app.js'
                 }
-            },
-            silvertours: {
-                files: {
-                    'griddl/silvertours/dist/app.js': 'griddl/silvertours/js/app.js'
-                }
             }
         },
     });
 
     // Tasks
     grunt.registerTask('default', ['sass', 'browserify', 'cmq', 'bootcamp', 'watch']);
-    grunt.registerTask('silver',  ['sass:silvertours', 'browserify:silvertours', 'cmq:silvertours']);
     grunt.registerTask('test',    ['sass', 'bootcamp']);
 };
