@@ -6,6 +6,7 @@ class Griddl {
     constructor () {
         this.Markup               = new GriddlMarkup();
         this.Store                = new GriddlStorage();
+        this.$html                = $('html');
         this.$app                 = $('#app');
         this.$deviceTypeContainer = $('#deviceTypeContainer');
         let markup                = this.Markup.getRow();
@@ -35,6 +36,16 @@ class Griddl {
                  .on('click', '.logic-add-box-inside', $.proxy(this.addBoxInside, this))
                  .on('click', '.layout-list li',       $.proxy(this.changeDeviceSizeSettings, this))
                  .on('click', '.logic-color',          $.proxy(this.changeBoxColor, this));
+
+        $(window).on('resize', $.proxy(this.onWindowResize, this));
+    }
+
+    onWindowResize (event) {
+        event.preventDefault();
+
+        if ($('.button-auto').attr('state')) {
+            this.$html.attr('class', this._getDeviceClass());
+        }
     }
 
     changeDeviceSize (event) {
@@ -47,9 +58,10 @@ class Griddl {
 
         if ($me.attr('value') === '') {
             this.$deviceTypeContainer.removeClass('device');
+            this.$html.attr('class', this._getDeviceClass());
         } else {
-            this.$deviceTypeContainer.addClass('device')
-                                     .attr('type', $me.attr('value'));
+            this.$deviceTypeContainer.addClass('device');
+            this.$html.attr('class', 'device-is--' + $me.attr('value'));
         }
     }
 
@@ -206,6 +218,35 @@ class Griddl {
 
         return colors[Math.floor(Math.random() * colors.length) + 0];
     }
+
+    _getDeviceClass () {
+        return 'device-is--' + this.$html.css('font-family');
+    }
+
+    /*
+     * Gets and parse the JSON string from the font-family of a target.
+     * @param  {object} $target     The target with the JSON string in font-family
+     * @return {object}             Returns a JSON object
+    */
+    // _getJsonFromStyles: function ($target) {
+    //     var result = null;
+
+    //     try {
+    //         var string = $target.css('font-family')
+    //                             // Replace unneeded quotes at the beginning and end of the JSON string ...
+    //                             .replace(/\'/g, '') // for Chrome
+    //                             .replace(/\\/g, '') // for Firefox
+    //                             .replace('"{', '{') // for IE
+    //                             .replace('}"', '}');
+
+    //         result = $.parseJSON(string);
+    //     } catch (e) {
+    //         console.warn('JSON could not be parsed. ' +
+    //             'Did you store the JSON Object in the font-family CSS Property?');
+    //     }
+
+    //     return result;
+    // }
 }
 
 export default Griddl;

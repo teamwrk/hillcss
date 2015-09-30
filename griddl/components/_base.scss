@@ -3,6 +3,18 @@
     font-size: textSizeIs('small-2x');
 }
 
+html {
+    @media (max-width: 480px) {
+        font-family: 'small';
+    }
+    @media (max-width: 992px) {
+        font-family: 'medium';
+    }
+    @media (max-width: 1280px) {
+        font-family: 'large';
+    }
+}
+
 html,
 body {
     width: 100%;

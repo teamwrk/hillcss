@@ -1,4 +1,59 @@
 //
+// Mixin to generate a JSON string from given maps
+//
+// @param maps
+// @returns
+//     font-family: {THE JSON};
+//
+// @examples
+//     $foo1: ('test1', 'aaa'),
+//            ('test2', 'bbb');
+//     $foo2: ('test3', 'ccc'),
+//            ('test4', 'ddd');
+//
+// usage:
+//     .selector {
+//         @include maps-to-json($foo1, $foo2);
+//     }
+//
+// output:
+//     .selector {
+//         font-family: "{'test1': 'aaa',
+//                        'test2': 'bbb',
+//                        'test3': 'ccc',
+//                        'test4': 'ddd'}";
+//     }
+//
+// @mixin maps-to-json ($maps...) {
+//     $json: '{';
+
+//     @for $i from 1 through length($maps) {
+//         $map: nth($maps, $i);
+
+//         @if ($i != 1) {
+//             $json: $json + ', ';
+//         }
+
+//         @for $j from 1 through length($map) {
+//             $item: nth($map, $j);
+
+//             @if ($j != 1) {
+//                 $json: $json + ', ';
+//             }
+
+//             $json: $json + '"' + nth($item, 1) + '":"' + nth($item, 2) + '"';
+//         }
+//     }
+
+//     $json: $json + '}';
+
+//     // We use the *font-family* property as JSON storage.
+//     // The *content* alternative does not work for IE8+, because the IE returns
+//     // 'normal' as value.
+//     font-family: $json;
+// }
+
+//
 // Return the first character of a string
 // @param  {String} $string
 // @return {String}

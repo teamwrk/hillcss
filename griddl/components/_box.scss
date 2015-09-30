@@ -42,7 +42,7 @@ $box-back-color--default: #e0e0e0;
     position: relative;
     background-color: $box-back-color--default;
     min-height: rem(180px);
-    transition: all .4s ease;
+    transition: backgroundColor .4s ease;
     margin-bottom: rem(20px);
 
     [class*="button-add"],
