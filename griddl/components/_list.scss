@@ -3,6 +3,24 @@
 $list-back-color: darken($back-color--primary, 10);
 $list-fore-color: lighten($fore-color--primary, 70);
 
+// Hide device lists and show them only on hover like the buttons
+.list-container {
+    transition: opacity .4s ease;
+    opacity: 0;
+    text-align: center;
+
+    [layout*="box-"]:hover & {
+        opacity: 1;
+    }
+
+    &:hover .list {
+        opacity: 1;
+        max-height: rem(300px);
+        visibility: visible;
+        z-index: 10;
+    }
+}
+
 .list {
     background-color: $list-back-color;
     border-radius: 6px;

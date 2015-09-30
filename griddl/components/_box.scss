@@ -73,13 +73,3 @@
         display: none !important;
     }
 }
-
-// Hide device lists and show them only on hover like the buttons
-.list-container {
-    transition: opacity .4s ease;
-    opacity: 0;
-
-    [layout*="box-"]:hover & {
-        opacity: 1;
-    }
-}

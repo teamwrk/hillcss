@@ -1,9 +1,6 @@
 // Import first your custom project/hill settings here!
 @import 'settings';
 
-// You can also include here for example themes!
-// @import 'theme';
-
 // @import '../node_modules/normalize.css/normalize.css';
 
 // Hill full toolkit import. This file generates CSS helper classes.
@@ -78,6 +75,7 @@ $image-path: '../images/' !default;
 }
 
 [layout*="box-"] {
+    // Adjust the add buttons inside the box containers
     [class*="layout-add-"] {
         position: absolute;
         left: 50%;
@@ -98,17 +96,10 @@ $image-path: '../images/' !default;
     }
 }
 
+// Adjust device list icons inside a box container
 [class*="layout-list-container-"] {
-    text-align: center;
     position: absolute;
     top: rem(10px);
-
-    &:hover .list {
-        opacity: 1;
-        max-height: rem(300px);
-        visibility: visible;
-        z-index: 10;
-    }
 }
 
 .layout-list-container-large {
