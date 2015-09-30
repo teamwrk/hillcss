@@ -1,15 +1,20 @@
+$button-size: rem($hill-layout-space);
+$button-opacity: .4;
+
 [class*="button-"] {
+    background-repeat: no-repeat;
     background-size: 100%;
     display: block;
+    height: $button-size;
+    opacity: $button-opacity;
     transition: opacity .4s ease;
+    width: $button-size;
     cursor: pointer;
-    background-repeat: no-repeat;
-    opacity: .4;
-    height: rem(20px);
-    width: rem(20px);
 
     &:hover,
     &[state="is-active"] {
+        // Is needed to overwrite the opacity hover behaviour
+        // of buttons inside box containers
         opacity: 1 !important;
     }
 }
@@ -19,10 +24,10 @@
 }
 
 .button-add--dashed {
-    opacity: .4;
+    opacity: $button-opacity;
     background-image: url($image-path + 'marquee-plus.svg');
-    height: rem(40px);
-    width: rem(40px);
+    height: $button-size * 2;
+    width: $button-size * 2;
 }
 
 .button-remove {

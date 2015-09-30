@@ -9,10 +9,10 @@
 // @return  {String} Font size
 // @Example
 //           .example {
-//               font-size: textSizeIs('small')
+//               font-size: textIs('small')
 //           }
 //
-@function textSizeIs ($property) {
+@function textIs ($property) {
     @return map-get($hill-text-sizes, $property);
 }
 

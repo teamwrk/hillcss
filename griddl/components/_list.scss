@@ -1,23 +1,23 @@
 @import '../../core/helpers';
 
-$list-back-color: #ababab;
-$list-fore-color: #fff;
+$list-back-color: darken($back-color--primary, 10);
+$list-fore-color: lighten($fore-color--primary, 70);
 
 .list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     background-color: $list-back-color;
-    padding: 4px 6px;
     border-radius: 6px;
     color: $list-fore-color;
-    transition: all .4s ease;
-    opacity: 0;
+    list-style: none;
+    margin: 0;
     max-height: 0;
-    visibility: hidden;
+    opacity: 0;
+    padding: rem(6px);
     position: absolute;
+    transition: all .4s ease;
+    visibility: hidden;
+    // Adjust list
     left: rem(-6px);
-    top: rem(52px);
+    top: rem(50px);
 
     &:before {
         content: '';
@@ -27,23 +27,24 @@ $list-fore-color: #fff;
         border: solid 6px transparent;
         border-bottom: solid 6px $list-back-color;
         position: absolute;
+        // Adjust arrow
         top: rem(-12px);
         left: rem(10px);
     }
 
     li {
-        margin-top: 4px;
+        margin-top: rem(4px);
         cursor: pointer;
 
         &:hover,
         &[state="is-active"] {
-            color: #000;
+            color: $fore-color--primary;
         }
     }
 }
 
 .list-container-value {
-    font-size: textSizeIs('small-3x');
+    font-size: textIs('small-3x');
 }
 
 .button-large-device,

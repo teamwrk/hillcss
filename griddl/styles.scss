@@ -19,9 +19,13 @@ $image-path: '../images/' !default;
 @import 'components/list';
 @import 'components/device';
 
+.layout-app-container {
+    margin-top: rem(60px);
+    padding: rem(20px) rem(20px) 0 rem(20px);
+}
+
 .layout-app {
     max-width: $page-max-width;
-    margin-top: rem(20px);
 }
 
 .layout-size-indicator {
@@ -38,8 +42,6 @@ $image-path: '../images/' !default;
 }
 
 .layout-remove-all {
-    height: rem(26px);
-    width: rem(26px);
     position: absolute;
     right: rem(20px);
     top: rem(20px);
@@ -53,11 +55,14 @@ $image-path: '../images/' !default;
 }
 
 .layout-add-top {
-    margin: 0 auto rem(10px) auto;
+    position: absolute;
+    left: 50%;
+    top: rem(20px);
+    transform: translateX(-50%);
 }
 
 .layout-add-bottom {
-    margin: rem(20px) auto 0 auto;
+    margin: 0 auto rem(20px) auto;
 }
 
 .layout-remove {
@@ -118,8 +123,11 @@ $image-path: '../images/' !default;
     left: rem(10px);
 }
 
-.hill-text {
-    font-size: textSizeIs('small-4x');
+.layout-version-text {
+    font-size: textIs('small-4x');
     font-family: Verdana;
     opacity: .3;
+    position: fixed;
+    bottom: rem(20px);
+    left: rem(20px);
 }

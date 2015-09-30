@@ -9,15 +9,15 @@
 
 @include describe("Hill Helpers Functions") {
 
-    @include it("[textSizeIs] should return correct font-size for given 'small-2x' keyname") {
-        $value    : textSizeIs('small-2x');
+    @include it("[textIs] should return correct font-size for given 'small-2x' keyname") {
+        $value    : textIs('small-2x');
         $expected : 0.9rem;
 
         @include shouldBeEqual($value, $expected);
     }
 
-    @include it("[textSizeIs] should return correct font-size for given 'large-2x' keyname") {
-        $value    : textSizeIs('large-2x');
+    @include it("[textIs] should return correct font-size for given 'large-2x' keyname") {
+        $value    : textIs('large-2x');
         $expected : 1.2rem;
 
         @include shouldBeEqual($value, $expected);
