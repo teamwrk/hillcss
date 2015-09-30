@@ -213,8 +213,9 @@ class Griddl {
     }
 
     _randomHexColor () {
-        let colors = ['#da9a9a', '#f7e17d', '#9ad5da',
-                      '#cbec88', '#f2c082'];
+        let colors = ['#c5d2a2', '#d2c9a2', '#d2cfa2',
+                      '#aed2a2', '#a2d2bc', '#c4b0bf',
+                      '#c4b2b0', '#c4bfb0'];
 
         return colors[Math.floor(Math.random() * colors.length) + 0];
     }

@@ -35,7 +35,26 @@ $image-path: '../images/' !default;
     li {
         float: left;
         margin-right: rem(10px);
+        position: relative;
+
+        &:before {
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: $back-color--info;
+            border-radius: 50%;
+            position: absolute;
+            top: rem(-10px);
+            left: 50%;
+            margin-left: -3px;
+        }
     }
+}
+
+.device-is--large .button-large-device:before,
+.device-is--medium .button-medium-device:before,
+.device-is--small .button-small-device:before {
+    content: '';
 }
 
 .layout-remove-all {
