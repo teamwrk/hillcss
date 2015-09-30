@@ -53,3 +53,7 @@ $button-opacity: .4;
 .button-color {
     background-image: url($image-path + 'drop.svg');
 }
+
+.button-print {
+    background-image: url($image-path + 'printer.svg');
+}

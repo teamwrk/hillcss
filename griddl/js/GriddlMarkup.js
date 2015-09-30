@@ -1,4 +1,11 @@
 class GriddlMarkup {
+    getPrintContainer () {
+        return '<style type="text/css" media="print">' +
+                   '@page { size: landscape; }' +
+               '</style>' +
+               '<div id="printContainer" class="layout-print-container"></div>';
+    }
+
     getRow () {
         return '<div layout="row" state="is-empty">' +
                     '<a title="Add box" class="logic-add-box button-add--dashed layout-add-center"></a>' +

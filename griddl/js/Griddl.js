@@ -20,6 +20,7 @@ class Griddl {
         // Global events
         $('body').on('click', '.logic-remove-all',      $.proxy(this.removeAll, this))
                  .on('click', '.logic-device-sizes li', $.proxy(this.changeDeviceSize, this))
+                 .on('click', '.logic-print',           $.proxy(this.print, this))
 
         // Row events
                  .on('click', '.logic-add-top',    $.proxy(this.addRowAbove, this))
@@ -38,6 +39,38 @@ class Griddl {
                  .on('click', '.logic-color',          $.proxy(this.changeBoxColor, this));
 
         $(window).on('resize', $.proxy(this.onWindowResize, this));
+    }
+
+    print (event) {
+        $('body').append(this.Markup.getPrintContainer());
+        this.$html.removeClass();
+        this.$html.attr('state', 'print');
+
+        let $printContainer = $('#printContainer');
+        let $smallDevice    = this.$deviceTypeContainer
+                                  .clone()
+                                  .addClass('device')
+                                  .wrap('<div class="device-is--small"></div>')
+                                  .parent();
+
+        let $mediumDevice   = this.$deviceTypeContainer
+                                  .clone()
+                                  .addClass('device')
+                                  .wrap('<div class="device-is--medium"></div>')
+                                  .parent();
+
+        let $largeDevice    = this.$deviceTypeContainer
+                                  .clone()
+                                  .addClass('device')
+                                  .wrap('<div class="device-is--large"></div>')
+                                  .parent();
+
+        $printContainer.append($largeDevice)
+                       .append($mediumDevice)
+                       .append($smallDevice);
+        window.print();
+        $printContainer.remove();
+        this.$html.removeAttr('state');
     }
 
     onWindowResize (event) {

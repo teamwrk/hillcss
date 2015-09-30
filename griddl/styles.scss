@@ -18,7 +18,10 @@ $image-path: '../images/' !default;
 
 .layout-app-container {
     margin-top: rem(60px);
-    padding: rem(20px) rem(20px) 0 rem(20px);
+    padding: rem($hill-layout-space)
+             rem($hill-layout-space)
+             0
+             rem($hill-layout-space);
 }
 
 .layout-app {
@@ -27,8 +30,8 @@ $image-path: '../images/' !default;
 
 .layout-size-indicator {
     position: absolute;
-    left: rem(20px);
-    top: rem(20px);
+    left: rem($hill-layout-space);
+    top: rem($hill-layout-space);
     margin: 0;
     padding: 0;
 
@@ -59,8 +62,8 @@ $image-path: '../images/' !default;
 
 .layout-remove-all {
     position: absolute;
-    right: rem(20px);
-    top: rem(20px);
+    right: rem($hill-layout-space);
+    top: rem($hill-layout-space);
 }
 
 .layout-add-center {
@@ -73,12 +76,12 @@ $image-path: '../images/' !default;
 .layout-add-top {
     position: absolute;
     left: 50%;
-    top: rem(20px);
+    top: rem($hill-layout-space);
     transform: translateX(-50%);
 }
 
 .layout-add-bottom {
-    margin: 0 auto rem(20px) auto;
+    margin: 0 auto rem($hill-layout-space) auto;
 }
 
 .layout-remove {
@@ -133,11 +136,33 @@ $image-path: '../images/' !default;
     left: rem(10px);
 }
 
+.layout-print {
+    position: absolute;
+    top: rem($hill-layout-space);
+    right: rem(60px);
+}
+
 .layout-version-text {
     font-size: textIs('small-4x');
     font-family: Verdana;
     opacity: .3;
     position: fixed;
-    bottom: rem(20px);
-    left: rem(20px);
+    bottom: rem($hill-layout-space);
+    left: rem($hill-layout-space);
+}
+
+[state="print"] {
+    .layout-print-container {
+        transform: scale(.5);
+    }
+
+    .layout-size-indicator,
+    .layout-remove-all,
+    .layout-add-top,
+    body > .layout-app-container,
+    .layout-add-bottom,
+    .layout-version-text,
+    .layout-print {
+        display: none;
+    }
 }
