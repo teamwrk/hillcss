@@ -78,8 +78,14 @@
                 }
             }
 
-            @media (#{$condition}: #{map-get($hill-layout-breakpoints, $param)}) {
-                @content;
+            @if($hill-layout-use-classes-instead-queries == false) {
+                @media (#{$condition}: #{map-get($hill-layout-breakpoints, $param)}) {
+                    @content;
+                }
+            } @else {
+                .device-is--#{nth($screens, 1)} {
+                    @content;
+                }
             }
         } @else if ($length == 2) {
             $param1: nth($screens, 1);

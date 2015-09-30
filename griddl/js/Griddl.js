@@ -4,10 +4,11 @@ import GriddlStorage from './GriddlStorage';
 
 class Griddl {
     constructor () {
-        this.Markup = new GriddlMarkup();
-        this.Store  = new GriddlStorage();
-        this.$app   = $('#app');
-        let markup  = this.Markup.getRow();
+        this.Markup               = new GriddlMarkup();
+        this.Store                = new GriddlStorage();
+        this.$app                 = $('#app');
+        this.$deviceTypeContainer = $('#deviceTypeContainer');
+        let markup                = this.Markup.getRow();
 
         if (this.Store.hasData()) {
             markup = this.Store.getData();
@@ -16,7 +17,8 @@ class Griddl {
         this.$app.html(markup);
 
         // Global events
-        $('body').on('click', '.logic-remove-all', $.proxy(this.removeAll, this))
+        $('body').on('click', '.logic-remove-all',      $.proxy(this.removeAll, this))
+                 .on('click', '.logic-device-sizes li', $.proxy(this.changeDeviceSize, this))
 
         // Row events
                  .on('click', '.logic-add-top',    $.proxy(this.addRowAbove, this))
@@ -33,6 +35,22 @@ class Griddl {
                  .on('click', '.logic-add-box-inside', $.proxy(this.addBoxInside, this))
                  .on('click', '.layout-list li',       $.proxy(this.changeDeviceSizeSettings, this))
                  .on('click', '.logic-color',          $.proxy(this.changeBoxColor, this));
+    }
+
+    changeDeviceSize (event) {
+        event.preventDefault();
+
+        let $me = $(event.target);
+
+        $me.siblings('[state="is-active"]').removeAttr('state');
+        $me.attr('state', 'is-active');
+
+        if ($me.attr('value') === '') {
+            this.$deviceTypeContainer.removeClass('device');
+        } else {
+            this.$deviceTypeContainer.addClass('device')
+                                     .attr('type', $me.attr('value'));
+        }
     }
 
     removeAll (event) {

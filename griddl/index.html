@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html class="device-is--large">
     <head>
+        <title>Hill Toolkit - Griddl</title>
         <link rel="stylesheet" href="./dist/styles.css">
+        <meta name="viewport" content="width=500, initial-scale=1">
     </head>
     <body>
-        <span class="layout-size-indicator" href="#">Device</span>
+        <ul class="layout-size-indicator logic-device-sizes">
+            <li value="" class="button-auto" state="is-active"></li>
+            <li value="small" class="button-small-device"></li>
+            <li value="medium" class="button-medium-device"></li>
+            <li value="large" class="button-large-device"></li>
+        </ul>
+
         <a title="Reset and clear all" class="logic-remove-all button-remove layout-remove-all" href="#"></a>
+
         <a title="Add row above" class="logic-add-top button-add layout-add-top" href="#"></a>
 
-        <div id="app" class="layout-app"></div>
+        <div id="deviceTypeContainer">
+            <div id="app" class="layout-app app"></div>
+        </div>
 
         <a title="Add row below" class="logic-add-bottom button-add layout-add-bottom" href="#"></a>
 
-        <span class="hill-text">Hill Toolkit - Griddl v0.6</span>
+        <div class="hill-text">Hill Toolkit - Griddl v0.8</div>
 
         <script src="http://localhost:1338/livereload.js"></script>
         <script src="js/jquery-2.1.4.min.js"></script>

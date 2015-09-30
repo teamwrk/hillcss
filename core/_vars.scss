@@ -44,9 +44,10 @@ $hill-text-sizes: (
 
 // To configure the output css, overwrite these variables in
 // your custom settings file. For more check out the demo.
-$hill-layout-css-general:     true !default;
-$hill-layout-css-helpers:     true !default;
-$hill-layout-css-min-max:     false !default;
-$hill-layout-css-breakpoints: false !default;
-$hill-text-css-general:       true !default;
-$hill-text-css-helpers:       true !default;
+$hill-layout-css-general:                 true !default;
+$hill-layout-css-helpers:                 true !default;
+$hill-layout-css-min-max:                 false !default;
+$hill-layout-css-breakpoints:             false !default;
+$hill-layout-use-classes-instead-queries: false !default;
+$hill-text-css-general:                   true !default;
+$hill-text-css-helpers:                   true !default;

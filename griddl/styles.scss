@@ -17,6 +17,7 @@ $image-path: '../images/' !default;
 @import 'components/box';
 @import 'components/button';
 @import 'components/list';
+@import 'components/device';
 
 .layout-app {
     max-width: $page-max-width;
@@ -25,31 +26,14 @@ $image-path: '../images/' !default;
 
 .layout-size-indicator {
     position: absolute;
-    left: rem(30px);
-    top: rem(16px);
-    color: darken(#fff, 30);
-    font-family: Verdana;
+    left: rem(20px);
+    top: rem(20px);
+    margin: 0;
+    padding: 0;
 
-    &:after {
-        content: '';
-        display: inline-block;
-        background-size: 100%;
-        height: rem(30px);
-        width: rem(30px);
-        opacity: .4;
-        margin: 0 0 rem(-8px) rem(6px);
-
-        @include layoutFor('small') {
-            background-image: url($image-path + 'device-phone.svg');
-        }
-
-        @include layoutFor('medium') {
-            background-image: url($image-path + 'device-tablet.svg');
-        }
-
-        @include layoutFor('large') {
-            background-image: url($image-path + 'device-desktop.svg');
-        }
+    li {
+        float: left;
+        margin-right: rem(10px);
     }
 }
 

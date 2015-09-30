@@ -1,0 +1,131 @@
+.device {
+    position: relative;
+    border-style: solid;
+    margin: rem(20px) auto rem(80px) auto;
+    background: #fcfcfc;
+
+    .app {
+        overflow: auto;
+        margin: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+    }
+
+    &:before {
+        border-radius: 50%;
+        content: '';
+        display: block;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+    }
+
+    &:after {
+        border-style: solid;
+        content: '';
+        display: block;
+        left: 0;
+        margin: auto;
+        position: absolute;
+        right: 0;
+    }
+}
+
+.device[type="small"] {
+    border-color: #484f5e;
+    border-radius: 13px;
+    border-width: 38px 12px;
+    height: 500px;
+    width: 268px;
+
+    &:before {
+        background: white;
+        bottom: -28px;
+        height: 20px;
+        width: 20px;
+    }
+
+    &:after {
+        border-color: #a5adbe;
+        border-width: 0 30px 0 6px;
+        height: 6px;
+        top: -22px;
+        width: 6px;
+        border-radius: 6px;
+    }
+}
+
+.device[type="medium"] {
+    border-radius: 13px;
+    border-color: #484f5e;
+    border-width: 30px 13px;
+    width: 381px;
+    height: 520px;
+
+    &:before {
+        background: #ffffff;
+        bottom: -22px;
+        width: 16px;
+        height: 16px;
+        border: none;
+    }
+
+    &:after {
+        border-color: #a5adbe;
+        border-width: 0 12px 0 2px;
+        height: 2px;
+        width: 2px;
+        top: -16px;
+        border-radius: 0;
+    }
+}
+
+.device[type="large"] {
+    padding: rem(26px) rem(16px);
+    border-radius: 10px;
+    box-shadow: inset 0 24px 0 0 #484f5e,
+                inset 24px 0 0 #484f5e,
+                inset -24px 0 0 #484f5e;
+
+    border: none;
+    border-bottom: solid 53px #e8ebf1;
+
+    width: 840px;
+    height: 500px;
+
+    .app {
+        top: 24px;
+        left: 24px;
+        right: 24px;
+    }
+
+    &:before {
+        border-radius: 0;
+
+        height: 0px;
+        width: 90px;
+
+        border-style: solid;
+        border-color: transparent transparent #e2e4e8 transparent;
+        border-width: 0 10px 47px 10px;
+
+        top: 500px;
+    }
+
+    &:after {
+        border-radius: 50%;
+        box-shadow: 0 460px 0 4px #464e5d;
+
+        border-color: #a5adbe;
+        border-width: 0 0 0 10px;
+
+        height: 10px;
+        width: 0;
+
+        top: 7px;
+    }
+}

@@ -8,7 +8,8 @@
     height: rem(20px);
     width: rem(20px);
 
-    &:hover {
+    &:hover,
+    &[state="is-active"] {
         opacity: 1 !important;
     }
 }
@@ -38,6 +39,10 @@
 
 .button-small-device {
     background-image: url($image-path + 'device-phone.svg');
+}
+
+.button-auto {
+    background-image: url($image-path + 'brightness_auto.svg');
 }
 
 .button-color {
