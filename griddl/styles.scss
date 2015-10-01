@@ -152,8 +152,31 @@ $image-path: '../images/' !default;
 }
 
 [state="print"] {
-    .layout-print-container {
-        transform: scale(.5);
+    .app {
+        overflow: visible;
+    }
+
+    .device-is--large .device {
+        position: absolute;
+        left: 0;
+        transform: scale(.7);
+        transform-origin: left;
+    }
+
+    .device-is--medium .device {
+        position: absolute;
+        left: 580px;
+        top: 10px;
+        transform: scale(.6);
+        transform-origin: left;
+    }
+
+    .device-is--small .device {
+        position: absolute;
+        left: 820px;
+        top: 20px;
+        transform: scale(.6);
+        transform-origin: left;
     }
 
     .layout-size-indicator,

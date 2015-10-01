@@ -71,12 +71,11 @@ class Griddl {
         window.print();
         $printContainer.remove();
         this.$html.removeAttr('state');
+        this.onWindowResize();
     }
 
-    onWindowResize (event) {
-        event.preventDefault();
-
-        if ($('.button-auto').attr('state')) {
+    onWindowResize () {
+        if ($('.button-auto').attr('state') && (this.$html.attr('state') == null)) {
             this.$html.attr('class', this._getDeviceClass());
         }
     }
