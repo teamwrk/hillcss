@@ -148,6 +148,12 @@ $image-path: '../images/' !default;
     right: rem(50px);
 }
 
+.layout-clear {
+    position: absolute;
+    top: rem($hill-layout-space);
+    right: rem(130px);
+}
+
 .layout-version-text {
     font-size: textIs('small-4x');
     font-family: Verdana;

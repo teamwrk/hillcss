@@ -19,10 +19,11 @@ class Griddl {
         this.Store.initIds();
 
         // Global events
-        $('body').on('click', '.logic-remove-all',      $.proxy(this.removeAll, this))
+        $('body').on('click', '.logic-remove-all',      $.proxy(this.clearAll, this))
                  .on('click', '.logic-device-sizes li', $.proxy(this.changeDeviceSize, this))
                  .on('click', '.logic-print',           $.proxy(this.print, this))
                  .on('click', '.logic-save',            $.proxy(this.save, this))
+                 .on('click', '.logic-clear',           $.proxy(this.removeAll, this))
 
         // Row events
                  .on('click', '.logic-add-top',    $.proxy(this.addRowAbove, this))
@@ -107,6 +108,13 @@ class Griddl {
     }
 
     removeAll (event) {
+        event.preventDefault();
+
+        this.$app.html(this.Markup.getRow());
+        this._setContentChangedState(true);
+    }
+
+    clearAll (event) {
         event.preventDefault();
 
         this.$app.html(this.Markup.getRow());

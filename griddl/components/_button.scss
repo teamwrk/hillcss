@@ -58,6 +58,10 @@ $button-opacity: .4;
     background-image: url($image-path + 'printer.svg');
 }
 
+.button-clear {
+    background-image: url($image-path + 'broom.svg');
+}
+
 .button-save {
     background-image: url($image-path + 'disc.svg');
 
