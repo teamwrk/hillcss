@@ -57,3 +57,11 @@ $button-opacity: .4;
 .button-print {
     background-image: url($image-path + 'printer.svg');
 }
+
+.button-save {
+    background-image: url($image-path + 'disc.svg');
+
+    &[state="unsafed"] {
+        background-image: url($image-path + 'disc-changes.svg');
+    }
+}

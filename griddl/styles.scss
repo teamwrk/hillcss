@@ -139,7 +139,13 @@ $image-path: '../images/' !default;
 .layout-print {
     position: absolute;
     top: rem($hill-layout-space);
-    right: rem(60px);
+    right: rem(100px);
+}
+
+.layout-save {
+    position: absolute;
+    top: rem($hill-layout-space);
+    right: rem(50px);
 }
 
 .layout-version-text {

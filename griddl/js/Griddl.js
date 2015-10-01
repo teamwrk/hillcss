@@ -7,20 +7,22 @@ class Griddl {
         this.Markup               = new GriddlMarkup();
         this.Store                = new GriddlStorage();
         this.$html                = $('html');
-        this.$app                 = $('#app');
+        this.$app                 = $('.logic-app');
         this.$deviceTypeContainer = $('#deviceTypeContainer');
         let markup                = this.Markup.getRow();
 
         if (this.Store.hasData()) {
-            markup = this.Store.getData();
+            markup = this.Store.generateDataMarkup();
         }
 
         this.$app.html(markup);
+        this.Store.initIds();
 
         // Global events
         $('body').on('click', '.logic-remove-all',      $.proxy(this.removeAll, this))
                  .on('click', '.logic-device-sizes li', $.proxy(this.changeDeviceSize, this))
                  .on('click', '.logic-print',           $.proxy(this.print, this))
+                 .on('click', '.logic-save',            $.proxy(this.save, this))
 
         // Row events
                  .on('click', '.logic-add-top',    $.proxy(this.addRowAbove, this))
@@ -38,7 +40,14 @@ class Griddl {
                  .on('click', '.layout-list li',       $.proxy(this.changeDeviceSizeSettings, this))
                  .on('click', '.logic-color',          $.proxy(this.changeBoxColor, this));
 
-        $(window).on('resize', $.proxy(this.onWindowResize, this));
+        $(window).on('resize', $.proxy(this.onWindowResize, this)).trigger('resize');
+    }
+
+    save (event) {
+        event.preventDefault();
+
+        this.Store.store(this.$app.html());
+        this._setContentChangedState(false);
     }
 
     print (event) {
@@ -108,7 +117,7 @@ class Griddl {
         event.preventDefault();
 
         this.$app.prepend(this.Markup.getRow());
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     addBoxInside (event) {
@@ -125,14 +134,14 @@ class Griddl {
         event.preventDefault();
 
         this.$app.append(this.Markup.getRow());
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     removeRow (event) {
         event.preventDefault();
 
         this.getRow($(event.target)).remove();
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     addBoxToRow (event) {
@@ -140,7 +149,7 @@ class Griddl {
 
         this.getRow($(event.target)).removeAttr('state')
                                      .append(this.Markup.getBox());
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     addBoxBefore (event) {
@@ -149,7 +158,7 @@ class Griddl {
         let $box = this.getBox($(event.target));
 
         $box.before($box.clone());
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     addBoxAfter (event) {
@@ -158,21 +167,21 @@ class Griddl {
         let $box = this.getBox($(event.target));
 
         $box.after($box.clone());
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     addBoxRowBefore (event) {
         event.preventDefault();
 
         this._addBoxRow(this.getRow($(event.target)), 'above');
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     addBoxRowAfter (event) {
         event.preventDefault();
 
         this._addBoxRow(this.getRow($(event.target)), 'below');
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     removeBox (event) {
@@ -194,7 +203,7 @@ class Griddl {
         }
 
         $box.remove();
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     changeDeviceSizeSettings (event) {
@@ -215,7 +224,7 @@ class Griddl {
                    $actives.eq(2).attr('value');
 
         $box.attr('layout', attr);
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     changeBoxColor () {
@@ -223,7 +232,7 @@ class Griddl {
 
         this.getBox($(event.target))
               .css('backgroundColor', this._randomHexColor());
-        this.Store.store(this.$app.html());
+        this._setContentChangedState(true);
     }
 
     getBox ($item) {
@@ -254,6 +263,10 @@ class Griddl {
 
     _getDeviceClass () {
         return 'device-is--' + this.$html.css('font-family');
+    }
+
+    _setContentChangedState (state) {
+        $('.logic-save').attr('state', (state) ? 'unsafed' : '');
     }
 
     /*

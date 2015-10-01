@@ -7,14 +7,14 @@ class GriddlMarkup {
     }
 
     getRow () {
-        return '<div layout="row" state="is-empty">' +
+        return '<div store type="row" layout="row" state="is-empty">' +
                     '<a title="Add box" class="logic-add-box button-add--dashed layout-add-center"></a>' +
                     '<a title="Remove row container" class="logic-remove-row button-remove layout-remove"></a>' +
                 '</div>';
     }
 
     getBox () {
-        return '<div class="box" layout="box-small-25 box-medium-25 box-large-25">' +
+        return '<div store type="box" class="box" layout="box-small-25 box-medium-25 box-large-25">' +
                     '<a title="Add box right" class="logic-add-right button-add layout-add-right"></a>' +
                     '<a title="Add box left" class="logic-add-left button-add layout-add-left"></a>' +
                     '<a title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></a>' +
