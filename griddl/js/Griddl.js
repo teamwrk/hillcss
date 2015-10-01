@@ -47,7 +47,7 @@ class Griddl {
     save (event) {
         event.preventDefault();
 
-        this.Store.store(this.$app.html());
+        this.Store.store();
         this._setContentChangedState(false);
     }
 
