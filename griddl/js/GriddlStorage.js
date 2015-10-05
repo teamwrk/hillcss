@@ -36,6 +36,7 @@ class GriddlStorage {
                     $item.attr('layout', 'box-small-' + item.sizeClass.small + ' ' +
                                          'box-medium-' + item.sizeClass.medium + ' ' +
                                          'box-large-' + item.sizeClass.large);
+                    $item.attr('data-content', item.content);
                 } else {
                     $item = $(this.Markup.getRow());
                 }
@@ -100,6 +101,7 @@ class GriddlStorage {
 
                 if (entry.type === 'box') {
                     entry.background       = $me.css('backgroundColor');
+                    entry.content          = ($me.attr('data-content') || null);
                     sizes                  = $me.attr('layout').split(' ')
                     entry.sizeClass        = {};
                     entry.sizeClass.small  = sizes[0];

@@ -1,14 +1,17 @@
 import $ from 'jquery';
-import GriddlMarkup from './GriddlMarkup';
+import GriddlMarkup  from './GriddlMarkup';
 import GriddlStorage from './GriddlStorage';
+import GriddlHelper  from './GriddlHelper';
 
 class Griddl {
     constructor () {
         this.Markup               = new GriddlMarkup();
         this.Store                = new GriddlStorage();
+        this.Helper               = new GriddlHelper();
         this.$html                = $('html');
         this.$app                 = $('.logic-app');
         this.$deviceTypeContainer = $('#deviceTypeContainer');
+        this.lastActiveDevice     = '';
         let markup                = this.Markup.getRow();
 
         if (this.Store.hasData()) {
@@ -51,8 +54,9 @@ class Griddl {
         this._setContentChangedState(false);
     }
 
-    print (event) {
+    beforePrint () {
         $('body').append(this.Markup.getPrintContainer());
+        this.lastActiveDevice = this.$html.attr('class');
         this.$html.removeClass();
         this.$html.attr('state', 'print');
 
@@ -78,15 +82,25 @@ class Griddl {
         $printContainer.append($largeDevice)
                        .append($mediumDevice)
                        .append($smallDevice);
-        window.print();
+    }
+
+    afterPrint () {
+        let $printContainer = $('#printContainer');
         $printContainer.remove();
         this.$html.removeAttr('state');
-        this.onWindowResize();
+        this.$html.addClass(this.lastActiveDevice);
+    }
+
+    print (event) {
+        this.beforePrint();
+        top.window.focus();
+        top.window.print();
+        this.afterPrint();
     }
 
     onWindowResize () {
-        if ($('.button-auto').attr('state') && (this.$html.attr('state') == null)) {
-            this.$html.attr('class', this._getDeviceClass());
+        if ($('.button-auto').attr('state')) {
+            this.$html.attr('class', this.Helper.getDeviceClass());
         }
     }
 
@@ -100,7 +114,7 @@ class Griddl {
 
         if ($me.attr('value') === '') {
             this.$deviceTypeContainer.removeClass('device');
-            this.$html.attr('class', this._getDeviceClass());
+            this.$html.attr('class', this.Helper.getDeviceClass());
         } else {
             this.$deviceTypeContainer.addClass('device');
             this.$html.attr('class', 'device-is--' + $me.attr('value'));
@@ -239,7 +253,7 @@ class Griddl {
         event.preventDefault();
 
         this.getBox($(event.target))
-              .css('backgroundColor', this._randomHexColor());
+              .css('backgroundColor', this.Helper.randomHexColor());
         this._setContentChangedState(true);
     }
 
@@ -261,46 +275,9 @@ class Griddl {
         }
     }
 
-    _randomHexColor () {
-        let colors = ['#c5d2a2', '#d2c9a2', '#d2cfa2',
-                      '#aed2a2', '#a2d2bc', '#c4b0bf',
-                      '#c4b2b0', '#c4bfb0'];
-
-        return colors[Math.floor(Math.random() * colors.length) + 0];
-    }
-
-    _getDeviceClass () {
-        return 'device-is--' + this.$html.css('font-family');
-    }
-
     _setContentChangedState (state) {
         $('.logic-save').attr('state', (state) ? 'unsafed' : '');
     }
-
-    /*
-     * Gets and parse the JSON string from the font-family of a target.
-     * @param  {object} $target     The target with the JSON string in font-family
-     * @return {object}             Returns a JSON object
-    */
-    // _getJsonFromStyles: function ($target) {
-    //     var result = null;
-
-    //     try {
-    //         var string = $target.css('font-family')
-    //                             // Replace unneeded quotes at the beginning and end of the JSON string ...
-    //                             .replace(/\'/g, '') // for Chrome
-    //                             .replace(/\\/g, '') // for Firefox
-    //                             .replace('"{', '{') // for IE
-    //                             .replace('}"', '}');
-
-    //         result = $.parseJSON(string);
-    //     } catch (e) {
-    //         console.warn('JSON could not be parsed. ' +
-    //             'Did you store the JSON Object in the font-family CSS Property?');
-    //     }
-
-    //     return result;
-    // }
 }
 
 export default Griddl;
