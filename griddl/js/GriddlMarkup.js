@@ -25,7 +25,7 @@ class GriddlMarkup {
 
                     '<div class="list-container layout-list-container-small">' +
                         '<span title="Size on small devices" class="button-small-device list-container-value">25</span>' +
-                        '<ul class="layout-list list">' +
+                        '<ul class="logic-list layout-list list">' +
                             '<li value="box-small-hide">0</li>' +
                             '<li value="box-small-25" state="is-active">25</li>' +
                             '<li value="box-small-33.3">33</li>' +
@@ -39,7 +39,7 @@ class GriddlMarkup {
 
                     '<div class="list-container layout-list-container-medium">' +
                         '<span title="Size on large devices" class="button-medium-device list-container-value">25</span>' +
-                        '<ul class="layout-list list">' +
+                        '<ul class="logic-list layout-list list">' +
                             '<li value="box-medium-hide">0</li>' +
                             '<li value="box-medium-25" state="is-active">25</li>' +
                             '<li value="box-medium-33.3">33</li>' +
@@ -53,7 +53,7 @@ class GriddlMarkup {
 
                     '<div class="list-container layout-list-container-large">' +
                         '<span title="Size on large devices" class="button-large-device list-container-value">25</span>' +
-                        '<ul class="layout-list list">' +
+                        '<ul class="logic-list layout-list list">' +
                             '<li value="box-large-hide">0</li>' +
                             '<li value="box-large-25" state="is-active">25</li>' +
                             '<li value="box-large-33.3">33</li>' +
