@@ -20,3 +20,12 @@ Then, control hill, by overwriting the default settings. For example, choose ano
 ```
 $hill-layout-namespace: prj-name-layout;
 ```
+
+Griddl - Known Bugs:
+- Last empty row can be deleted
+- Empty rows have no margin bottom to 'filled' rows
+- No box add limitations
+
+
+Griddl - Features:
+- static grid and breakpoint. it can be done dynamically

@@ -191,13 +191,10 @@ $image-path: '../images/' !default;
         transform-origin: left;
     }
 
+    [class*="button-"],
     .layout-size-indicator,
-    .layout-remove-all,
-    .layout-add-top,
     body > .layout-app-container,
-    .layout-add-bottom,
-    .layout-version-text,
-    .layout-print {
-        display: none;
+    .layout-version-text {
+        display: none !important;
     }
 }
