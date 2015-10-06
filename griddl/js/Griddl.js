@@ -13,7 +13,7 @@ class Griddl {
         this.$deviceTypeContainer = $('#deviceTypeContainer');
         this.lastActiveDevice     = '';
 
-        this._init();
+        this.init();
         this._initEvents();
     }
 
@@ -21,12 +21,12 @@ class Griddl {
      * Do init stuff.
      * @return {void}
     */
-    _init () {
+    init () {
         let markup = this.Markup.getRow();
 
         // Generate Markup from stored Data, if exists
         if (this.Store.hasData()) {
-            markup = this.Store.generateDataMarkup();
+            markup = this.Store.generateMarkup();
         }
 
         // Set empty row or loaded data

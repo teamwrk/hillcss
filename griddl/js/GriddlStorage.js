@@ -21,12 +21,11 @@ class GriddlStorage {
     }
 
     /*
-     * Generates Markup from stored data.
+     * Generates Markup from given data.
      * @return {Object} Generated Markup
     */
-    generateDataMarkup () {
+    generateMarkupFromJSON (dataSet) {
         let $markup = $('<div></div>');
-        let dataSet = this._getData();
         let item    = null;
         let $item   = [];
         let $parent = [];
@@ -79,6 +78,16 @@ class GriddlStorage {
     }
 
     /*
+     * Generates Markup from stored data.
+     * @return {Object} Generated Markup
+    */
+    generateMarkup () {
+        let dataSet = this.getData();
+
+        return this.generateMarkupFromJSON(dataSet);
+    }
+
+    /*
      * Checks, if data is stored.
      * @return {Boolean} True, if data is stored, otherwise false
     */
@@ -108,7 +117,7 @@ class GriddlStorage {
      * Gets stored data json.
      * @return {Object} JSON representation of the stored data
     */
-    _getData () {
+    getData () {
         return $.parseJSON(localStorage.getItem(this.storageID));
     }
 

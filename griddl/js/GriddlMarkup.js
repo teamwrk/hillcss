@@ -14,7 +14,7 @@ class GriddlMarkup {
     }
 
     getBox () {
-        return '<div store type="box" class="box" layout="box-small-25 box-medium-25 box-large-25">' +
+        return '<div store type="box" class="box" layout="box-small-100 box-medium-25 box-large-25">' +
                     '<a title="Add box right" class="logic-add-right button-add layout-add-right"></a>' +
                     '<a title="Add box left" class="logic-add-left button-add layout-add-left"></a>' +
                     '<a title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></a>' +
@@ -24,16 +24,16 @@ class GriddlMarkup {
                     '<a title="Random background color" class="logic-color button-color layout-color"></a>' +
 
                     '<div class="list-container layout-list-container-small">' +
-                        '<span title="Size on small devices" class="button-small-device list-container-value">25</span>' +
+                        '<span title="Size on small devices" class="button-small-device list-container-value">100</span>' +
                         '<ul class="logic-list layout-list list">' +
                             '<li value="box-small-hide">0</li>' +
-                            '<li value="box-small-25" state="is-active">25</li>' +
+                            '<li value="box-small-25">25</li>' +
                             '<li value="box-small-33.3">33</li>' +
                             '<li value="box-small-40">40</li>' +
                             '<li value="box-small-50">50</li>' +
                             '<li value="box-small-60">60</li>' +
                             '<li value="box-small-75">75</li>' +
-                            '<li value="box-small-100">100</li>' +
+                            '<li value="box-small-100" state="is-active">100</li>' +
                         '</ul>' +
                     '</div>' +
 
