@@ -5,27 +5,34 @@
         <link rel="stylesheet" href="./dist/styles.css">
     </head>
     <body>
-        <ul class="layout-size-indicator logic-device-sizes">
-            <li value="" class="button-auto" state="is-active"></li>
-            <li value="small" class="button-small-device"></li>
-            <li value="medium" class="button-medium-device"></li>
-            <li value="large" class="button-large-device"></li>
-        </ul>
+        <div class="layout-app">
+            <div layout="clear" class="layout-toolbar-container">
+                <div layout="position-right">
+                    <ul class="layout-toolbar toolbar" id="deviceToolbar" layout="position-left">
+                        <li><a href="#" value="" class="logic-device-size button-auto" state="is-active" tooltip="Auto"></a></li>
+                        <li><a href="#" value="small" class="logic-device-size button-small-device" tooltip="Small Preview"></a></li>
+                        <li><a href="#" value="medium" class="logic-device-size button-medium-device" tooltip="Medium Preview"></a></li>
+                        <li><a href="#" value="large" class="logic-device-size button-large-device" tooltip="Large Preview"></a></li>
+                    </ul>
+                    <ul class="layout-toolbar toolbar" layout="position-left">
+                        <li><a tooltip="Add row at the top" class="logic-add-top button-add--before layout-add-top" href="#"></a></li>
+                        <li><a tooltip="Add row at the bottom" class="logic-add-bottom button-add--after layout-add-bottom" href="#"></a></li>
+                    </ul>
+                    <ul class="layout-toolbar toolbar" layout="position-left">
+                        <li><a tooltip="Clear Playground" class="logic-clear button-clear layout-clear" href="#"></a></li>
+                        <li><a tooltip="Print Views" class="logic-print button-print layout-print" href="#"></a></li>
+                        <li><a tooltip="Save Changes" class="logic-save button-save layout-save" href="#"></a></li>
+                        <li><a tooltip="Remove Data" class="logic-remove-all button-remove layout-remove-all" href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
 
-        <a title="Clear playground" class="logic-clear button-clear layout-clear" href="#"></a>
-        <a title="Print views" class="logic-print button-print layout-print" href="#"></a>
-        <a title="Save changes" class="logic-save button-save layout-save" href="#"></a>
-        <a title="Clear playground and local data" class="logic-remove-all button-remove layout-remove-all" href="#"></a>
-
-        <a title="Add row above" class="logic-add-top button-add layout-add-top" href="#"></a>
-
-        <div id="deviceTypeContainer" class="layout-app-container">
-            <div class="logic-app layout-app app"></div>
+            <div id="deviceTypeContainer" class="layout-app-container">
+                <div class="logic-app app"></div>
+            </div>
         </div>
 
-        <a title="Add row below" class="logic-add-bottom button-add layout-add-bottom" href="#"></a>
-
-        <div class="layout-version-text">Hill Toolkit - Griddl v0.10</div>
+        <div class="layout-version-text">Hill Toolkit - Griddl v0.12</div>
 
         <script src="http://localhost:1338/livereload.js"></script>
         <script src="js/jquery-2.1.4.min.js"></script>

@@ -8,26 +8,13 @@
         display: none;
     }
 
-    &:last-child:not(.is-second-level) {
-        margin-bottom: rem($hill-layout-space);
-    }
 
     // Row containers without any boxes
     &[state="is-empty"] {
+        margin-bottom: rem($hill-layout-space);
         min-height: rem(180px);
         border: dashed 2px $back-color--primary;
         border-radius: 6px;
-
-        &:last-child {
-            margin-bottom: rem($hill-layout-space * 2);
-        }
-
-        // For empty rows after the first one
-        & + & {
-            border-top: 0;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
 
         // Show add and remove buttons for empty row containers
         & > .button-add--dashed,
@@ -51,6 +38,7 @@
     min-height: rem(180px);
     transition: backgroundColor .4s ease;
     margin-bottom: rem($hill-layout-space);
+    border-radius: 4px;
 
     // Hide buttons inside boxes
     [class*="button-add"],

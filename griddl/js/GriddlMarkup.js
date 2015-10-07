@@ -6,25 +6,25 @@ class GriddlMarkup {
                '<div id="printContainer" class="layout-print-container"></div>';
     }
 
-    getRow () {
-        return '<div store type="row" layout="row" state="is-empty">' +
-                    '<a title="Add box" class="logic-add-box button-add--dashed layout-add-center"></a>' +
-                    '<a title="Remove row container" class="logic-remove-row button-remove layout-remove"></a>' +
+    getRow (removeable = true) {
+        return '<div store type="row" layout="row" state="is-empty" removeable="' + removeable + '">' +
+                    '<a tooltip="Add box" class="logic-add-box button-add--dashed layout-add-center"></a>' +
+                    '<a tooltip="Remove row" class="logic-remove-row button-remove layout-remove"></a>' +
                 '</div>';
     }
 
     getBox () {
         return '<div store type="box" class="box" layout="box-small-100 box-medium-25 box-large-25">' +
-                    '<a title="Add box right" class="logic-add-right button-add layout-add-right"></a>' +
-                    '<a title="Add box left" class="logic-add-left button-add layout-add-left"></a>' +
-                    '<a title="Dublicate row and prepend" class="logic-add-above button-add layout-add-top"></a>' +
-                    '<a title="Dublicate row and append" class="logic-add-below button-add layout-add-bottom"></a>' +
-                    '<a title="Add box inside" class="logic-add-box-inside button-add layout-add-box"></a>' +
-                    '<a title="Remove box" class="logic-remove button-remove layout-remove"></a>' +
-                    '<a title="Random background color" class="logic-color button-color layout-color"></a>' +
+                    '<a tooltip="Dublicate Box After" class="logic-add-right button-add layout-add-right"></a>' +
+                    '<a tooltip="Dublicate Box Before" class="logic-add-left button-add layout-add-left"></a>' +
+                    '<a tooltip="Dublicate Row After" class="logic-add-below button-add layout-add-bottom"></a>' +
+                    '<a tooltip="Dublicate Row Before" class="logic-add-above button-add layout-add-top"></a>' +
+                    '<a tooltip="Add Box Inside" class="logic-add-box-inside button-add layout-add-box"></a>' +
+                    '<a tooltip="Remove Box" class="logic-remove button-remove layout-remove"></a>' +
+                    '<a tooltip="Random Background" class="logic-color button-color layout-color"></a>' +
 
                     '<div class="list-container layout-list-container-small">' +
-                        '<span title="Size on small devices" class="button-small-device list-container-value">100</span>' +
+                        '<span class="button-small-device list-container-value">100</span>' +
                         '<ul class="logic-list layout-list list">' +
                             '<li value="box-small-hide">0</li>' +
                             '<li value="box-small-25">25</li>' +
@@ -38,7 +38,7 @@ class GriddlMarkup {
                     '</div>' +
 
                     '<div class="list-container layout-list-container-medium">' +
-                        '<span title="Size on large devices" class="button-medium-device list-container-value">25</span>' +
+                        '<span class="button-medium-device list-container-value">25</span>' +
                         '<ul class="logic-list layout-list list">' +
                             '<li value="box-medium-hide">0</li>' +
                             '<li value="box-medium-25" state="is-active">25</li>' +
@@ -52,7 +52,7 @@ class GriddlMarkup {
                     '</div>' +
 
                     '<div class="list-container layout-list-container-large">' +
-                        '<span title="Size on large devices" class="button-large-device list-container-value">25</span>' +
+                        '<span class="button-large-device list-container-value">25</span>' +
                         '<ul class="logic-list layout-list list">' +
                             '<li value="box-large-hide">0</li>' +
                             '<li value="box-large-25" state="is-active">25</li>' +

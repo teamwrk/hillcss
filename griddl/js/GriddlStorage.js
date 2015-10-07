@@ -5,7 +5,7 @@ class GriddlStorage {
     constructor () {
         this.storageID = 'Hill-Griddl';
         this.Markup    = new GriddlMarkup();
-        this.version   = 0.10;
+        this.version   = 0.12;
     }
 
     /*
@@ -21,7 +21,50 @@ class GriddlStorage {
     }
 
     /*
-     * Generates Markup from given data.
+     * Generates box markup from data.
+     * @Param  {Object} data Data which contains box informations
+     * @Return {Object} Generated box markup based on given data
+     * @return {void}
+    */
+    _generateBoxMarkup (data) {
+        let $markup   = $(this.Markup.getBox());
+        let textValue = '';
+
+        // Set stored background color
+        $markup.css('backgroundColor', data.background)
+
+        // Set box size via layout attributes
+        $markup.attr('layout', data.sizeClass.small + ' ' +
+                               data.sizeClass.medium + ' ' +
+                               data.sizeClass.large);
+
+        // Set other content, if stored
+        $markup.attr('data-content', data.content);
+
+        // Remove default device size active states
+        $markup.find('[state="is-active"]').removeAttr('state');
+
+        // Activate active state represented by data and update text
+        textValue = $markup.find('[value="' + data.sizeClass.small + '"]')
+                           .attr('state', 'is-active')
+                           .text();
+        $markup.find('.button-small-device').text(textValue);
+
+        textValue = $markup.find('[value="' + data.sizeClass.medium + '"]')
+                           .attr('state', 'is-active')
+                           .text();
+        $markup.find('.button-medium-device').text(textValue);
+
+        textValue = $markup.find('[value="' + data.sizeClass.large + '"]')
+                           .attr('state', 'is-active')
+                           .text();
+        $markup.find('.button-large-device').text(textValue);
+
+        return $markup;
+    }
+
+    /*
+     * Generates fresh Markup from given data.
      * @return {Object} Generated Markup
     */
     generateMarkupFromJSON (dataSet) {
@@ -42,12 +85,8 @@ class GriddlStorage {
 
                 // If current data is box data then create box markup
                 if (item.type === 'box') {
-                    $item = $(this.Markup.getBox());
-                    $item.css('backgroundColor', item.background)
-                    $item.attr('layout', 'box-small-' + item.sizeClass.small + ' ' +
-                                         'box-medium-' + item.sizeClass.medium + ' ' +
-                                         'box-large-' + item.sizeClass.large);
-                    $item.attr('data-content', item.content);
+                    $item = this._generateBoxMarkup(item);
+
                 } else {
                     // Otherwise row markup
                     $item = $(this.Markup.getRow());

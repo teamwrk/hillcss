@@ -10,11 +10,14 @@ class Griddl {
         this.Helper               = new GriddlHelper();
         this.$html                = $('html');
         this.$app                 = $('.logic-app');
+        this.$deviceToolbar       = $('#deviceToolbar');
         this.$deviceTypeContainer = $('#deviceTypeContainer');
         this.lastActiveDevice     = '';
 
         this.init();
         this._initEvents();
+
+        this._updateRowRemoveableState();
     }
 
     /*
@@ -22,7 +25,7 @@ class Griddl {
      * @return {void}
     */
     init () {
-        let markup = this.Markup.getRow();
+        let markup = this.Markup.getRow(false);
 
         // Generate Markup from stored Data, if exists
         if (this.Store.hasData()) {
@@ -40,7 +43,7 @@ class Griddl {
     _initEvents () {
         // Global events
         $('body').on('click', '.logic-remove-all',      $.proxy(this.onClearData, this))
-                 .on('click', '.logic-device-sizes li', $.proxy(this.onDeviceViewChange, this))
+                 .on('click', '.logic-device-size',     $.proxy(this.onDeviceViewChange, this))
                  .on('click', '.logic-print',           $.proxy(this.onPrint, this))
                  .on('click', '.logic-save',            $.proxy(this.onSave, this))
                  .on('click', '.logic-clear',           $.proxy(this.onReset, this))
@@ -79,6 +82,12 @@ class Griddl {
         } else {
             $row.after($newRow);
         }
+    }
+
+    _updateRowRemoveableState () {
+        let $rows = this.$app.find('[type="row"]:not(.is-second-level)');
+
+        $rows.attr('removeable', ($rows.length > 1));
     }
 
     /*
@@ -208,7 +217,7 @@ class Griddl {
         let $me = $(event.target);
 
         // Update active device button
-        $me.siblings('[state="is-active"]').removeAttr('state');
+        this.$deviceToolbar.find('[state="is-active"]').removeAttr('state');
         $me.attr('state', 'is-active');
 
         // Change to auto mode, if no device was activated. Otherwise show
@@ -230,7 +239,7 @@ class Griddl {
     onReset (event) {
         event.preventDefault();
 
-        this.$app.html(this.Markup.getRow());
+        this.$app.html(this.Markup.getRow(false));
         this._updateChangeState(true);
     }
 
@@ -243,8 +252,9 @@ class Griddl {
         event.preventDefault();
 
         if (confirm('Do you really want to clear your project data? All stored data will be lost!')) {
-            this.$app.html(this.Markup.getRow());
+            this.$app.html(this.Markup.getRow(false));
             this.Store.clear();
+            this._updateChangeState(false);
         }
     }
 
@@ -257,6 +267,7 @@ class Griddl {
         event.preventDefault();
 
         this.$app.prepend(this.Markup.getRow());
+        this._updateRowRemoveableState();
         this._updateChangeState(true);
     }
 
@@ -269,6 +280,7 @@ class Griddl {
         event.preventDefault();
 
         this.$app.append(this.Markup.getRow());
+        this._updateRowRemoveableState();
         this._updateChangeState(true);
     }
 
@@ -289,6 +301,8 @@ class Griddl {
         // Append box into new appended row
         $thisBox.find('[layout="row"]')
                 .append(this.Markup.getBox());
+
+        this._updateChangeState(true);
     }
 
     /*
@@ -300,6 +314,7 @@ class Griddl {
         event.preventDefault();
 
         this.getRow($(event.target)).remove();
+        this._updateRowRemoveableState();
         this._updateChangeState(true);
     }
 
@@ -396,6 +411,7 @@ class Griddl {
 
         $box.remove();
         this._updateChangeState(true);
+        this._updateRowRemoveableState();
     }
 
     /*

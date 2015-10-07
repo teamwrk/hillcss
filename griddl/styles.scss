@@ -15,9 +15,9 @@ $image-path: '../images/' !default;
 @import 'components/button';
 @import 'components/list';
 @import 'components/device';
+@import 'components/toolbar';
 
 .layout-app-container {
-    margin-top: rem(60px);
     padding: rem($hill-layout-space)
              rem($hill-layout-space)
              0
@@ -28,42 +28,8 @@ $image-path: '../images/' !default;
     max-width: $page-max-width;
 }
 
-.layout-size-indicator {
-    position: absolute;
-    left: rem($hill-layout-space);
-    top: rem($hill-layout-space);
-    margin: 0;
-    padding: 0;
-
-    li {
-        float: left;
-        margin-right: rem(10px);
-        position: relative;
-
-        &:before {
-            display: block;
-            width: 6px;
-            height: 6px;
-            background-color: $back-color--info;
-            border-radius: 50%;
-            position: absolute;
-            top: rem(-10px);
-            left: 50%;
-            margin-left: -3px;
-        }
-    }
-}
-
-.device-is--large .button-large-device:before,
-.device-is--medium .button-medium-device:before,
-.device-is--small .button-small-device:before {
-    content: '';
-}
-
-.layout-remove-all {
-    position: absolute;
-    right: rem($hill-layout-space);
-    top: rem($hill-layout-space);
+.layout-toolbar {
+    margin: rem(20px) rem(20px) 0 0;
 }
 
 .layout-add-center {
@@ -73,21 +39,14 @@ $image-path: '../images/' !default;
     transform: translate(-50%, -50%);
 }
 
-.layout-add-top {
-    position: absolute;
-    left: 50%;
-    top: rem($hill-layout-space);
-    transform: translateX(-50%);
-}
-
-.layout-add-bottom {
-    margin: 0 auto rem($hill-layout-space) auto;
-}
-
 .layout-remove {
     position: absolute;
     top: rem(10px);
     right: rem(10px);
+
+    [layout="row"][removeable="false"] > & {
+        display: none !important;
+    }
 }
 
 .layout-color {
@@ -136,36 +95,21 @@ $image-path: '../images/' !default;
     left: rem(10px);
 }
 
-.layout-print {
-    position: absolute;
-    top: rem($hill-layout-space);
-    right: rem(100px);
-}
-
-.layout-save {
-    position: absolute;
-    top: rem($hill-layout-space);
-    right: rem(50px);
-}
-
-.layout-clear {
-    position: absolute;
-    top: rem($hill-layout-space);
-    right: rem(130px);
-}
-
 .layout-version-text {
     font-size: textIs('small-4x');
     font-family: Verdana;
     opacity: .3;
-    position: fixed;
-    bottom: rem($hill-layout-space);
-    left: rem($hill-layout-space);
+    margin: 0 0 rem(20px) rem(20px);
 }
 
 [state="print"] {
     .app {
+        height: 100%;
         overflow: visible;
+    }
+
+    [layout="row"] {
+        background-color: lighten($back-color--primary, 11);
     }
 
     .device-is--large .device {
@@ -191,10 +135,7 @@ $image-path: '../images/' !default;
         transform-origin: left;
     }
 
-    [class*="button-"],
-    .layout-size-indicator,
-    body > .layout-app-container,
-    .layout-version-text {
+    .layout-app {
         display: none !important;
     }
 }
