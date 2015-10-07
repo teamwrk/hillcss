@@ -7,7 +7,6 @@ $button-opacity: .4;
     display: block;
     height: $button-size;
     opacity: $button-opacity;
-    transition: opacity .4s ease;
     width: $button-size;
     cursor: pointer;
     position: relative;
@@ -22,17 +21,14 @@ $button-opacity: .4;
 
     // Show tooltip on hover
     &:hover:after {
-        opacity: 1;
-        visibility: visible;
+        display: inline-block;
     }
 }
 
 [tooltip]:after {
-    opacity: 0;
-    visibility: hidden;
     position: absolute;
     content: attr(tooltip);
-    display: inline-block;
+    display: none;
     color: #fff;
     background-color: $fore-color--primary;
     padding: rem(6px) rem(8px) rem(8px) rem(8px);
@@ -44,7 +40,6 @@ $button-opacity: .4;
     left: 50%;
     border-radius: 8px;
     z-index: 100;
-    transition: opacity .4s ease;
 }
 
 .button-add {

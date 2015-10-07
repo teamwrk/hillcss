@@ -38,103 +38,97 @@ $device-border-color: #484f5e;
     }
 }
 
-@include layoutFor('small') {
-    .device {
-        border-color: $device-border-color;
-        border-radius: 13px;
-        border-width: 38px 12px;
-        height: rem(500px);
-        width: rem(268px);
+.device-is--small .device {
+    border-color: $device-border-color;
+    border-radius: 13px;
+    border-width: 38px 12px;
+    height: rem(500px);
+    width: rem(268px);
 
-        // Device button at the bottom
-        &:before {
-            background: darken($device-back-color, 10);
-            bottom: rem(-26px);
-            height: rem(14px);
-            width: rem(14px);
-        }
+    // Device button at the bottom
+    &:before {
+        background: darken($device-back-color, 10);
+        bottom: rem(-26px);
+        height: rem(14px);
+        width: rem(14px);
+    }
 
-        // Device speaker top
-        &:after {
-            border-color: darken($device-back-color, 20);
-            border-width: 0 rem(30px) 0 rem(4px);
-            height: rem(3px);
-            top: rem(-22px);
-            width: rem(4px);
-            border-radius: 6px;
-        }
+    // Device speaker top
+    &:after {
+        border-color: darken($device-back-color, 20);
+        border-width: 0 rem(30px) 0 rem(4px);
+        height: rem(3px);
+        top: rem(-22px);
+        width: rem(4px);
+        border-radius: 6px;
     }
 }
 
-@include layoutFor('medium') {
-    .device {
-        border-radius: rem(13px);
-        border-color: $device-border-color;
-        border-width: rem(32px) rem(16px);
-        width: rem(380px);
-        height: rem(520px);
+.device-is--medium .device {
+    border-radius: rem(13px);
+    border-color: $device-border-color;
+    border-width: rem(32px) rem(16px);
+    width: rem(380px);
+    height: rem(520px);
 
-        // Device button at the bottom
-        &:before {
-            background: darken($device-back-color, 10);
-            bottom: rem(-24px);
-            width: rem(16px);
-            height: rem(16px);
-            border: none;
-        }
-
-        // Device speaker top
-        &:after {
-            border-color: darken($device-back-color, 20);
-            border-width: 0 rem(30px) 0 rem(4px);
-            height: rem(3px);
-            top: rem(-18px);
-            width: rem(4px);
-            border-radius: 6px;
-        }
-    }
-}
-
-@include layoutFor('large') {
-    .device {
-        padding: rem(26px) rem(16px);
-        border-radius: 10px;
-        box-shadow: inset 0 rem(24px) 0 0 $device-border-color,
-                    inset rem(24px) 0 0 $device-border-color,
-                    inset rem(-24px) 0 0 $device-border-color;
+    // Device button at the bottom
+    &:before {
+        background: darken($device-back-color, 10);
+        bottom: rem(-24px);
+        width: rem(16px);
+        height: rem(16px);
         border: none;
-        border-bottom: solid rem(53px) darken($device-back-color, 10);
-        margin-bottom: rem(70px);
-        width: rem(860px);
-        height: rem(556px);
+    }
 
-        // Adjust the app container inside the large device mockup
-        .app {
-            left: rem(23px);
-            right: rem(24px);
-            top: rem(23px);
-        }
+    // Device speaker top
+    &:after {
+        border-color: darken($device-back-color, 20);
+        border-width: 0 rem(30px) 0 rem(4px);
+        height: rem(3px);
+        top: rem(-18px);
+        width: rem(4px);
+        border-radius: 6px;
+    }
+}
 
-        // Device stand at the bottom
-        &:before {
-            border-color: transparent transparent darken($device-back-color, 10) transparent;
-            border-radius: 0;
-            border-style: solid;
-            border-width: 0 rem(10px) rem(46px) rem(10px);
-            height: 0;
-            top: rem(556px);
-            width: rem(90px);
-        }
+.device-is--large .device {
+    padding: rem(26px) rem(16px);
+    border-radius: 10px;
+    box-shadow: inset 0 rem(24px) 0 0 $device-border-color,
+                inset rem(24px) 0 0 $device-border-color,
+                inset rem(-24px) 0 0 $device-border-color;
+    border: none;
+    border-bottom: solid rem(53px) darken($device-back-color, 10);
+    margin-bottom: rem(70px);
+    width: rem(860px);
+    height: rem(556px);
 
-        // Device button at the bottom and camera at the top
-        &:after {
-            border-color: darken($device-back-color, 20);
-            border-radius: 50%;
-            border-width: 0 0 0 rem(10px);
-            box-shadow: 0 rem(520px) 0 4px $device-border-color;
-            height: rem(10px);
-            top: rem(7px);
-            width: 0;
-        }
+    // Adjust the app container inside the large device mockup
+    .app {
+        left: rem(23px);
+        right: rem(24px);
+        top: rem(23px);
+    }
+
+    // Device stand at the bottom
+    &:before {
+        border-color: transparent transparent darken($device-back-color, 10) transparent;
+        border-radius: 0;
+        border-style: solid;
+        border-width: 0 rem(10px) rem(46px) rem(10px);
+        height: 0;
+        top: rem(556px);
+        width: rem(90px);
+    }
+
+    // Device button at the bottom and camera at the top
+    &:after {
+        border-color: darken($device-back-color, 20);
+        border-radius: 50%;
+        border-width: 0 0 0 rem(10px);
+        box-shadow: 0 rem(520px) 0 4px $device-border-color;
+        height: rem(10px);
+        top: rem(7px);
+        width: 0;
     }
 }

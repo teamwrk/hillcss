@@ -174,8 +174,12 @@ class Griddl {
      * @return {void}
     */
     onWindowResize () {
+        // Change global device mode only on auto mode ...
         if ($('.button-auto').attr('state')) {
-            this.$html.attr('class', this.Helper.getDeviceClass());
+            // ... and current view is not print
+            if ((this.$html.attr('state') !== 'print')) {
+                this.$html.attr('class', this.Helper.getDeviceClass());
+            }
         }
     }
 

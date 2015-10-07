@@ -108,15 +108,15 @@ $image-path: '../images/' !default;
         overflow: visible;
     }
 
-    [layout="row"] {
-        background-color: lighten($back-color--primary, 11);
+    .device {
+        top: 0;
+        transform-origin: left top;
     }
 
     .device-is--large .device {
         position: absolute;
         left: 0;
         transform: scale(.7);
-        transform-origin: left;
     }
 
     .device-is--medium .device {
@@ -124,7 +124,6 @@ $image-path: '../images/' !default;
         left: 580px;
         top: 10px;
         transform: scale(.6);
-        transform-origin: left;
     }
 
     .device-is--small .device {
@@ -132,7 +131,6 @@ $image-path: '../images/' !default;
         left: 820px;
         top: 20px;
         transform: scale(.6);
-        transform-origin: left;
     }
 
     .layout-app {
