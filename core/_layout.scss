@@ -147,8 +147,8 @@
     [#{$hill-layout-attribute-name}*="space-bottom"] { margin-bottom: #{$hill-layout-space}; }
     [#{$hill-layout-attribute-name}*="space-left"]   { margin-left:   #{$hill-layout-space}; }
 
-    [#{$hill-layout-attribute-name}*="position-left"]  { @extend %_floatLeft; }
+    [#{$hill-layout-attribute-name}*="position-left"]  { @extend  %_floatLeft; }
     [#{$hill-layout-attribute-name}*="position-right"] { float:   right; }
     [#{$hill-layout-attribute-name}*="hide"]           { display: none; }
-    [#{$hill-layout-attribute-name}*="clear"]          { @extend %_clearfix; }
+    [#{$hill-layout-attribute-name}*="clear"]          { @extend  %_clearfix; }
 }
