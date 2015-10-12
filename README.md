@@ -22,8 +22,6 @@ $hill-layout-namespace: prj-name-layout;
 ```
 
 Griddl - Known Bugs:
-- Last empty row can be deleted
-- Empty rows have no margin bottom to 'filled' rows
 - Add box limitations to two lvl
 
 
