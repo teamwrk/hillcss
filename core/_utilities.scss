@@ -94,9 +94,7 @@
 }
 
 //
-// stripUnit($val)
 // Returns the number without unit. E.g. 30px -> 30
-//
 // @param  {String} $val
 // @return {Number}
 //
@@ -106,7 +104,6 @@
 }
 
 //
-// rem($pixel[, $base])
 // Calculates and returns a rem value based on pixel input
 //
 // Examples:
@@ -121,6 +118,12 @@
     @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
 
+//
+// Gets the previous item from given map relative to given item
+// @param  {Object}  $map     Map with keys and values
+// @param  {String}  $fromKey From key
+// @return {Boolean} Return the previous item, relative to given from item.
+//
 @function map-get-previous($map, $fromKey) {
     $currentIndex: 0;
 
@@ -135,6 +138,12 @@
     @return null;
 }
 
+//
+// Gets the next item from given map relative to given item
+// @param  {Object}  $map     Map with keys and values
+// @param  {String}  $fromKey From key
+// @return {Boolean} Return the next item, relative to given from item.
+//
 @function map-get-next($map, $fromKey) {
     $currentIndex: 0;
 
@@ -149,14 +158,19 @@
     @return null;
 }
 
+//
+// Gets the first key of the given map
+// @param  {Object} $map Map with keys and values
+// @return {String} Return the first key name of the map.
+//
 @function map-get-first-key ($map) {
     @return nth(nth($map, 1), 1);
 }
 
 //
 // Gets the last key of the given map
-// @param  {Object}  $map String to test
-// @return {Boolean} Return.
+// @param  {Object} $map Map with keys and values
+// @return {String} Return the last key name of the map.
 //
 @function map-get-last-key ($map) {
     @return nth(nth($map, length($map)), 1);
