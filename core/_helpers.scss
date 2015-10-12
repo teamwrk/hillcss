@@ -16,6 +16,8 @@
     @return map-get($hill-text-sizes, $property);
 }
 
+
+
 //
 // Return content with the representive media query wrap
 // @param  {String} $screens    Exact, greater than, lower that or ranges
@@ -28,7 +30,7 @@
 //           .example {
 //               color: blue;
 //
-//               @include layoutFor('small') {
+//               @include is('small') {
 //                   color: red;
 //               }
 //           }
@@ -37,7 +39,7 @@
 //           .example {
 //               color: blue;
 //
-//               @include layoutFor('>small') {
+//               @include deviceIs('>small') {
 //                   color: red;
 //               }
 //           }
@@ -46,7 +48,7 @@
 //           .example {
 //               color: blue;
 //
-//               @include layoutFor('<large') {
+//               @include deviceIs('<large') {
 //                   color: red;
 //               }
 //           }
@@ -56,69 +58,58 @@
 //           .example {
 //               color: blue;
 //
-//               @include layoutFor('>small', '<large') {
+//               @include deviceIs('>small', '<large') {
 //                   color: red;
 //               }
 //           }
 //
-@mixin layoutFor ($screens...) {
+@mixin deviceIs ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
-        $length: length($screens);
 
-        @if ($length == 1) {
-            $param:     nth($screens, 1);
-            $condition: 'max-width';
-            $char:      getFirstChar($param);
+        // Defaults for first parameter and condition
+        $breakpoint: map-get($hill-layout-breakpoints, $device);
 
-            @if (equalOnce($char, '<', '>')) {
-                $param: removeFirstChar($param);
-
-                @if (equalOnce($char, '>')) {
-                    $condition: 'min-width';
-                }
-            }
-
-            @if($hill-layout-use-classes-instead-queries == false) {
-                @media (#{$condition}: #{map-get($hill-layout-breakpoints, $param)}) {
+        @if($hill-layout-classes-as-breaktpoints == false) {
+            @if (map-get-first-key($hill-layout-breakpoints) == $device) {
+                @media (max-width: #{$breakpoint}) {
                     @content;
                 }
             } @else {
-                .device-is--#{nth($screens, 1)} {
+                @media (min-width: #{map-get-previous($hill-layout-breakpoints, $device) + 1}) and
+                       (max-width: #{$breakpoint}) {
                     @content;
                 }
             }
-        } @else if ($length == 2) {
-            $param1: nth($screens, 1);
-            $param2: nth($screens, 2);
-            $min: null;
-            $max: null;
 
-            @if (equalOnce(getFirstChar($param1), '<', '>')) {
-                $param1: removeFirstChar($param1);
-            }
-
-            $param1: map-get($hill-layout-breakpoints, $param1);
-
-            @if (equalOnce(getFirstChar($param2), '<', '>')) {
-                $param2: removeFirstChar($param2);
-            }
-
-            $param2: map-get($hill-layout-breakpoints, $param2);
-
-            @if ($param1 > $param2) {
-                $max: $param1;
-                $min: $param2;
-            } @else {
-                $max: $param2;
-                $min: $param1;
-            }
-
-            @media (min-width: #{$min}) and
-                   (max-width: #{$max}) {
+        } @else {
+            .device-is--#{$device} {
                 @content;
             }
-        } @else {
-            @warn "More than two parameters given";
+        }
+    }
+}
+
+@mixin deviceMin ($device) {
+    @if global-variable-exists(hill-layout-breakpoints) {
+        @media (min-width: #{map-get($hill-layout-breakpoints, $device) + 1}) {
+            @content;
+        }
+    }
+}
+
+@mixin deviceMax ($device) {
+    @if global-variable-exists(hill-layout-breakpoints) {
+        @media (max-width: #{map-get($hill-layout-breakpoints, $device)}) {
+            @content;
+        }
+    }
+}
+
+@mixin deviceBetween ($deviceMin, $deviceMax) {
+    @if global-variable-exists(hill-layout-breakpoints) {
+        @media (min-width: #{map-get($hill-layout-breakpoints, $deviceMin) + 1})
+            and (max-width: #{map-get($hill-layout-breakpoints, $deviceMax)}) {
+            @content;
         }
     }
 }

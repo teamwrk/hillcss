@@ -9,11 +9,11 @@
 //
 @function recalcWidth($width) {
     // Calculate the possible box count
-    $boxCount:    100 / $width;
+    $boxCount: 100 / $width;
     // One space less than boxes
     $spacesCount: $boxCount - 1;
     // Calculate the new witdth minus the space
-    $newWidth:    ($width - (($hill-layout-boxes-space * $spacesCount) / $boxCount));
+    $newWidth: ($width - (($hill-layout-boxes-space * $spacesCount) / $boxCount));
 
     @return #{$newWidth};
 }
@@ -57,13 +57,13 @@
         }
     }
 
-    // -> <box-100, >box-50 ...
+    // -> min-box-100, max-box-50 ...
     @if($hill-layout-css-min-max) {
-        [#{$hill-layout-attribute-name}*="<box-#{$width}"] {
+        [#{$hill-layout-attribute-name}*="min-box-#{$width}"] {
             min-width: #{$width + '%'};
         }
 
-        [#{$hill-layout-attribute-name}*=">box-#{$width}"] {
+        [#{$hill-layout-attribute-name}*="max-box-#{$width}"] {
             max-width: #{$width + '%'};
         }
     }
@@ -110,7 +110,7 @@
 
         // -> box-small-100, box-medium-50 ...
         @each $width in $hill-layout-boxes {
-            @include layoutFor ($breakpointName) {
+            @include deviceIs ($breakpointName) {
                 [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-#{$width}"] {
                     @if(stripUnit($hill-layout-boxes-space) > 0) {
                         width: recalcWidth($width);
@@ -126,7 +126,7 @@
         }
 
         // -> box-small-hide
-        @include layoutFor ($breakpointName) {
+        @include deviceIs ($breakpointName) {
             [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-hide"] {
                 // Tried to exclude this into a placeholder. But this after that
                 // this selector is not rendered inside a media query condition

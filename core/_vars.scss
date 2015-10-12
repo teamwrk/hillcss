@@ -24,7 +24,7 @@ $hill-layout-boxes-space:    2% !default;
 // Percentage values can be defined here too.
 $hill-layout-space:          40px !default;
 
-// Breakpoints for html -> .."box-small-100".. and the 'layoutFor' helper
+// Breakpoints for html -> .."box-small-100".. and the 'is' helper
 $hill-layout-breakpoints: (
     small:  480px,
     medium: 992px,
@@ -47,7 +47,9 @@ $hill-text-sizes: (
 $hill-layout-css-general:                 true !default;
 $hill-layout-css-helpers:                 true !default;
 $hill-layout-css-min-max:                 false !default;
+
 $hill-layout-css-breakpoints:             false !default;
-$hill-layout-use-classes-instead-queries: false !default;
+$hill-layout-classes-as-breaktpoints:     false !default;
+
 $hill-text-css-general:                   true !default;
 $hill-text-css-helpers:                   true !default;

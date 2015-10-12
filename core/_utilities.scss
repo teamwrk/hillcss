@@ -59,7 +59,11 @@
 // @return {String}
 //
 @function getFirstChar ($string) {
-    @return str_slice($string, 1, 1);
+    @if (type-of($string) == string) {
+        @return str_slice($string, 1, 1);
+    } @else {
+        @return null;
+    }
 }
 
 //
@@ -115,4 +119,45 @@
 //
 @function rem($pixel, $base: 16px) {
     @return stripUnit($pixel) / stripUnit($base) * 1rem;
+}
+
+@function map-get-previous($map, $fromKey) {
+    $currentIndex: 0;
+
+    @each $map-key, $map-value in $map {
+        $currentIndex: $currentIndex + 1;
+
+        @if (($map-key == $fromKey) and ($currentIndex > 1)) {
+            @return nth(nth($map, $currentIndex - 1), 2);
+        }
+    }
+
+    @return null;
+}
+
+@function map-get-next($map, $fromKey) {
+    $currentIndex: 0;
+
+    @each $map-key, $map-value in $map {
+        $currentIndex: $currentIndex + 1;
+
+        @if (($map-key == $fromKey) and ($currentIndex < length($map))) {
+            @return nth(nth($map, $currentIndex + 1), 2);
+        }
+    }
+
+    @return null;
+}
+
+@function map-get-first-key ($map) {
+    @return nth(nth($map, 1), 1);
+}
+
+//
+// Gets the last key of the given map
+// @param  {Object}  $map String to test
+// @return {Boolean} Return.
+//
+@function map-get-last-key ($map) {
+    @return nth(nth($map, length($map)), 1);
 }
