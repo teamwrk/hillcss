@@ -7,7 +7,7 @@
 // @return {Boolean}
 //
 @mixin shouldBeEqual ($checkedValue, $expectedValue) {
-    @include should( expect($checkedValue), to( be($expectedValue)));
+    @include should( expect($checkedValue), to( equal($expectedValue) ));
 }
 
 //
@@ -16,7 +16,7 @@
 // @return {Boolean}
 //
 @mixin shouldBeTruthy ($checkedValue) {
-    @include should( expect($checkedValue), to( be-truthy()));
+    @include should( expect($checkedValue), to( equal(true) ));
 }
 
 //
@@ -25,5 +25,5 @@
 // @return {Boolean}
 //
 @mixin shouldBeFalsy ($checkedValue) {
-    @include should( expect($checkedValue), to( be-falsy()));
+    @include should( expect($checkedValue), to( equal(false) ));
 }
