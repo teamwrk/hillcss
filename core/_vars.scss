@@ -20,8 +20,8 @@ $hill-layout-boxes: (25, 50, 75, 100) !default;
 $hill-layout-boxes-space: 2% !default;
 
 // Space definition for usage in html -> .."space-right"..
-// Percentage values can be defined here too.
-$hill-layout-space: 40px !default;
+// Percentage and rem values can be defined here too.
+$hill-layout-space: 20px !default;
 
 // Breakpoints for html -> .."box-small-100".. and the sass helpers for example
 // the 'deviceIs' helper.

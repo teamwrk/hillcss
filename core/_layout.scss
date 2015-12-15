@@ -57,13 +57,13 @@
         }
     }
 
-    // -> min-box-100, max-box-50 ...
+    // -> min-100, max-50 ...
     @if($hill-layout-css-min-max) {
-        [#{$hill-layout-attribute-name}*="min-box-#{$width}"] {
+        [#{$hill-layout-attribute-name}*="min-#{$width}"] {
             min-width: #{$width + '%'};
         }
 
-        [#{$hill-layout-attribute-name}*="max-box-#{$width}"] {
+        [#{$hill-layout-attribute-name}*="max-#{$width}"] {
             max-width: #{$width + '%'};
         }
     }
@@ -91,7 +91,7 @@
 //
 @if ($hill-layout-css-general) {
     [#{$hill-layout-attribute-name}*="row"]  {
-        [#{$hill-layout-attribute-name}*="box-"] {
+        & > [#{$hill-layout-attribute-name}*="box-"] {
             @extend %_floatLeft;
         }
 
@@ -142,13 +142,17 @@
 // Generates different layout helpers
 //
 @if ($hill-layout-css-helpers) {
-    [#{$hill-layout-attribute-name}*="space-top"]    { margin-top:    #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-right"]  { margin-right:  #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-bottom"] { margin-bottom: #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-left"]   { margin-left:   #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-top"]       { margin-top:    #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-right"]     { margin-right:  #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-bottom"]    { margin-bottom: #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-left"]      { margin-left:   #{$hill-layout-space}; }
+    [#{$hill-layout-attribute-name}*="space-top-2x"]    { margin-top:    #{$hill-layout-space * 2}; }
+    [#{$hill-layout-attribute-name}*="space-right-2x"]  { margin-right:  #{$hill-layout-space * 2}; }
+    [#{$hill-layout-attribute-name}*="space-bottom-2x"] { margin-bottom: #{$hill-layout-space * 2}; }
+    [#{$hill-layout-attribute-name}*="space-left-2x"]   { margin-left:   #{$hill-layout-space * 2}; }
 
-    [#{$hill-layout-attribute-name}*="position-left"]  { @extend  %_floatLeft; }
-    [#{$hill-layout-attribute-name}*="position-right"] { float:   right; }
+    [#{$hill-layout-attribute-name}*="float-left"]     { @extend  %_floatLeft; }
+    [#{$hill-layout-attribute-name}*="float-right"]    { float:   right; }
     [#{$hill-layout-attribute-name}*="hide"]           { display: none; }
     [#{$hill-layout-attribute-name}*="clear"]          { @extend  %_clearfix; }
 }
