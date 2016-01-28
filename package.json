@@ -1,8 +1,12 @@
 {
   "name": "hill",
   "version": "0.1.0",
-  "description": "A sass toolkit for intuitive layouting",
-  "author": "Teamwrk <hire@twrk.io>",
+  "description": "A sass toolkit for intuitive layouting mechanism",
+  "author": [
+    "Teamwrk <hire@twrk.io>",
+    "Vadim Hermann <contact@vadim-hermann.com>",
+    "Andreas Klein <andy@ixis.io>"
+  ],
   "license": "MIT",
   "main": "hill.scss",
   "scripts": {
