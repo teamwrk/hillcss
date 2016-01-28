@@ -1,6 +1,6 @@
 {
   "name": "@ixisio/hill",
-  "version": "0.1.0",
+  "version": "1.0.0-beta",
   "description": "A sass toolkit for intuitive layouting",
   "author": "Andreas Klein <andy@ixis.io>",
   "license": "MIT",
