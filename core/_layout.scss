@@ -12,7 +12,7 @@
     $boxCount: 100 / $width;
     // One space less than boxes
     $spacesCount: $boxCount - 1;
-    // Calculate the new witdth minus the space
+    // Calculate the new width minus the space
     $newWidth: ($width - (($hill-layout-boxes-space * $spacesCount) / $boxCount));
 
     @return #{$newWidth};
@@ -44,8 +44,9 @@
 // Generates box width and box min/max css attributes
 //
 @each $width in $hill-layout-boxes {
+
+    // -> box-100, box-50 ...
     @if ($hill-layout-css-general) {
-        // -> box-100, box-50 ...
         [#{$hill-layout-attribute-name}*="box-#{$width}"] {
 
             // Generate boxes without spaces between, if space width is 0%
