@@ -5,7 +5,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('bootcamp');
-    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-combine-media-queries');
 
     // Grunt Tasks
@@ -18,8 +17,7 @@ module.exports = function(grunt) {
                     style: 'expanded',
                 },
                 files: {
-                    'test-results.css': './tests/tests.scss',
-                    './griddl/dist/styles.css': './griddl/styles.scss'
+                    './dist/test-results.css': './tests/tests.scss'
                 }
             },
             dist: {
@@ -27,7 +25,7 @@ module.exports = function(grunt) {
                     style: 'compressed',
                 },
                 files: {
-                    'hill.css': 'hill.scss'
+                    './dist/hill.css': 'hill.scss'
                 }
             }
         },
@@ -36,7 +34,7 @@ module.exports = function(grunt) {
         bootcamp: {
             test: {
                 files: {
-                    src: ['test-results.css']
+                    src: ['./dist/test-results.css']
                 }
             }
         },
@@ -53,41 +51,22 @@ module.exports = function(grunt) {
                 options: {
                     livereload: 1338
                 }
-            },
-            js: {
-                files: ['griddl/js/*.js'],
-                tasks: ['browserify']
             }
         },
 
-        cmq: {
-            options: {
-                log: false
-            },
-            default: {
-                files: {
-                    './griddl/dist': ['griddl/dist/*.css']
-                }
-            }
-        },
-
-        browserify: {
-            options: {
-                transform: [
-                    ["babelify", {
-                        loose: "all"
-                    }]
-                ]
-            },
-            default: {
-                files: {
-                    'griddl/dist/app.js': 'griddl/js/app.js'
-                }
-            }
-        },
+        // cmq: {
+        //     options: {
+        //         log: false
+        //     },
+        //     default: {
+        //         files: {
+        //             './griddl/dist': ['griddl/dist/*.css']
+        //         }
+        //     }
+        // },
     });
 
     // Tasks
-    grunt.registerTask('default', ['sass', 'browserify', 'cmq', 'bootcamp', 'watch']);
+    grunt.registerTask('default', ['sass', 'bootcamp', 'watch']);
     grunt.registerTask('test',    ['sass', 'bootcamp']);
 };
