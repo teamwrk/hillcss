@@ -70,3 +70,12 @@ $hill-layout-classes-as-breaktpoints: false !default;
 // Text helpers like 'right, left'.
 // Example -> <div hill-text="right"></div>
 $hill-text-css-helpers: true !default;
+
+//
+// Definition of z-index layers. Can be use to manage layer order.
+// Top item has the highest z-index value and bottom item the lowest.
+// Check "layer" function in "_helpers.scss" for more information
+//
+$hill-layers: (
+    ''
+) !default;

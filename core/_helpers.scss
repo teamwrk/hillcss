@@ -128,3 +128,37 @@
         }
     }
 }
+
+//
+// Gets z-index value which was defined in the hill layer list.
+// @param  {String} $alias Alias of the z-index
+// @return {String} Return the calculated z-index value.
+// @example
+//    .foo1 {
+//        position: absolute;
+//        z-index: @layer('foo1');
+//    }
+//    .foo2 {
+//        position: absolute;
+//        z-index: @layer('foo2');
+//    }
+//
+//    $hill-layers: (
+//        'foo1',
+//        'foo2'
+//    );
+//    Output:
+//    .foo1 -> z-index: 2
+//    .foo2 -> z-index: 1
+//
+//    $hill-layers: (
+//        'foo2',
+//        'foo1'
+//    );
+//    Output:
+//    .foo1 -> z-index: 1
+//    .foo2 -> z-index: 2
+//
+@function layer($alias) {
+    @return ((length($hill-layers) - index($hill-layers, $alias)) + 1);
+}
