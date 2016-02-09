@@ -1,10 +1,13 @@
 # CHANGELOG
 
-## HEAD
-* Make hill extendable and configurable
-* Add Jasmine-style BDD testing for SASS with Bootcamp
-* Rename main entrypoint layout.scss to hill.scss
-* Make hill a bower package by creating bower.json file
-* Use NPM to fetch required dependencies
-* Add Grunt to automate SASS unit tests
-* Add default dotfiles (editorconfig, .gitignore, ..)
+## v1.1.0-beta
+###Features
+* Add function **layers** in ```_helpers.scss``` for z-index based layer management
+
+###Improvements
+* Move hillcss griddl to seperate repository -> git@bitbucket.org:twrk/hillcss-griddl.git
+
+###Bugfixes
+
+## v1.0.0-beta
+* Initial Version
