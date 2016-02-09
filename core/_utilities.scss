@@ -124,7 +124,7 @@
 // @param  {String}  $fromKey From key
 // @return {Boolean} Return the previous item, relative to given from item.
 //
-@function map-get-previous($map, $fromKey) {
+@function mapGetPrevious($map, $fromKey) {
     $currentIndex: 0;
 
     @each $map-key, $map-value in $map {
@@ -144,7 +144,7 @@
 // @param  {String}  $fromKey From key
 // @return {Boolean} Return the next item, relative to given from item.
 //
-@function map-get-next($map, $fromKey) {
+@function mapGetNext($map, $fromKey) {
     $currentIndex: 0;
 
     @each $map-key, $map-value in $map {
@@ -163,7 +163,7 @@
 // @param  {Object} $map Map with keys and values
 // @return {String} Return the first key name of the map.
 //
-@function map-get-first-key ($map) {
+@function mapGetFirstKey ($map) {
     @return nth(nth($map, 1), 1);
 }
 
@@ -172,6 +172,6 @@
 // @param  {Object} $map Map with keys and values
 // @return {String} Return the last key name of the map.
 //
-@function map-get-last-key ($map) {
+@function mapGetLastKey ($map) {
     @return nth(nth($map, length($map)), 1);
 }

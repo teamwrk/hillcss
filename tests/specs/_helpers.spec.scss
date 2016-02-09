@@ -4,6 +4,14 @@
 @import '../../core/vars';
 @import '../../core/helpers';
 
+// Define layers for testing the layer function;
+$hill-layers: (
+    'foo1',
+    'foo2',
+    'foo3',
+    'foo4'
+);
+
 // Contains helpers for unittesting like should/expect abstractions
 @import '../test-helpers';
 
@@ -21,5 +29,26 @@
         $expected : 1.2rem;
 
         @include shouldBeEqual($value, $expected);
+    }
+
+    @include it("[layer] should return correct z-index") {
+        $expected : 3;
+
+        @include shouldBeEqual(layer('foo2'), $expected);
+
+        $expected : 2;
+        @include shouldBeEqual(layer('foo3'), $expected);
+    }
+
+    @include it("[layer] should return largest value for first item") {
+        @include shouldBeGreaterThan(layer('foo1'), layer('foo2'));
+        @include shouldBeGreaterThan(layer('foo1'), layer('foo3'));
+        @include shouldBeGreaterThan(layer('foo1'), layer('foo4'));
+    }
+
+    @include it("[layer] should return smallest value for last item") {
+        @include shouldBeSmallerThan(layer('foo4'), layer('foo1'));
+        @include shouldBeSmallerThan(layer('foo4'), layer('foo2'));
+        @include shouldBeSmallerThan(layer('foo4'), layer('foo3'));
     }
 }

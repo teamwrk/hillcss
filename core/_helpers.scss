@@ -1,6 +1,6 @@
 //
 // NOTE: This helpers can used in your code to access the hill functionality/api.
-//       Hill itself depends on this helpers, so do not change this functions
+//       Hillcss itself depends on this helpers, so do not change this functions
 //
 
 //
@@ -39,12 +39,12 @@
             // Defaults for first parameter and condition
             $breakpoint: map-get($hill-layout-breakpoints, $device);
 
-            @if (map-get-first-key($hill-layout-breakpoints) == $device) {
+            @if (mapGetFirstKey($hill-layout-breakpoints) == $device) {
                 @media (max-width: #{$breakpoint}) {
                     @content;
                 }
             } @else {
-                @media (min-width: #{map-get-previous($hill-layout-breakpoints, $device) + 1}) and
+                @media (min-width: #{mapGetPrevious($hill-layout-breakpoints, $device) + 1}) and
                        (max-width: #{$breakpoint}) {
                     @content;
                 }

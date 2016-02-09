@@ -6,6 +6,8 @@
 
 ###Improvements
 * Move hillcss griddl to seperate repository -> git@bitbucket.org:twrk/hillcss-griddl.git
+* Move ```hill.css``` and ```test-results.css``` to ```dist``` folder
+* Unittests
 
 ###Bugfixes
 
