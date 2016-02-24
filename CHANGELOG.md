@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## HEAD
+* `$hill-text-root` Create SASS variable to configure a custom root font-size
 * Make hill extendable and configurable
 * Add Jasmine-style BDD testing for SASS with Bootcamp
 * Rename main entrypoint layout.scss to hill.scss

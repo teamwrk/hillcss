@@ -31,6 +31,9 @@ $hill-layout-breakpoints: (
     large:  1280px
 ) !default;
 
+// Root Fontsize for Rem calculation
+$hill-text-root: 16px !default;
+
 // Text sizes for html -> .."small-2x".. and the 'textIs' helper
 $hill-text-sizes: (
     base:     1rem,
