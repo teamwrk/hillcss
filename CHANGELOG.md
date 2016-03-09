@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## HEAD
+* Add `$hill-layout-space-multiplier` variable to configure how many spacing multiplier are needed for a project, for example `2x`, `3x` and so on.
 * `$hill-text-root` Create SASS variable to configure a custom root font-size
 * Make hill extendable and configurable
 * Add Jasmine-style BDD testing for SASS with Bootcamp

@@ -143,14 +143,18 @@
 // Generates different layout helpers
 //
 @if ($hill-layout-css-helpers) {
-    [#{$hill-layout-attribute-name}*="space-top"]       { margin-top:    #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-right"]     { margin-right:  #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-bottom"]    { margin-bottom: #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-left"]      { margin-left:   #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-top-2x"]    { margin-top:    #{$hill-layout-space * 2}; }
-    [#{$hill-layout-attribute-name}*="space-right-2x"]  { margin-right:  #{$hill-layout-space * 2}; }
-    [#{$hill-layout-attribute-name}*="space-bottom-2x"] { margin-bottom: #{$hill-layout-space * 2}; }
-    [#{$hill-layout-attribute-name}*="space-left-2x"]   { margin-left:   #{$hill-layout-space * 2}; }
+    @for $index from 1 through $hill-layout-space-multiplier {
+        @if $index > 1 {
+            $multiplier: "-#{$index}x";
+        } @else {
+            $multiplier: '';
+        }
+
+        [#{$hill-layout-attribute-name}*="space-top#{$multiplier}"]       { margin-top:    #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-right#{$multiplier}"]     { margin-right:  #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-bottom#{$multiplier}"]    { margin-bottom: #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-left#{$multiplier}"]      { margin-left:   #{$hill-layout-space * $index}; }
+    }
 
     [#{$hill-layout-attribute-name}*="float-left"]     { @extend  %_floatLeft; }
     [#{$hill-layout-attribute-name}*="float-right"]    { float:   right; }
