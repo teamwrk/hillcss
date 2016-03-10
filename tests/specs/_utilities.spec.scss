@@ -58,30 +58,6 @@
         @include shouldBeEqual(stripUnit($value), $expected);
     }
 
-    @include it("[rem] should transform px values into rems") {
-        $value    : 16px;
-        $expected : 1rem;
-
-        @include shouldBeEqual(rem($value), $expected);
-
-        $value    : 32px;
-        $expected : 2rem;
-
-        @include shouldBeEqual(rem($value), $expected);
-    }
-
-    @include it("[rem] should transform px values into rems") {
-        $value    : 16px;
-        $expected : 1rem;
-
-        @include shouldBeEqual(rem($value), $expected);
-
-        $value    : 32px;
-        $expected : 2rem;
-
-        @include shouldBeEqual(rem($value), $expected);
-    }
-
     @include it("[mapGetPrevious] should get previous item") {
         $map      : (1: 'a', 2: 'b',
                      3: 'c', 4: 'd');

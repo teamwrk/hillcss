@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## HEAD
+* Move `rem()` to `_helpers.scs` cause its a hill API method
 * Ignore `*.todo` files, `/design` and `/issues` from git
 * Add function `layers()` in `_helpers.scss` for z-index based layer management
 * Move hillcss griddl to seperate repository -> git@bitbucket.org:twrk/hillcss-griddl.git

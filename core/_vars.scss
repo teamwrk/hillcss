@@ -87,5 +87,6 @@ $hill-text-css-helpers: true !default;
 // Check "layer" function in "_helpers.scss" for more information
 //
 $hill-layers: (
-    ''
+    'highest',
+    'lowest'
 ) !default;

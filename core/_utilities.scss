@@ -97,25 +97,10 @@
 // Returns the number without unit. E.g. 30px -> 30
 // @param  {String} $val
 // @return {Number}
+// @hint Borrowed from Zurb Foundation _globals.scss
 //
 @function stripUnit($val) {
-  // Borrowed from Zurb Foundation _globals.scss
   @return $val / ($val * 0 + 1);
-}
-
-//
-// Calculates and returns a rem value based on pixel input
-//
-// Examples:
-// width: rem(200px);       // width: 12.5rem;
-// margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
-//
-// @param {String} $pixel
-// @param {String} $base Optional rem value to get the right scope
-// @return {String} rem value
-//
-@function rem($pixel, $base: $hill-text-root) {
-    @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
 
 //

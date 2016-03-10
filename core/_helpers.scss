@@ -129,35 +129,56 @@
     }
 }
 
+
+
+//
+// Calculates and returns a rem value based on pixel input
+//
+// Examples:
+// width: rem(200px);       // width: 12.5rem;
+// margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
+//
+// @param {String} $pixel
+// @param {String} $base Optional rem value to get the right scope
+// @return {String} rem value
+//
+@function rem($pixel, $base: $hill-text-root) {
+    @return stripUnit($pixel) / stripUnit($base) * 1rem;
+}
+
+
+
 //
 // Gets z-index value which was defined in the hill layer list.
 // @param  {String} $alias Alias of the z-index
 // @return {String} Return the calculated z-index value.
 // @example
-//    .foo1 {
+//    .modal {
 //        position: absolute;
-//        z-index: @layer('foo1');
+//        z-index: @layer('modal');
 //    }
-//    .foo2 {
+//    .page {
 //        position: absolute;
-//        z-index: @layer('foo2');
+//        z-index: @layer('page');
 //    }
 //
 //    $hill-layers: (
-//        'foo1',
-//        'foo2'
+//        'modal',
+//        'page'
 //    );
 //    Output:
-//    .foo1 -> z-index: 2
-//    .foo2 -> z-index: 1
+//    .modal -> z-index: 2
+//    .page -> z-index: 1
 //
 //    $hill-layers: (
-//        'foo2',
-//        'foo1'
+//        'highest',
+//        'center',
+//        'lowest'
 //    );
 //    Output:
-//    .foo1 -> z-index: 1
-//    .foo2 -> z-index: 2
+//    .highest -> z-index: 3
+//    .center -> z-index: 2
+//    .lowest -> z-index: 1
 //
 @function layer($alias) {
     @return ((length($hill-layers) - index($hill-layers, $alias)) + 1);
