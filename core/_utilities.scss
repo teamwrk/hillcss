@@ -114,7 +114,7 @@
 // @param {String} $base Optional rem value to get the right scope
 // @return {String} rem value
 //
-@function rem($pixel, $base: 16px) {
+@function rem($pixel, $base: $hill-text-root) {
     @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
 

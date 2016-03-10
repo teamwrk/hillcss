@@ -12,7 +12,7 @@
     $boxCount: 100 / $width;
     // One space less than boxes
     $spacesCount: $boxCount - 1;
-    // Calculate the new witdth minus the space
+    // Calculate the new width minus the space
     $newWidth: ($width - (($hill-layout-boxes-space * $spacesCount) / $boxCount));
 
     @return #{$newWidth};
@@ -44,8 +44,9 @@
 // Generates box width and box min/max css attributes
 //
 @each $width in $hill-layout-boxes {
+
+    // -> box-100, box-50 ...
     @if ($hill-layout-css-general) {
-        // -> box-100, box-50 ...
         [#{$hill-layout-attribute-name}*="box-#{$width}"] {
 
             // Generate boxes without spaces between, if space width is 0%
@@ -142,14 +143,18 @@
 // Generates different layout helpers
 //
 @if ($hill-layout-css-helpers) {
-    [#{$hill-layout-attribute-name}*="space-top"]       { margin-top:    #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-right"]     { margin-right:  #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-bottom"]    { margin-bottom: #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-left"]      { margin-left:   #{$hill-layout-space}; }
-    [#{$hill-layout-attribute-name}*="space-top-2x"]    { margin-top:    #{$hill-layout-space * 2}; }
-    [#{$hill-layout-attribute-name}*="space-right-2x"]  { margin-right:  #{$hill-layout-space * 2}; }
-    [#{$hill-layout-attribute-name}*="space-bottom-2x"] { margin-bottom: #{$hill-layout-space * 2}; }
-    [#{$hill-layout-attribute-name}*="space-left-2x"]   { margin-left:   #{$hill-layout-space * 2}; }
+    @for $index from 1 through $hill-layout-space-multiplier {
+        @if $index > 1 {
+            $multiplier: "-#{$index}x";
+        } @else {
+            $multiplier: '';
+        }
+
+        [#{$hill-layout-attribute-name}*="space-top#{$multiplier}"]       { margin-top:    #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-right#{$multiplier}"]     { margin-right:  #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-bottom#{$multiplier}"]    { margin-bottom: #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-left#{$multiplier}"]      { margin-left:   #{$hill-layout-space * $index}; }
+    }
 
     [#{$hill-layout-attribute-name}*="float-left"]     { @extend  %_floatLeft; }
     [#{$hill-layout-attribute-name}*="float-right"]    { float:   right; }

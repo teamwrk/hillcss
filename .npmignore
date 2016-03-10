@@ -1,5 +1,7 @@
 *.css
 *.css.map
 /examples
-/specs
 /tests
+/griddl
+/.*
+Gruntfile.js

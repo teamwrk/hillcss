@@ -23,6 +23,13 @@ $hill-layout-boxes-space: 2% !default;
 // Percentage and rem values can be defined here too.
 $hill-layout-space: 20px !default;
 
+// Multiplier of `$hill-layout-space`
+// For Example `space-bottom-2x`
+// If it has a value of 3, it means that
+// `space-bottom`, `space-bottom-2x` and `space-bottom-3x`
+// helper attributes are available in html.
+$hill-layout-space-multiplier: 2 !default;
+
 // Breakpoints for html -> .."box-small-100".. and the sass helpers for example
 // the 'deviceIs' helper.
 $hill-layout-breakpoints: (
@@ -30,6 +37,9 @@ $hill-layout-breakpoints: (
     medium: 992px,
     large:  1280px
 ) !default;
+
+// Root Fontsize for Rem calculation
+$hill-text-root: 16px !default;
 
 // Text sizes for html -> .."small-2x".. and the 'textIs' helper
 $hill-text-sizes: (
