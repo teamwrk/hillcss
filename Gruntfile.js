@@ -54,19 +54,19 @@ module.exports = function(grunt) {
             }
         },
 
-        // cmq: {
-        //     options: {
-        //         log: false
-        //     },
-        //     default: {
-        //         files: {
-        //             './griddl/dist': ['griddl/dist/*.css']
-        //         }
-        //     }
-        // },
+        cmq: {
+            options: {
+                log: false
+            },
+            default: {
+                files: {
+                    './dist': ['./dist/*.css']
+                }
+            }
+        },
     });
 
     // Tasks
-    grunt.registerTask('default', ['sass', 'bootcamp', 'watch']);
+    grunt.registerTask('default', ['sass', 'bootcamp', 'cmq', 'watch']);
     grunt.registerTask('test',    ['sass', 'bootcamp']);
 };

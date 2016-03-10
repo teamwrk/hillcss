@@ -7,7 +7,7 @@
 // @param  {Number} $width
 // @return {String} The new width
 //
-@function recalcWidth($width) {
+@function _recalcWidth($width) {
     // Calculate the possible box count
     $boxCount: 100 / $width;
     // One space less than boxes
@@ -51,7 +51,7 @@
 
             // Generate boxes without spaces between, if space width is 0%
             @if(stripUnit($hill-layout-boxes-space) > 0) {
-                width: recalcWidth($width);
+                width: _recalcWidth($width);
             } @else {
                 width: #{$width + '%'};
             }
@@ -114,7 +114,7 @@
             @include deviceIs ($breakpointName) {
                 [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-#{$width}"] {
                     @if(stripUnit($hill-layout-boxes-space) > 0) {
-                        width: recalcWidth($width);
+                        width: _recalcWidth($width);
                     } @else {
                         width: #{$width + '%'};
                     }

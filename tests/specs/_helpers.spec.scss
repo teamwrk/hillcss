@@ -4,6 +4,13 @@
 @import '../../core/vars';
 @import '../../core/helpers';
 
+// Define layers for testing the layer function;
+$hill-layers: (
+    'highest',
+    'center',
+    'lowest'
+);
+
 // Contains helpers for unittesting like should/expect abstractions
 @import '../test-helpers';
 
@@ -21,5 +28,53 @@
         $expected : 1.2rem;
 
         @include shouldBeEqual($value, $expected);
+    }
+
+    @include it("[layer] should return correct z-index") {
+        $expected : 3;
+
+        @include shouldBeEqual(layer('highest'), $expected);
+
+        $expected : 2;
+
+        @include shouldBeEqual(layer('center'), $expected);
+
+        $expected : 1;
+
+        @include shouldBeEqual(layer('lowest'), $expected);
+    }
+
+    @include it("[layer] should return largest value for first item") {
+        @include shouldBeGreaterThan(layer('highest'), layer('center'));
+        @include shouldBeGreaterThan(layer('highest'), layer('lowest'));
+    }
+
+    @include it("[layer] should return smallest value for last item") {
+        @include shouldBeSmallerThan(layer('lowest'), layer('highest'));
+        @include shouldBeSmallerThan(layer('lowest'), layer('center'));
+    }
+
+    @include it("[rem] should transform px values into rems") {
+        $value    : 16px;
+        $expected : 1rem;
+
+        @include shouldBeEqual(rem($value), $expected);
+
+        $value    : 32px;
+        $expected : 2rem;
+
+        @include shouldBeEqual(rem($value), $expected);
+    }
+
+    @include it("[rem] should transform px values into rems") {
+        $value    : 16px;
+        $expected : 1rem;
+
+        @include shouldBeEqual(rem($value), $expected);
+
+        $value    : 32px;
+        $expected : 2rem;
+
+        @include shouldBeEqual(rem($value), $expected);
     }
 }

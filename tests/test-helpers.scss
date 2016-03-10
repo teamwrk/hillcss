@@ -27,3 +27,23 @@
 @mixin shouldBeFalsy ($checkedValue) {
     @include should( expect($checkedValue), to( equal(false) ));
 }
+
+//
+// Checks, if first given parameter is greater than the second one
+// @param  {String} $firstValue  Value which should be greater
+// @param  {String} $secondValue Value which should be smaller
+// @return {Boolean}
+//
+@mixin shouldBeGreaterThan ($firstValue, $secondValue) {
+    @include should( expect($firstValue), to( be-greater-than($secondValue) ));
+}
+
+//
+// Checks, if first given parameter is smaller than the second one
+// @param  {String} $firstValue  Value which should be smaller
+// @param  {String} $secondValue Value which should be greater
+// @return {Boolean}
+//
+@mixin shouldBeSmallerThan ($firstValue, $secondValue) {
+    @include should( expect($firstValue), not-to( be-greater-than($secondValue) ));
+}

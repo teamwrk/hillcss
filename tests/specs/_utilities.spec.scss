@@ -58,15 +58,53 @@
         @include shouldBeEqual(stripUnit($value), $expected);
     }
 
-    @include it("[rem] should transform px values into rems") {
-        $value    : 16px;
-        $expected : 1rem;
+    @include it("[mapGetPrevious] should get previous item") {
+        $map      : (1: 'a', 2: 'b',
+                     3: 'c', 4: 'd');
+        $expected : 'b';
 
-        @include shouldBeEqual(rem($value), $expected);
+        @include shouldBeEqual(mapGetPrevious($map, 3), $expected);
 
-        $value    : 32px;
-        $expected : 2rem;
+        $expected : 'c';
+        @include shouldBeEqual(mapGetPrevious($map, 4), $expected);
+    }
 
-        @include shouldBeEqual(rem($value), $expected);
+    @include it("[mapGetPrevious] should get null, if no prevoius item exists") {
+        $map      : (1: 'a', 2: 'b');
+        $expected : null;
+
+        @include shouldBeEqual(mapGetPrevious($map, 1), $expected);
+    }
+
+    @include it("[mapGetNext] should get next item") {
+        $map      : (1: 'a', 2: 'b',
+                     3: 'c', 4: 'd');
+        $expected : 'c';
+
+        @include shouldBeEqual(mapGetNext($map, 2), $expected);
+
+        $expected : 'd';
+        @include shouldBeEqual(mapGetNext($map, 3), $expected);
+    }
+
+    @include it("[mapGetNext] should get null, if no next item exists") {
+        $map      : (1: 'a', 2: 'b');
+        $expected : null;
+
+        @include shouldBeEqual(mapGetNext($map, 2), $expected);
+    }
+
+    @include it("[mapGetFirstKey] should get first item") {
+        $map      : (1: 'a', 2: 'b');
+        $expected : 1;
+
+        @include shouldBeEqual(mapGetFirstKey($map), $expected);
+    }
+
+    @include it("[mapGetLastKey] should get last item") {
+        $map      : (1: 'a', 2: 'b');
+        $expected : 2;
+
+        @include shouldBeEqual(mapGetLastKey($map), $expected);
     }
 }

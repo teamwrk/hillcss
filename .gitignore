@@ -1,8 +1,12 @@
-.DS_Store
-*.sass-cache
-npm-debug.log
+design
+dist
+issues
 node_modules
+
 *.css
 *.css.map
-dist
 *.log
+*.log
+*.sass-cache
+*.TODO
+.DS_Store
