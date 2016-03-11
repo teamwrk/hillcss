@@ -35,23 +35,16 @@
 //
 @mixin deviceIs ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
-        @if($hill-layout-classes-as-breaktpoints == false) {
-            // Defaults for first parameter and condition
-            $breakpoint: map-get($hill-layout-breakpoints, $device);
+        // Defaults for first parameter and condition
+        $breakpoint: map-get($hill-layout-breakpoints, $device);
 
-            @if (mapGetFirstKey($hill-layout-breakpoints) == $device) {
-                @media (max-width: #{$breakpoint}) {
-                    @content;
-                }
-            } @else {
-                @media (min-width: #{mapGetPrevious($hill-layout-breakpoints, $device) + 1}) and
-                       (max-width: #{$breakpoint}) {
-                    @content;
-                }
+        @if (mapGetFirstKey($hill-layout-breakpoints) == $device) {
+            @media (max-width: #{$breakpoint}) {
+                @content;
             }
-
         } @else {
-            .device-is--#{$device} {
+            @media (min-width: #{mapGetPrevious($hill-layout-breakpoints, $device) + 1}) and
+                   (max-width: #{$breakpoint}) {
                 @content;
             }
         }

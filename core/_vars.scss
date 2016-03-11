@@ -17,9 +17,10 @@ $hill-text-attribute-name: hill-text !default;
 $hill-layout-boxes: (
     '1/4',
     '1/2',
-    '3/4') !default;
+    '3/4',
+    '1/1') !default;
 
-// Box space definition. Set to 0, if you want to disable spaces between boxes.
+// Box space definition. Set to 0%, if you want to disable spaces between boxes.
 $hill-layout-boxes-space: 2% !default;
 
 // Space definition for usage in html -> .."space-right"..
@@ -33,7 +34,7 @@ $hill-layout-space: 20px !default;
 // helper attributes are available in html.
 $hill-layout-space-multiplier: 2 !default;
 
-// Breakpoints for html -> .."box-small-1/2".. and the sass helpers for example
+// Breakpoints for html -> .."device-small-1/2".. and the sass helpers for example
 // the 'deviceIs' helper.
 $hill-layout-breakpoints: (
     small:  480px,
@@ -68,17 +69,9 @@ $hill-layout-css-general: true !default;
 // Example -> <div hill-layout="space-right"></div>
 $hill-layout-css-helpers: true !default;
 
-// Min and max helpers for box widthes
-// Example -> <div hill-layout="min-1/2"></div>
-$hill-layout-css-min-max: false !default;
-
 // Breakpoint CSS classes for usage in HTML
-// Example -> <div hill-layout="box-small-1/2 box-mdeium-2/3"></div>
+// Example -> <div hill-layout="device-small-1/2 device-medium-2/3"></div>
 $hill-layout-css-breakpoints: false !default;
-
-// Generate CSS breakpoint classes as wraps like '.device-is--small' instead of
-// media queries
-$hill-layout-classes-as-breaktpoints: false !default;
 
 // Text helpers like 'right, left'.
 // Example -> <div hill-text="right"></div>

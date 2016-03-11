@@ -1,6 +1,12 @@
 # CHANGELOG
 
 ## HEAD
+* Remove never used code and logic like `$hill-layout-classes-as-breaktpoints`, `min` and `max`.
+* Change naming like `box-small-1/2` to `device-small-1/2`
+* Move box/device general code together
+* Rename e.g. `box-small-hide` to `device-small-0`
+* Remove dead/commented code for map
+* Remove not needed % in fractionToPercent() and update associated unit tests
 * Change `$hill-layout-boxes definition from ('25', '50', ...) to fraction definition like so ('1/4', '1/2', ...)
 * Change `$hill-layout-boxes default to ('1/4', '1/2', '3/4')
 * Remove function `_calcWidth()`, bdecause it is not needed anymore

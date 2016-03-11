@@ -6,7 +6,7 @@
 // Contains helpers for unittesting like should/expect abstractions
 @import '../test-helpers';
 
-$hill-layout-boxes-space: 0;
+$hill-layout-boxes-space: 0%;
 
 @include describe("Hill Utilities Functions") {
 
@@ -29,7 +29,7 @@ $hill-layout-boxes-space: 0;
 
     @include it("[fractionToPercent] should convert fractions to percent values") {
         @include shouldBeEqual(fractionToPercent('1/2'), '50%');
-        @include shouldBeEqual(fractionToPercent('1'), '100%');
+        @include shouldBeEqual(fractionToPercent('1/1'), '100%');
         @include shouldBeEqual(fractionToPercent('3/4'), '75%');
     }
 

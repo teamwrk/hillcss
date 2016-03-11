@@ -21,27 +21,30 @@
 }
 
 
-
 //
-// Generates box width and box min/max css attributes
+// Generates boxes and rows
 //
-@each $width in $hill-layout-boxes {
+@if ($hill-layout-css-general) {
+    //
+    // Generates box width attributes
     // -> box-1/2, box-1/3 ...
-    @if ($hill-layout-css-general) {
+    //
+    @each $width in $hill-layout-boxes {
         [#{$hill-layout-attribute-name}*="box-#{$width}"] {
             width: fractionToPercent($width);
         }
     }
 
-    // -> min-1/2, max-1/2 ...
-    @if($hill-layout-css-min-max) {
-        [#{$hill-layout-attribute-name}*="min-#{$width}"] {
-            min-width: fractionToPercent($width);
+    //
+    // Generates box row to float boxes inside
+    //
+    [#{$hill-layout-attribute-name}*="row"]  {
+        & > [#{$hill-layout-attribute-name}*="box-"],
+        & > [#{$hill-layout-attribute-name}*="device-"] {
+            @extend %_floatLeft;
         }
 
-        [#{$hill-layout-attribute-name}*="max-#{$width}"] {
-            max-width: fractionToPercent($width);
-        }
+        @extend %_clearfix;
     }
 }
 
@@ -52,26 +55,14 @@
 //
 @if ($hill-layout-css-general or $hill-layout-css-breakpoints) {
     @if(stripUnit($hill-layout-boxes-space) > 0) {
-        [#{$hill-layout-attribute-name}*="box-"] {
+        [#{$hill-layout-attribute-name}*="box-"],
+        [#{$hill-layout-attribute-name}*="device-"] {
+            display: block;
+
             &:not(:last-child) {
                 margin-right: #{$hill-layout-boxes-space};
             }
         }
-    }
-}
-
-
-
-//
-// Generates box row to float boxes inside
-//
-@if ($hill-layout-css-general) {
-    [#{$hill-layout-attribute-name}*="row"]  {
-        & > [#{$hill-layout-attribute-name}*="box-"] {
-            @extend %_floatLeft;
-        }
-
-        @extend %_clearfix;
     }
 }
 
@@ -87,19 +78,15 @@
         // -> box-small-1/2, box-medium-1/2 ...
         @each $width in $hill-layout-boxes {
             @include deviceIs ($breakpointName) {
-                [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-#{$width}"] {
-                    width: fractionToPercent($width);;
-
-                    // Tried to exclude this into a placeholder. But this after that
-                    // this selector is not rendered inside a media query condition
-                    display: block;
+                [#{$hill-layout-attribute-name}*="device-#{$breakpointName}-#{$width}"] {
+                    width: fractionToPercent($width);
                 }
             };
         }
 
-        // -> box-small-hide
+        // -> box-small-0
         @include deviceIs ($breakpointName) {
-            [#{$hill-layout-attribute-name}*="box-#{$breakpointName}-hide"] {
+            [#{$hill-layout-attribute-name}*="device-#{$breakpointName}-0"] {
                 // Tried to exclude this into a placeholder. But this after that
                 // this selector is not rendered inside a media query condition
                 display: none;
