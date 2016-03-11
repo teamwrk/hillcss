@@ -6,7 +6,38 @@
 // Contains helpers for unittesting like should/expect abstractions
 @import '../test-helpers';
 
+$hill-layout-boxes-space: 0;
+
 @include describe("Hill Utilities Functions") {
+
+    @include it("[explodeFraction] should split fraction value into a map") {
+        $value    : '1/2';
+        $expected : (1,2);
+
+        @include shouldBeEqual(explodeFraction($value), $expected);
+    }
+
+    @include it("[explodeFraction] should have correct counter and denominator") {
+        $value     : '2/3';
+        $map       : explodeFraction($value);
+        $expected1 : 2;
+        $expected2 : 3;
+
+        @include shouldBeEqual(nth($map, 1), $expected1);
+        @include shouldBeEqual(nth($map, 2), $expected2);
+    }
+
+    @include it("[fractionToPercent] should convert fractions to percent values") {
+        @include shouldBeEqual(fractionToPercent('1/2'), '50%');
+        @include shouldBeEqual(fractionToPercent('1'), '100%');
+        @include shouldBeEqual(fractionToPercent('3/4'), '75%');
+    }
+
+    @include it("[toNumber] should cast strings to positive number") {
+        @include shouldBeEqual(toNumber('1'), 1);
+        @include shouldBeEqual(toNumber('22'), 22);
+        @include shouldBeEqual(toNumber('1337'), 1337);
+    }
 
     @include it("[getFirstChar] should return the first char of a string") {
         $value    : getFirstChar('>small');

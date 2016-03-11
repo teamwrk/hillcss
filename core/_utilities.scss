@@ -56,11 +56,82 @@
 
 
 //
+// Splits the given fraction string into two parts and returnx
+// them as a map
+// @param  {String} $fraction The fraction string like '1/2'
+// @return {Object}           A map with counter and denominator
+//                            would be returned, if valid fraction
+//                            is given. Otherwise null.
+//
+@function explodeFraction ($fraction) {
+    $delimiterPos: str-index($fraction, '/');
+    $result: null;
+
+    @if($delimiterPos) {
+        $length: str-length($fraction);
+
+        // Gets the counter of the fraction - 1/2
+        //                                    ^
+        $counter: str-slice($fraction, 1, $delimiterPos);
+
+        // Gets the denominator of the fraction - 1/2
+        //                                          ^
+        $denominator: str-slice($fraction, ($delimiterPos + 1), $length);
+
+        $result: (toNumber($counter), toNumber($denominator));
+    }
+
+    @return $result;
+}
+
+
+
+//
+// Transform a fraction map to percent representation
+// @param  {String} $fraction The fraction map like (1, 2)
+// @return {Number}           Percent representation of the given
+//                            fraction. Default is 100%.
+//
+@function fractionToPercent ($fraction) {
+    // Split fraction into map e.g. 1/2 -> (1, 2)
+    $fractionMap: explodeFraction($fraction);
+
+    // Default width
+    $result: 100;
+
+    @if($fractionMap) {
+        $counter:     nth($fractionMap, 1);
+        $denominator: nth($fractionMap, 2);
+
+        // Fraction in percentage e.g. 1/2 -> 50
+        $calcedValue: ((100 / $denominator) * $counter);
+
+        @if($hill-layout-boxes-space > 0) {
+            // Spaces between boxes.
+            // E.g. 3 possible spaces between 4 boxes,
+            // because last space is not needed
+            $spaceCount: $denominator - 1;
+
+            // Calculate the correct space size, that we can combine
+            // box size with space size to get always 100% total width.
+            $spaceSize: (($hill-layout-boxes-space * $spaceCount) / $denominator);
+            $result:    #{$calcedValue - $spaceSize};
+        } @else {
+            $result: #{$calcedValue};
+        }
+    }
+
+    @return #{$result}%;
+}
+
+
+
+//
 // Casts a string into a number
 // @param  {String} $string Value to be parsed
 // @return {Number}         Casted number
 //
-@function _toNumber($string) {
+@function toNumber($string) {
     $length: str-length($string);
     $result: 0;
     $digits: 0;
