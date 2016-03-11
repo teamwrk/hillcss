@@ -53,6 +53,44 @@
 //     font-family: $json;
 // }
 
+
+
+//
+// Casts a string into a number
+// @param  {String} $string Value to be parsed
+// @return {Number}         Casted number
+//
+@function _toNumber($string) {
+    $length: str-length($string);
+    $result: 0;
+    $digits: 0;
+    $numbers: (
+        '0': 0, '1': 1, '2': 2,
+        '3': 3, '4': 4, '5': 5,
+        '6': 6, '7': 7, '8': 8,
+        '9': 9
+    );
+
+  @for $i from 1 through str-length($string) {
+    $character: str-slice($string, $i, $i);
+
+    @if not (index(map-keys($numbers), $character)) {
+      @return $result;
+    }
+
+    @if $digits == 0 {
+      $result: $result * 10 + map-get($numbers, $character);
+    } @else {
+      $digits: $digits * 10;
+      $result: $result + map-get($numbers, $character) / $digits;
+    }
+  }
+
+  @return $result;
+}
+
+
+
 //
 // Return the first character of a string
 // @param  {String} $string

@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ## HEAD
+* Change `$hill-layout-boxes definition from ('25', '50', ...) to fraction definition like so ('1/4', '1/2', ...)
+* Change `$hill-layout-boxes default to ('1/4', '1/2', '3/4')
+* Remove function `_calcWidth()`, bdecause it is not needed anymore
+* Implement functions `_explodeFraction`, `_fractionToPercent` and `_toNumber` for fraction based box model
 * Move `rem()` to `_helpers.scs` cause its a hill API method
 * Ignore `*.todo` files, `/design` and `/issues` from git
 * Add function `layers()` in `_helpers.scss` for z-index based layer management
