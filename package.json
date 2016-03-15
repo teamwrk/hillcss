@@ -1,7 +1,7 @@
 {
   "name": "hillcss",
-  "version": "1.0.0-rc5",
-  "description": "A sass toolkit for intuitive layouting mechanism",
+  "version": "1.0.0-rc1",
+  "description": "A sass toolkit for intuitive layouting",
   "author": [
     "Teamwrk <hire@twrk.io>",
     "Vadim Hermann <contact@vadim-hermann.com>",
@@ -14,8 +14,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/Vaddo/hill.git"
+    "url": "git+ssh://git@github.com/teamwrk/hillcss.git"
   },
+  "homepage": "https://github.com/teamwrk/hillcss#readme",
   "keywords": [
     "SASS",
     "Layouting",
@@ -28,6 +29,5 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-sass": "^1.1.0",
     "normalize.css": "^3.0.3"
-  },
-  "homepage": "https://bitbucket.org/Vaddo/hill#readme"
+  }
 }
