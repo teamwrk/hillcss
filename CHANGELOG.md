@@ -1,11 +1,9 @@
 # CHANGELOG
 
 ## HEAD
-* Update file dependencies of the new structure
 * Rename `_helpers.spec.scss` to `functions.spec.scss`
 * Rename `_utilities.spec.scss` to `_mixins.spec.scss`
-* Struct and move logic from `_helpers.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`
-* Split logic of `_layout.scss` to files `_general.scss`, `_box.scss`, `_responsive.scss`
+* Structure and move logic from `_helpers.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`
 * Rename `core` folder to `lib`
 * Improve documentation and update dependencies in `hill-api.scss` and `hill.scss`
 * Remove `normalize.css` from package.json`

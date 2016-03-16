@@ -69,15 +69,3 @@
 @function layer($alias) {
     @return ((length($hill-layers) - index($hill-layers, $alias)) + 1);
 }
-
-
-
-//
-// Returns the number without unit. E.g. 30px -> 30
-// @param  {String} $val
-// @return {Number}
-// @hint Borrowed from Zurb Foundation _globals.scss
-//
-@function stripUnit($val) {
-  @return $val / ($val * 0 + 1);
-}

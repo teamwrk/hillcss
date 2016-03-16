@@ -7,6 +7,4 @@
 // Overwrite variables in '_config.scss' file to configure
 // the css output
 @import "lib/core/text";
-@import "lib/core/general";
-@import "lib/core/box";
-@import "lib/core/responsive";
+@import "lib/core/layout";

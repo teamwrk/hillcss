@@ -1,14 +1,8 @@
 @import '../config';
 
-
-
 //
 // Added to reduce css output
 //
-%_floatLeft {
-    float: left;
-}
-
 %_clearfix {
     &:before,
     &:after {
@@ -19,8 +13,6 @@
         clear: both;
     }
 }
-
-
 
 //
 // Splits the given fraction string into two parts and returnx
@@ -50,8 +42,6 @@
 
     @return $result;
 }
-
-
 
 //
 // Transform a fraction map to percent representation
@@ -91,8 +81,6 @@
     @return #{$result};
 }
 
-
-
 //
 // Casts a string into a number
 // @param  {String} $string Value to be parsed
@@ -127,8 +115,6 @@
   @return $result;
 }
 
-
-
 //
 // Return the first character of a string
 // @param  {String} $string
@@ -142,8 +128,6 @@
     }
 }
 
-
-
 //
 // Remove the first character of a string
 // and return it
@@ -153,8 +137,6 @@
 @function removeFirstChar ($string) {
     @return str_slice($string, 2, -(length($string)));
 }
-
-
 
 //
 // Returns if a string is equal to a list of
@@ -172,8 +154,6 @@
 
     @return false;
 }
-
-
 
 //
 // Gets the previous item from given map relative to given item
@@ -195,8 +175,6 @@
     @return null;
 }
 
-
-
 //
 // Gets the next item from given map relative to given item
 // @param  {Object}  $map     Map with keys and values
@@ -217,8 +195,6 @@
     @return null;
 }
 
-
-
 //
 // Gets the first key of the given map
 // @param  {Object} $map Map with keys and values
@@ -228,8 +204,6 @@
     @return nth(nth($map, 1), 1);
 }
 
-
-
 //
 // Gets the last key of the given map
 // @param  {Object} $map Map with keys and values
@@ -237,4 +211,14 @@
 //
 @function mapGetLastKey ($map) {
     @return nth(nth($map, length($map)), 1);
+}
+
+//
+// Returns the number without unit. E.g. 30px -> 30
+// @param  {String} $val
+// @return {Number}
+// @hint Borrowed from Zurb Foundation _globals.scss
+//
+@function stripUnit($val) {
+  @return $val / ($val * 0 + 1);
 }
