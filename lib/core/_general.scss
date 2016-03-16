@@ -1,0 +1,23 @@
+@import 'helpers';
+
+
+
+@if ($hill-layout-css-general) {
+    @for $index from 1 through $hill-layout-space-multiplier {
+        @if $index > 1 {
+            $multiplier: "-#{$index}x";
+        } @else {
+            $multiplier: '';
+        }
+
+        [#{$hill-layout-attribute-name}*="space-top#{$multiplier}"]       { margin-top:    #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-right#{$multiplier}"]     { margin-right:  #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-bottom#{$multiplier}"]    { margin-bottom: #{$hill-layout-space * $index}; }
+        [#{$hill-layout-attribute-name}*="space-left#{$multiplier}"]      { margin-left:   #{$hill-layout-space * $index}; }
+    }
+
+    [#{$hill-layout-attribute-name}*="float-left"]     { @extend  %_floatLeft; }
+    [#{$hill-layout-attribute-name}*="float-right"]    { float:   right; }
+    [#{$hill-layout-attribute-name}*="hide"]           { display: none; }
+    [#{$hill-layout-attribute-name}*="clear"]          { @extend  %_clearfix; }
+}

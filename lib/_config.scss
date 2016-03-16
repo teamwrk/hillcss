@@ -4,8 +4,6 @@
 //
 
 
-// --------------------------------------------------------------- Configuration
-
 
 // Attribute name for html -> <div hill-layout="..."></div>
 $hill-layout-attribute-name: hill-layout !default;
@@ -59,23 +57,22 @@ $hill-text-sizes: (
 // To configure the output css, overwrite these variables in your custom
 // settings file. For more check out the demo.
 
+// Layout helpers.
+// Example -> <div hill-layout="space-right"></div>
+$hill-layout-css-general: true !default;
 
 // General helpers like box width based on '$hill-layout-boxes', which can be
 // used in HTML.
 // Example -> <div hill-layout="box-1/2"></div>
-$hill-layout-css-general: true !default;
-
-// Layout helpers.
-// Example -> <div hill-layout="space-right"></div>
-$hill-layout-css-helpers: true !default;
+$hill-layout-css-box: true !default;
 
 // Breakpoint CSS classes for usage in HTML
 // Example -> <div hill-layout="device-small-1/2 device-medium-2/3"></div>
-$hill-layout-css-breakpoints: false !default;
+$hill-layout-css-responsive: false !default;
 
 // Text helpers like 'right, left'.
 // Example -> <div hill-text="right"></div>
-$hill-text-css-helpers: true !default;
+$hill-text-css-helpers: false !default;
 
 //
 // Definition of z-index layers. Can be use to manage layer order.

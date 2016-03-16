@@ -1,7 +1,7 @@
 // SASS unittests for utilities functions
 
 // Dependencies
-@import '../../core/utilities';
+@import '../../lib/mixins';
 
 // Contains helpers for unittesting like should/expect abstractions
 @import '../test-helpers';
@@ -73,20 +73,6 @@ $hill-layout-boxes-space: 0%;
         $matcher2 : '<';
 
         @include shouldBeTruthy(equalOnce($value, $matcher1, $matcher2));
-    }
-
-    @include it("[stripUnit] should remove px unit characters") {
-        $value    : 100px;
-        $expected : 100;
-
-        @include shouldBeEqual(stripUnit($value), $expected);
-    }
-
-    @include it("[stripUnit] should remove rem unit characters") {
-        $value    : 10rem;
-        $expected : 10;
-
-        @include shouldBeEqual(stripUnit($value), $expected);
     }
 
     @include it("[mapGetPrevious] should get previous item") {

@@ -1,8 +1,10 @@
 // SASS unittests for helpers functions
 
 // Dependencies
-@import '../../core/vars';
-@import '../../core/helpers';
+@import '../../lib/functions';
+
+// Contains helpers for unittesting like should/expect abstractions
+@import '../test-helpers';
 
 // Define layers for testing the layer function;
 $hill-layers: (
@@ -10,9 +12,6 @@ $hill-layers: (
     'center',
     'lowest'
 );
-
-// Contains helpers for unittesting like should/expect abstractions
-@import '../test-helpers';
 
 @include describe("Hill Helpers Functions") {
 
@@ -76,5 +75,19 @@ $hill-layers: (
         $expected : 2rem;
 
         @include shouldBeEqual(rem($value), $expected);
+    }
+
+    @include it("[stripUnit] should remove px unit characters") {
+        $value    : 100px;
+        $expected : 100;
+
+        @include shouldBeEqual(stripUnit($value), $expected);
+    }
+
+    @include it("[stripUnit] should remove rem unit characters") {
+        $value    : 10rem;
+        $expected : 10;
+
+        @include shouldBeEqual(stripUnit($value), $expected);
     }
 }

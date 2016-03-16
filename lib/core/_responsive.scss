@@ -1,0 +1,41 @@
+@import '../functions';
+@import 'helpers';
+
+
+
+//
+// Generates box breakpoints with relevant width sizes
+//
+@if ($hill-layout-css-responsive) {
+    @if(stripUnit($hill-layout-boxes-space) > 0) {
+        [#{$hill-layout-attribute-name}*="device-"] {
+            display: block;
+
+            &:not(:last-child) {
+                margin-right: #{$hill-layout-boxes-space};
+            }
+        }
+    }
+
+    @each $breakpoint in $hill-layout-breakpoints {
+        $breakpointName: nth($breakpoint, 1);
+
+        // -> box-small-1/2, box-medium-1/2 ...
+        @each $width in $hill-layout-boxes {
+            @include deviceIs ($breakpointName) {
+                [#{$hill-layout-attribute-name}*="device-#{$breakpointName}-#{$width}"] {
+                    width: fractionToPercent($width);
+                }
+            };
+        }
+
+        // -> box-small-0
+        @include deviceIs ($breakpointName) {
+            [#{$hill-layout-attribute-name}*="device-#{$breakpointName}-0"] {
+                // Tried to exclude this into a placeholder. But this after that
+                // this selector is not rendered inside a media query condition
+                display: none;
+            }
+        }
+    }
+}

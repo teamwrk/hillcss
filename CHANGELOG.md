@@ -1,6 +1,15 @@
 # CHANGELOG
 
 ## HEAD
+* Update file dependencies of the new structure
+* Rename `_helpers.spec.scss` to `functions.spec.scss`
+* Rename `_utilities.spec.scss` to `_mixins.spec.scss`
+* Struct and move logic from `_helpers.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`
+* Split logic of `_layout.scss` to files `_general.scss`, `_box.scss`, `_responsive.scss`
+* Rename `core` folder to `lib`
+* Improve documentation and update dependencies in `hill-api.scss` and `hill.scss`
+* Remove `normalize.css` from package.json`
+* Rename `_vars.scss` to `_config.scss`
 * Remove never used code and logic like `$hill-layout-classes-as-breaktpoints`, `min` and `max`.
 * Change naming like `box-small-1/2` to `device-small-1/2`
 * Move box/device general code together

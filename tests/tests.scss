@@ -1,6 +1,6 @@
 @import "node_modules/bootcamp/dist/bootcamp";
 
 @include runner-start;
-@import "specs/utilities.spec";
-@import "specs/helpers.spec";
+@import "specs/functions.spec";
+@import "specs/mixins.spec";
 @include runner-end;
