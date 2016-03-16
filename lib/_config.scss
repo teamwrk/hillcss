@@ -5,46 +5,38 @@
 
 
 
-// Attribute name for html -> <div hill-layout="..."></div>
-$hill-layout-attribute-name: hill-layout !default;
+// Attribute name for html
+$hill-html-namespace: hill-helper !default;
 
-// Attribute name for html -> <a hill-text="..."></a>
-$hill-text-attribute-name: hill-text !default;
-
-// Box width sizes for usage in html -> .."box-1/2"..
-$hill-layout-boxes: (
+// Box width sizes for usage in html
+$hill-box-sizes: (
     '1/4',
     '1/2',
     '3/4',
     '1/1') !default;
 
-// Box space definition. Set to 0%, if you want to disable spaces between boxes.
-$hill-layout-boxes-space: 2% !default;
+// Space definition between boxes. Set to 0%,
+// if you want to disable spaces.
+$hill-box-space: 2% !default;
 
-// Space definition for usage in html -> .."space-right"..
-// Percentage and rem values can be defined here too.
-$hill-layout-space: 20px !default;
+// General space definition
+$hill-general-space: 20px !default;
 
-// Multiplier of `$hill-layout-space`
-// For Example `space-bottom-2x`
-// If it has a value of 3, it means that
-// `space-bottom`, `space-bottom-2x` and `space-bottom-3x`
-// helper attributes are available in html.
-$hill-layout-space-multiplier: 2 !default;
+// Multiplier of `$hill-general-space`
+// @example
+// 3 -> `space-bottom`, `space-bottom-2x`, `space-bottom-3x`
+$hill-general-space-multiplier: 2 !default;
 
-// Breakpoints for html -> .."device-small-1/2".. and the sass helpers for example
-// the 'deviceIs' helper.
-$hill-layout-breakpoints: (
+// Breakpoints for responsive mechanism
+$hill-responsive-breakpoints: (
     small:  480px,
     medium: 992px,
     large:  1280px
 ) !default;
 
-// Root Fontsize for Rem calculation
-$hill-text-root: 16px !default;
-
-// Text sizes for html -> .."small-2x".. and the 'textIs' helper
+// Text sizes
 $hill-text-sizes: (
+    root:     16px,
     base:     1rem,
     small-2x: 0.9rem,
     small-3x: 0.8rem,
@@ -52,34 +44,33 @@ $hill-text-sizes: (
     large-3x: 1.4rem
 ) !default;
 
-
-// -------------------------------------------------------- Output Configuration
-// To configure the output css, overwrite these variables in your custom
-// settings file. For more check out the demo.
-
-// Layout helpers.
-// Example -> <div hill-layout="space-right"></div>
-$hill-layout-css-general: true !default;
-
-// General helpers like box width based on '$hill-layout-boxes', which can be
-// used in HTML.
-// Example -> <div hill-layout="box-1/2"></div>
-$hill-layout-css-box: true !default;
-
-// Breakpoint CSS classes for usage in HTML
-// Example -> <div hill-layout="device-small-1/2 device-medium-2/3"></div>
-$hill-layout-css-responsive: false !default;
-
-// Text helpers like 'right, left'.
-// Example -> <div hill-text="right"></div>
-$hill-text-css-helpers: false !default;
-
 //
 // Definition of z-index layers. Can be use to manage layer order.
 // Top item has the highest z-index value and bottom item the lowest.
-// Check "layer" function in "_helpers.scss" for more information
 //
-$hill-layers: (
+$hill-layer-order: (
     'highest',
     'lowest'
 ) !default;
+
+
+
+//
+// HINT: The next configuration part generate css output.
+//       To configure the output css, overwrite these variables in
+//       your custom settings file. For more check out the demo.
+//
+
+
+
+// General output for helpers like spaces.
+$hill-general-css-output: true !default;
+
+// Box width output for layouting
+$hill-box-css-output: true !default;
+
+// Breakpoint output for responsive design
+$hill-responsive-css-output: true !default;
+
+// Text helpers output like right, left
+$hill-text-css-output: true !default;

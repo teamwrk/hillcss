@@ -1,6 +1,22 @@
 # CHANGELOG
 
 ## HEAD
+* Change html namespace default from `hill-layout` to `hill-helper`
+* Fix dublicate css output for box and responsive stuff
+* Simplify documentation of `_config.scss`
+* Rename/Merge `$hill-layout-attribute-name` and `$hill-text-attribute-name` to `$hill-html-namespace`
+* Rename `$hill-layout-boxes` to `$hill-box-sizes`
+* Rename `$hill-box-sizes-space` to `$hill-box-space`
+* Rename `$hill-box-sizes-space` to `$hill-box-space`
+* Rename `$hill-layout-space` to `$hill-general-space`
+* Rename `$hill-layout-space-multiplier` to `$hill-general-space-multiplier`
+* Rename `$hill-layout-breakpoints` to `$hill-responsive-breakpoints`
+* Add `root` to `$hill-text-sizes` to configure a custom root font-size
+* Rename `$hill-layout-css-general` to `$hill-general-css-output`
+* Rename `$hill-layout-css-box` to `$hill-box-css-output`
+* Rename `$hill-layout-css-responsive` to `$hill-responsive-css-output`
+* Rename `$hill-text-css-helpers` to `$hill-text-css-output`
+* Rename `$hill-layers` to `$hill-layer-order`
 * Update file dependencies of the new structure
 * Rename `_helpers.spec.scss` to `functions.spec.scss`
 * Rename `_utilities.spec.scss` to `_mixins.spec.scss`
@@ -28,7 +44,6 @@
 * Move `hill.css` and `test-results.css` to `dist` folder
 * Unittests for layers() module
 * Add `$hill-layout-space-multiplier` variable to configure how many spacing multiplier are needed for a project, for example `2x`, `3x` and so on.
-* `$hill-text-root` Create SASS variable to configure a custom root font-size
 * Make hill extendable and configurable
 * Add Jasmine-style BDD testing for SASS with Bootcamp
 * Rename main entrypoint layout.scss to hill.scss

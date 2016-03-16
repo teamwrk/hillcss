@@ -3,7 +3,7 @@
 // @param  {String} $device The device breakpoint definition for the media query
 // @return {CSS}            CSS contents with inside of
 //                          the given media query
-// @Example
+// @example
 //           // Simple MediaQuery for small screens only
 //           .example {
 //               color: blue;
@@ -14,16 +14,16 @@
 //           }
 //
 @mixin deviceIs ($device) {
-    @if global-variable-exists(hill-layout-breakpoints) {
+    @if global-variable-exists(hill-responsive-breakpoints) {
         // Defaults for first parameter and condition
-        $breakpoint: map-get($hill-layout-breakpoints, $device);
+        $breakpoint: map-get($hill-responsive-breakpoints, $device);
 
-        @if (mapGetFirstKey($hill-layout-breakpoints) == $device) {
+        @if (mapGetFirstKey($hill-responsive-breakpoints) == $device) {
             @media (max-width: #{$breakpoint}) {
                 @content;
             }
         } @else {
-            @media (min-width: #{mapGetPrevious($hill-layout-breakpoints, $device) + 1}) and
+            @media (min-width: #{mapGetPrevious($hill-responsive-breakpoints, $device) + 1}) and
                    (max-width: #{$breakpoint}) {
                 @content;
             }
@@ -47,8 +47,8 @@
 //           }
 //
 @mixin deviceMin ($device) {
-    @if global-variable-exists(hill-layout-breakpoints) {
-        @media (min-width: #{map-get($hill-layout-breakpoints, $device) + 1}) {
+    @if global-variable-exists(hill-responsive-breakpoints) {
+        @media (min-width: #{map-get($hill-responsive-breakpoints, $device) + 1}) {
             @content;
         }
     }
@@ -70,8 +70,8 @@
 //           }
 //
 @mixin deviceMax ($device) {
-    @if global-variable-exists(hill-layout-breakpoints) {
-        @media (max-width: #{map-get($hill-layout-breakpoints, $device)}) {
+    @if global-variable-exists(hill-responsive-breakpoints) {
+        @media (max-width: #{map-get($hill-responsive-breakpoints, $device)}) {
             @content;
         }
     }
@@ -94,9 +94,9 @@
 //           }
 //
 @mixin deviceBetween ($deviceMin, $deviceMax) {
-    @if global-variable-exists(hill-layout-breakpoints) {
-        @media (min-width: #{map-get($hill-layout-breakpoints, $deviceMin) + 1})
-            and (max-width: #{map-get($hill-layout-breakpoints, $deviceMax)}) {
+    @if global-variable-exists(hill-responsive-breakpoints) {
+        @media (min-width: #{map-get($hill-responsive-breakpoints, $deviceMin) + 1})
+            and (max-width: #{map-get($hill-responsive-breakpoints, $deviceMax)}) {
             @content;
         }
     }

@@ -6,7 +6,7 @@
 // Contains helpers for unittesting like should/expect abstractions
 @import '../test-helpers';
 
-$hill-layout-boxes-space: 0%;
+$hill-box-space: 0%;
 
 @include describe("Hill Utilities Functions") {
 

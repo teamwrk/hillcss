@@ -28,7 +28,7 @@
 // @param {String} $base Optional rem value to get the right scope
 // @return {String} rem value
 //
-@function rem($pixel, $base: $hill-text-root) {
+@function rem($pixel, $base: map-get($hill-text-sizes, 'root')) {
     @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
 
@@ -48,7 +48,7 @@
 //        z-index: @layer('page');
 //    }
 //
-//    $hill-layers: (
+//    $hill-layer-order: (
 //        'modal',
 //        'page'
 //    );
@@ -56,7 +56,7 @@
 //    .modal -> z-index: 2
 //    .page -> z-index: 1
 //
-//    $hill-layers: (
+//    $hill-layer-order: (
 //        'highest',
 //        'center',
 //        'lowest'
@@ -67,7 +67,7 @@
 //    .lowest -> z-index: 1
 //
 @function layer($alias) {
-    @return ((length($hill-layers) - index($hill-layers, $alias)) + 1);
+    @return ((length($hill-layer-order) - index($hill-layer-order, $alias)) + 1);
 }
 
 
