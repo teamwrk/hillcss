@@ -220,5 +220,5 @@
 // @hint Borrowed from Zurb Foundation _globals.scss
 //
 @function stripUnit($val) {
-  @return $val / ($val * 0 + 1);
+    @return $val / ($val * 0 + 1);
 }

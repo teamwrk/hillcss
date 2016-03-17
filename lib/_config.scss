@@ -3,8 +3,6 @@
 // your project custom configuration.
 //
 
-
-
 // Attribute name for html -> <div hill-layout="..."></div>
 $hill-layout-attribute-name: hill-layout !default;
 
@@ -45,32 +43,33 @@ $hill-text-root: 16px !default;
 
 // Text sizes for html -> .."small-2x".. and the 'textIs' helper
 $hill-text-sizes: (
-    base:     1rem,
-    small-2x: 0.9rem,
     small-3x: 0.8rem,
+    small-2x: 0.9rem,
+    base:     1rem,
     large-2x: 1.2rem,
     large-3x: 1.4rem
 ) !default;
-
 
 // -------------------------------------------------------- Output Configuration
 // To configure the output css, overwrite these variables in your custom
 // settings file. For more check out the demo.
 
-// Layout helpers.
+// Layout helpers general
 // Example -> <div hill-layout="space-right"></div>
 $hill-layout-css-general: true !default;
 
-// General helpers like box width based on '$hill-layout-boxes', which can be
-// used in HTML.
+// Layout helpers box
+// like box width based on '$hill-layout-boxes', which can be used in HTML.
 // Example -> <div hill-layout="box-1/2"></div>
 $hill-layout-css-box: true !default;
 
+// Layout helpers responsive
 // Breakpoint CSS classes for usage in HTML
 // Example -> <div hill-layout="device-small-1/2 device-medium-2/3"></div>
 $hill-layout-css-responsive: false !default;
 
-// Text helpers like 'right, left'.
+// Text helpers
+// like 'right, left'.
 // Example -> <div hill-text="right"></div>
 $hill-text-css-helpers: false !default;
 

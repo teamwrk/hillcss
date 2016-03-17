@@ -1,7 +1,5 @@
 @import 'core/helpers';
 
-
-
 //
 // Return the font size of the given key
 // @param   {String} $property
@@ -14,8 +12,6 @@
 @function textIs ($property) {
     @return map-get($hill-text-sizes, $property);
 }
-
-
 
 //
 // Calculates and returns a rem value based on pixel input
@@ -31,8 +27,6 @@
 @function rem($pixel, $base: $hill-text-root) {
     @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
-
-
 
 //
 // Gets z-index value which was defined in the hill layer list.
