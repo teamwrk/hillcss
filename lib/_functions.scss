@@ -27,7 +27,7 @@
 //        z-index: @layer('page');
 //    }
 //
-//    $hill-layers: (
+//    $hill-layer-order: (
 //        'modal',
 //        'page'
 //    );
@@ -35,7 +35,7 @@
 //    .modal -> z-index: 2
 //    .page -> z-index: 1
 //
-//    $hill-layers: (
+//    $hill-layer-order: (
 //        'highest',
 //        'center',
 //        'lowest'
@@ -46,7 +46,7 @@
 //    .lowest -> z-index: 1
 //
 @function hill-layer($alias) {
-    @return ((length($hill-layers) - index($hill-layers, $alias)) + 1);
+    @return ((length($hill-layer-order) - index($hill-layer-order, $alias)) + 1);
 }
 
 //

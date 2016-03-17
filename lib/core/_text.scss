@@ -1,7 +1,7 @@
 //
 // Generates text css attributes
 //
-@if($hill-text-css-helper) {
+@if($hill-text-helper-css-output) {
     @if (length($hill-text-sizes) > 0) {
         @for $i from 1 through length($hill-text-sizes) {
             $item:  nth($hill-text-sizes, $i);
@@ -9,13 +9,13 @@
             $value: nth($item, 2);
 
             // -> small-2x, large-2x ...
-            [#{$hill-text-attribute-name}*="#{$param}"] {
+            [#{$hill-html-prefix}-text*="#{$param}"] {
                 font-size: $value;
             };
         }
     }
 
-    [#{$hill-text-attribute-name}*="left"]   { text-align:  left;   }
-    [#{$hill-text-attribute-name}*="right"]  { text-align:  right;  }
-    [#{$hill-text-attribute-name}*="center"] { text-align:  center; }
+    [#{$hill-html-prefix}-text*="left"]   { text-align:  left;   }
+    [#{$hill-html-prefix}-text*="right"]  { text-align:  right;  }
+    [#{$hill-html-prefix}-text*="center"] { text-align:  center; }
 }

@@ -1,11 +1,24 @@
 # CHANGELOG
 
 ## HEAD
+<<<<<<< HEAD
 * Use `hill-` Namespace for public Helper & Utilities methods
 * Rename `helpers -> helper` in all cases
 * Move Unittests of core methods to `tests/specs/core`
 
 * Rename `_helper.spec.scss` to `functions.spec.scss`
+=======
+* Rename `$hill-layout-css-general` to `$hill-layout-general-css-output`
+* Rename `$hill-layout-css-box` to `$hill-layout-box-css-output`
+* Rename `$hill-layout-css-responsive` to `$hill-layout-responsive-css-output`
+* Rename `$hill-text-css-helpers` to `$hill-text-helper-css-output`
+* Rename `$hill-layers` to `$hill-layer-order`
+* Rename `$hill-layout-boxes-space` to `$hill-layout-box-space`
+* Change `$hill-layout-attribute-name` to `$hill-html-prefix` and set default to `hill`
+* Fix duplicate css output for box and responsive stuff
+* Replace `$hill-text-attribute-name` with `$hill-html-prefix`
+* Rename `_helpers.spec.scss` to `functions.spec.scss`
+>>>>>>> 48f77e09207da97abbbd1cc911af1e0225fbf451
 * Rename `_utilities.spec.scss` to `_mixins.spec.scss`
 * Structure and move logic from `_helper.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`
 * Rename `core` folder to `lib`

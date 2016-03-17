@@ -6,7 +6,7 @@
 // Dependencies
 @import '../../../lib/core/helper';
 
-$hill-layout-boxes-space: 0%;
+$hill-layout-box-space: 0%;
 
 @include describe('Hill Internal Helpers') {
     @include it('[explode-fraction] should split fraction value into a map') {
