@@ -1,6 +1,15 @@
 # CHANGELOG
 
 ## HEAD
+* Rename `$hill-layout-css-general` to `$hill-layout-general-css-output`
+* Rename `$hill-layout-css-box` to `$hill-layout-box-css-output`
+* Rename `$hill-layout-css-responsive` to `$hill-layout-responsive-css-output`
+* Rename `$hill-text-css-helpers` to `$hill-text-helper-css-output`
+* Rename `$hill-layers` to `$hill-layer-order`
+* Rename `$hill-layout-boxes-space` to `$hill-layout-box-space`
+* Change `$hill-layout-attribute-name` to `$hill-html-prefix` and set default to `hill`
+* Fix duplicate css output for box and responsive stuff
+* Replace `$hill-text-attribute-name` with `$hill-html-prefix`
 * Rename `_helpers.spec.scss` to `functions.spec.scss`
 * Rename `_utilities.spec.scss` to `_mixins.spec.scss`
 * Structure and move logic from `_helpers.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`

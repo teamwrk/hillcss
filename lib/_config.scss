@@ -3,11 +3,8 @@
 // your project custom configuration.
 //
 
-// Attribute name for html -> <div hill-layout="..."></div>
-$hill-layout-attribute-name: hill-layout !default;
-
-// Attribute name for html -> <a hill-text="..."></a>
-$hill-text-attribute-name: hill-text !default;
+// Attribute name prefix for html -> <div hill-layout="..."></div>
+$hill-html-prefix: hill !default;
 
 // Box width sizes for usage in html -> .."box-1/2"..
 $hill-layout-boxes: (
@@ -17,7 +14,7 @@ $hill-layout-boxes: (
     '1/1') !default;
 
 // Box space definition. Set to 0%, if you want to disable spaces between boxes.
-$hill-layout-boxes-space: 2% !default;
+$hill-layout-box-space: 2% !default;
 
 // Space definition for usage in html -> .."space-right"..
 // Percentage and rem values can be defined here too.
@@ -56,29 +53,29 @@ $hill-text-sizes: (
 
 // Layout helpers general
 // Example -> <div hill-layout="space-right"></div>
-$hill-layout-css-general: true !default;
+$hill-layout-general-css-output: true !default;
 
 // Layout helpers box
 // like box width based on '$hill-layout-boxes', which can be used in HTML.
 // Example -> <div hill-layout="box-1/2"></div>
-$hill-layout-css-box: true !default;
+$hill-layout-box-css-output: true !default;
 
 // Layout helpers responsive
 // Breakpoint CSS classes for usage in HTML
 // Example -> <div hill-layout="device-small-1/2 device-medium-2/3"></div>
-$hill-layout-css-responsive: false !default;
+$hill-layout-responsive-css-output: false !default;
 
 // Text helpers
 // like 'right, left'.
 // Example -> <div hill-text="right"></div>
-$hill-text-css-helpers: false !default;
+$hill-text-helper-css-output: false !default;
 
 //
 // Definition of z-index layers. Can be use to manage layer order.
 // Top item has the highest z-index value and bottom item the lowest.
 // Check "layer" function in "_helpers.scss" for more information
 //
-$hill-layers: (
+$hill-layer-order: (
     'highest',
     'lowest'
 ) !default;
