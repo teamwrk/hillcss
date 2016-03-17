@@ -1,7 +1,7 @@
-@import 'helpers';
+@import 'helper';
 
 //
-// Generates layout helpers
+// Generates layout helper
 //
 @if ($hill-layout-css-general) {
     @for $index from 1 through $hill-layout-space-multiplier {
@@ -34,7 +34,7 @@
     //
     @each $width in $hill-layout-boxes {
         [#{$hill-layout-attribute-name}*="box-#{$width}"] {
-            width: fractionToPercent($width);
+            width: fraction-to-percent($width);
         }
     }
 
@@ -49,7 +49,7 @@
         @extend %_clearfix;
     }
 
-    @if(stripUnit($hill-layout-boxes-space) > 0) {
+    @if(strip-unit($hill-layout-boxes-space) > 0) {
         [#{$hill-layout-attribute-name}*="box-"] {
             display: block;
 
@@ -64,7 +64,7 @@
 // Generates box breakpoints with relevant width sizes
 //
 @if ($hill-layout-css-responsive) {
-    @if(stripUnit($hill-layout-boxes-space) > 0) {
+    @if(strip-unit($hill-layout-boxes-space) > 0) {
         [#{$hill-layout-attribute-name}*="device-"] {
             display: block;
 
@@ -79,15 +79,15 @@
 
         // -> box-small-1/2, box-medium-1/2 ...
         @each $width in $hill-layout-boxes {
-            @include deviceIs ($breakpointName) {
+            @include hill-device-is ($breakpointName) {
                 [#{$hill-layout-attribute-name}*="device-#{$breakpointName}-#{$width}"] {
-                    width: fractionToPercent($width);
+                    width: fraction-to-percent($width);
                 }
             };
         }
 
         // -> box-small-0
-        @include deviceIs ($breakpointName) {
+        @include hill-device-is ($breakpointName) {
             [#{$hill-layout-attribute-name}*="device-#{$breakpointName}-0"] {
 
                 // Tried to exclude this into a placeholder. But this after that

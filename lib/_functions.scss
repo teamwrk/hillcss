@@ -1,4 +1,4 @@
-@import 'core/helpers';
+@import 'core/helper';
 
 //
 // Return the font size of the given key
@@ -6,26 +6,11 @@
 // @return  {String} Font size
 // @Example
 //           .example {
-//               font-size: textIs('small')
+//               font-size: hill-text-is('small')
 //           }
 //
-@function textIs ($property) {
+@function hill-text-is ($property) {
     @return map-get($hill-text-sizes, $property);
-}
-
-//
-// Calculates and returns a rem value based on pixel input
-//
-// Examples:
-// width: rem(200px);       // width: 12.5rem;
-// margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
-//
-// @param {String} $pixel
-// @param {String} $base Optional rem value to get the right scope
-// @return {String} rem value
-//
-@function rem($pixel, $base: $hill-text-root) {
-    @return stripUnit($pixel) / stripUnit($base) * 1rem;
 }
 
 //
@@ -60,6 +45,25 @@
 //    .center -> z-index: 2
 //    .lowest -> z-index: 1
 //
-@function layer($alias) {
+@function hill-layer($alias) {
     @return ((length($hill-layers) - index($hill-layers, $alias)) + 1);
+}
+
+//
+// Calculates and returns a rem value based on pixel input
+//
+// Hint: The rem methods is the only method w/o `hill` namespace,
+//       because it is very often used and you don't want to write:
+//       `padding: hill-rem(10px) hill-rem(15px) hill-rem(20px) hill-rem(30px):`
+//
+// Examples:
+//      width: rem(200px);       // width: 12.5rem;
+//      margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
+//
+// @param {String} $pixel
+// @param {String} $base Optional rem value to get the right scope
+// @return {String} rem value
+//
+@function rem($pixel, $base: $hill-text-root) {
+    @return strip-unit($pixel) / strip-unit($base) * 1rem;
 }

@@ -1,10 +1,10 @@
-// SASS unittests for helpers functions
+// SASS Unittests for public functions
+
+// Contains helper for unittesting like should/expect abstractions
+@import '../test-helper';
 
 // Dependencies
 @import '../../lib/functions';
-
-// Contains helpers for unittesting like should/expect abstractions
-@import '../test-helpers';
 
 // Define layers for testing the layer function;
 $hill-layers: (
@@ -13,47 +13,47 @@ $hill-layers: (
     'lowest'
 );
 
-@include describe("Hill Helpers Functions") {
+@include describe('Hill Public Functions') {
 
-    @include it("[textIs] should return correct font-size for given 'small-2x' keyname") {
-        $value    : textIs('small-2x');
+    @include it('[hill-text-is] should return correct font-size for given 'small-2x' keyname') {
+        $value    : hill-text-is('small-2x');
         $expected : 0.9rem;
 
         @include shouldBeEqual($value, $expected);
     }
 
-    @include it("[textIs] should return correct font-size for given 'large-2x' keyname") {
-        $value    : textIs('large-2x');
+    @include it('[hill-text-is] should return correct font-size for given 'large-2x' keyname') {
+        $value    : hill-text-is('large-2x');
         $expected : 1.2rem;
 
         @include shouldBeEqual($value, $expected);
     }
 
-    @include it("[layer] should return correct z-index") {
+    @include it('[hill-layer] should return correct z-index') {
         $expected : 3;
 
-        @include shouldBeEqual(layer('highest'), $expected);
+        @include shouldBeEqual(hill-layer('highest'), $expected);
 
         $expected : 2;
 
-        @include shouldBeEqual(layer('center'), $expected);
+        @include shouldBeEqual(hill-layer('center'), $expected);
 
         $expected : 1;
 
-        @include shouldBeEqual(layer('lowest'), $expected);
+        @include shouldBeEqual(hill-layer('lowest'), $expected);
     }
 
-    @include it("[layer] should return largest value for first item") {
-        @include shouldBeGreaterThan(layer('highest'), layer('center'));
-        @include shouldBeGreaterThan(layer('highest'), layer('lowest'));
+    @include it('[hill-layer] should return largest value for first item') {
+        @include shouldBeGreaterThan(hill-layer('highest'), hill-layer('center'));
+        @include shouldBeGreaterThan(hill-layer('highest'), hill-layer('lowest'));
     }
 
-    @include it("[layer] should return smallest value for last item") {
-        @include shouldBeSmallerThan(layer('lowest'), layer('highest'));
-        @include shouldBeSmallerThan(layer('lowest'), layer('center'));
+    @include it('[hill-layer] should return smallest value for last item') {
+        @include shouldBeSmallerThan(hill-layer('lowest'), hill-layer('highest'));
+        @include shouldBeSmallerThan(hill-layer('lowest'), hill-layer('center'));
     }
 
-    @include it("[rem] should transform px values into rems") {
+    @include it('[rem] should transform px values into rems') {
         $value    : 16px;
         $expected : 1rem;
 
@@ -65,7 +65,7 @@ $hill-layers: (
         @include shouldBeEqual(rem($value), $expected);
     }
 
-    @include it("[rem] should transform px values into rems") {
+    @include it('[rem] should transform px values into rems') {
         $value    : 16px;
         $expected : 1rem;
 
@@ -75,19 +75,5 @@ $hill-layers: (
         $expected : 2rem;
 
         @include shouldBeEqual(rem($value), $expected);
-    }
-
-    @include it("[stripUnit] should remove px unit characters") {
-        $value    : 100px;
-        $expected : 100;
-
-        @include shouldBeEqual(stripUnit($value), $expected);
-    }
-
-    @include it("[stripUnit] should remove rem unit characters") {
-        $value    : 10rem;
-        $expected : 10;
-
-        @include shouldBeEqual(stripUnit($value), $expected);
     }
 }

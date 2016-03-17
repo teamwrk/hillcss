@@ -8,23 +8,23 @@
 //           .example {
 //               color: blue;
 //
-//               @include deviceIs(small) {
+//               @include hill-device-is(small) {
 //                   color: red;
 //               }
 //           }
 //
-@mixin deviceIs ($device) {
+@mixin hill-device-is ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
 
         // Defaults for first parameter and condition
         $breakpoint: map-get($hill-layout-breakpoints, $device);
 
-        @if (mapGetFirstKey($hill-layout-breakpoints) == $device) {
+        @if (map-get-first-key($hill-layout-breakpoints) == $device) {
             @media (max-width: #{$breakpoint}) {
                 @content;
             }
         } @else {
-            @media (min-width: #{mapGetPrevious($hill-layout-breakpoints, $device) + 1}) and
+            @media (min-width: #{map-get-previous($hill-layout-breakpoints, $device) + 1}) and
                    (max-width: #{$breakpoint}) {
                 @content;
             }
@@ -40,12 +40,12 @@
 // @Example
 //           // Simple MediaQuery for min small devices
 //           .example {
-//               @include deviceMin(small) {
+//               @include hill-device-min(small) {
 //                   color: red;
 //               }
 //           }
 //
-@mixin deviceMin ($device) {
+@mixin hill-device-min ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
         @media (min-width: #{map-get($hill-layout-breakpoints, $device) + 1}) {
             @content;
@@ -61,12 +61,12 @@
 // @Example
 //           // Simple MediaQuery for max large devices
 //           .example {
-//               @include deviceMax(large) {
+//               @include hill-device-max(large) {
 //                   color: red;
 //               }
 //           }
 //
-@mixin deviceMax ($device) {
+@mixin hill-device-max ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
         @media (max-width: #{map-get($hill-layout-breakpoints, $device)}) {
             @content;
@@ -83,12 +83,12 @@
 // @Example
 //           // Simple MediaQuery for max large devices
 //           .example {
-//               @include deviceBetween(medium, large) {
+//               @include hill-device-between(medium, large) {
 //                   color: red;
 //               }
 //           }
 //
-@mixin deviceBetween ($deviceMin, $deviceMax) {
+@mixin hill-device-between ($deviceMin, $deviceMax) {
     @if global-variable-exists(hill-layout-breakpoints) {
         @media (min-width: #{map-get($hill-layout-breakpoints, $deviceMin) + 1})
             and (max-width: #{map-get($hill-layout-breakpoints, $deviceMax)}) {

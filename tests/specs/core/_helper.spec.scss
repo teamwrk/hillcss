@@ -1,0 +1,140 @@
+// SASS Unittests for internal helper
+
+// Contains helper for unittesting like should/expect abstractions
+@import '../../test-helper';
+
+// Dependencies
+@import '../../../lib/core/helper';
+
+$hill-layout-boxes-space: 0%;
+
+@include describe('Hill Internal Helpers') {
+    @include it('[explode-fraction] should split fraction value into a map') {
+        $value    : '1/2';
+        $expected : (1,2);
+
+        @include shouldBeEqual(explode-fraction($value), $expected);
+    }
+
+    @include it('[explode-fraction] should have correct counter and denominator') {
+        $value     : '2/3';
+        $map       : explode-fraction($value);
+        $expected1 : 2;
+        $expected2 : 3;
+
+        @include shouldBeEqual(nth($map, 1), $expected1);
+        @include shouldBeEqual(nth($map, 2), $expected2);
+    }
+
+    @include it('[fraction-to-percent] should convert fractions to percent values') {
+        @include shouldBeEqual(fraction-to-percent('1/2'), '50%');
+        @include shouldBeEqual(fraction-to-percent('1/1'), '100%');
+        @include shouldBeEqual(fraction-to-percent('3/4'), '75%');
+    }
+
+    @include it('[to-number] should cast strings to positive number') {
+        @include shouldBeEqual(to-number('1'), 1);
+        @include shouldBeEqual(to-number('22'), 22);
+        @include shouldBeEqual(to-number('1337'), 1337);
+    }
+
+    @include it('[get-first-char] should return the first char of a string') {
+        $value    : get-first-char('>small');
+        $expected : '>';
+
+        @include shouldBeEqual($value, $expected);
+    }
+
+    @include it('[remove-first-char] should remove the first char of a string') {
+        $value    : remove-first-char('>small');
+        $expected : 'small';
+
+        @include shouldBeEqual($value, $expected);
+    }
+
+    @include it('[equal-once] should compare a given char with others and return true if its equal') {
+        $value   : '>';
+        $matcher : '>';
+
+        @include shouldBeTruthy(equal-once($value, $matcher));
+    }
+
+    @include it('[equal-once] should compare a given char with others and return false if its not equal') {
+        $value   : '>';
+        $matcher : '<';
+
+        @include shouldBeFalsy(equal-once($value, $matcher));
+    }
+
+    @include it('[equal-once] should compare mutiple chars') {
+        $value    : '<';
+        $matcher1 : '>';
+        $matcher2 : '<';
+
+        @include shouldBeTruthy(equal-once($value, $matcher1, $matcher2));
+    }
+
+    @include it('[map-get-previous] should get previous item') {
+        $map      : (1: 'a', 2: 'b',
+                     3: 'c', 4: 'd');
+        $expected : 'b';
+
+        @include shouldBeEqual(map-get-previous($map, 3), $expected);
+
+        $expected : 'c';
+        @include shouldBeEqual(map-get-previous($map, 4), $expected);
+    }
+
+    @include it('[map-get-previous] should get null, if no prevoius item exists') {
+        $map      : (1: 'a', 2: 'b');
+        $expected : null;
+
+        @include shouldBeEqual(map-get-previous($map, 1), $expected);
+    }
+
+    @include it('[map-get-next] should get next item') {
+        $map      : (1: 'a', 2: 'b',
+                     3: 'c', 4: 'd');
+        $expected : 'c';
+
+        @include shouldBeEqual(map-get-next($map, 2), $expected);
+
+        $expected : 'd';
+        @include shouldBeEqual(map-get-next($map, 3), $expected);
+    }
+
+    @include it('[map-get-next] should get null, if no next item exists') {
+        $map      : (1: 'a', 2: 'b');
+        $expected : null;
+
+        @include shouldBeEqual(map-get-next($map, 2), $expected);
+    }
+
+    @include it('[map-get-first-key] should get first item') {
+        $map      : (1: 'a', 2: 'b');
+        $expected : 1;
+
+        @include shouldBeEqual(map-get-first-key($map), $expected);
+    }
+
+    @include it('[map-get-last-key] should get last item') {
+        $map      : (1: 'a', 2: 'b');
+        $expected : 2;
+
+        @include shouldBeEqual(map-get-last-key($map), $expected);
+    }
+
+    @include it('[strip-unit] should remove px unit characters') {
+        $value    : 100px;
+        $expected : 100;
+
+        @include shouldBeEqual(strip-unit($value), $expected);
+    }
+
+    @include it('[strip-unit] should remove rem unit characters') {
+        $value    : 10rem;
+        $expected : 10;
+
+        @include shouldBeEqual(strip-unit($value), $expected);
+    }
+}

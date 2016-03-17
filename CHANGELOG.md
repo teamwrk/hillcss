@@ -1,9 +1,13 @@
 # CHANGELOG
 
 ## HEAD
-* Rename `_helpers.spec.scss` to `functions.spec.scss`
+* Use `hill-` Namespace for public Helper & Utilities methods
+* Rename `helpers -> helper` in all cases
+* Move Unittests of core methods to `tests/specs/core`
+
+* Rename `_helper.spec.scss` to `functions.spec.scss`
 * Rename `_utilities.spec.scss` to `_mixins.spec.scss`
-* Structure and move logic from `_helpers.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`
+* Structure and move logic from `_helper.scss` and `_utilities.scss` to `_mixins.scss` and `_functions.scss`
 * Rename `core` folder to `lib`
 * Improve documentation and update dependencies in `hill-api.scss` and `hill.scss`
 * Remove `normalize.css` from package.json`
@@ -19,9 +23,9 @@
 * Remove function `_calcWidth()`, bdecause it is not needed anymore
 * Implement functions `_explodeFraction`, `_fractionToPercent` and `_toNumber` for fraction based box model
 * Write unittests for `_explodeFraction`, `_fractionToPercent` and `_toNumber`
-* Move `rem()` to `_helpers.scs` cause its a hill API method
+* Move `rem()` to `_helper.scs` cause its a hill API method
 * Ignore `*.todo` files, `/design` and `/issues` from git
-* Add function `layers()` in `_helpers.scss` for z-index based layer management
+* Add function `layers()` in `_helper.scss` for z-index based layer management
 * Move hillcss griddl to seperate repository -> git@bitbucket.org:twrk/hillcss-griddl.git
 * Move `hill.css` and `test-results.css` to `dist` folder
 * Unittests for layers() module

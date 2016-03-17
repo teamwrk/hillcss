@@ -1,7 +1,7 @@
 //
 // Generates text css attributes
 //
-@if($hill-text-css-helpers) {
+@if($hill-text-css-helper) {
     @if (length($hill-text-sizes) > 0) {
         @for $i from 1 through length($hill-text-sizes) {
             $item:  nth($hill-text-sizes, $i);

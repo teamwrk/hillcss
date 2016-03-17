@@ -1,7 +1,5 @@
 // Helpers for unit testing
 
-
-
 //
 // Checks, if first given parameter has expected value
 // @param  {String} $checkedValue  Value to check
@@ -12,8 +10,6 @@
     @include should( expect($checkedValue), to( equal($expectedValue) ));
 }
 
-
-
 //
 // Checks, if given parameter is truthy
 // @param  {String} $checkedValue  Value to check
@@ -22,8 +18,6 @@
 @mixin shouldBeTruthy ($checkedValue) {
     @include should( expect($checkedValue), to( equal(true) ));
 }
-
-
 
 //
 // Checks, if given parameter is falsy
@@ -34,8 +28,6 @@
     @include should( expect($checkedValue), to( equal(false) ));
 }
 
-
-
 //
 // Checks, if first given parameter is greater than the second one
 // @param  {String} $firstValue  Value which should be greater
@@ -45,8 +37,6 @@
 @mixin shouldBeGreaterThan ($firstValue, $secondValue) {
     @include should( expect($firstValue), to( be-greater-than($secondValue) ));
 }
-
-
 
 //
 // Checks, if first given parameter is smaller than the second one

@@ -22,7 +22,7 @@
 //                            would be returned, if valid fraction
 //                            is given. Otherwise null.
 //
-@function explodeFraction ($fraction) {
+@function explode-fraction ($fraction) {
     $delimiterPos: str-index($fraction, '/');
     $result: null;
 
@@ -37,7 +37,7 @@
         //                                          ^
         $denominator: str-slice($fraction, ($delimiterPos + 1), $length);
 
-        $result: (toNumber($counter), toNumber($denominator));
+        $result: (to-number($counter), to-number($denominator));
     }
 
     @return $result;
@@ -49,9 +49,9 @@
 // @return {Number}           Percent representation of the given
 //                            fraction. Default is 100%.
 //
-@function fractionToPercent ($fraction) {
+@function fraction-to-percent ($fraction) {
     // Split fraction into map e.g. 1/2 -> (1, 2)
-    $fractionMap: explodeFraction($fraction);
+    $fractionMap: explode-fraction($fraction);
 
     // Default width
     $result: 100;
@@ -86,7 +86,7 @@
 // @param  {String} $string Value to be parsed
 // @return {Number}         Casted number
 //
-@function toNumber($string) {
+@function to-number ($string) {
     $length: str-length($string);
     $result: 0;
     $digits: 0;
@@ -120,7 +120,7 @@
 // @param  {String} $string
 // @return {String}
 //
-@function getFirstChar ($string) {
+@function get-first-char ($string) {
     @if (type-of($string) == string) {
         @return str_slice($string, 1, 1);
     } @else {
@@ -134,7 +134,7 @@
 // @param  {String} $string
 // @return {String}
 //
-@function removeFirstChar ($string) {
+@function remove-first-char ($string) {
     @return str_slice($string, 2, -(length($string)));
 }
 
@@ -145,7 +145,7 @@
 // @param  {List}   $matchers...    List of Strings to test against
 // @return {Boolean}                True or false if it matches.
 //
-@function equalOnce ($string, $matchers...) {
+@function equal-once ($string, $matchers...) {
     @each $matcher in $matchers {
         @if ($string == $matcher) {
             @return true;
@@ -161,7 +161,7 @@
 // @param  {String}  $fromKey From key
 // @return {Boolean} Return the previous item, relative to given from item.
 //
-@function mapGetPrevious($map, $fromKey) {
+@function map-get-previous ($map, $fromKey) {
     $currentIndex: 0;
 
     @each $map-key, $map-value in $map {
@@ -181,7 +181,7 @@
 // @param  {String}  $fromKey From key
 // @return {Boolean} Return the next item, relative to given from item.
 //
-@function mapGetNext($map, $fromKey) {
+@function map-get-next ($map, $fromKey) {
     $currentIndex: 0;
 
     @each $map-key, $map-value in $map {
@@ -200,7 +200,7 @@
 // @param  {Object} $map Map with keys and values
 // @return {String} Return the first key name of the map.
 //
-@function mapGetFirstKey ($map) {
+@function map-get-first-key ($map) {
     @return nth(nth($map, 1), 1);
 }
 
@@ -209,7 +209,7 @@
 // @param  {Object} $map Map with keys and values
 // @return {String} Return the last key name of the map.
 //
-@function mapGetLastKey ($map) {
+@function map-get-last-key ($map) {
     @return nth(nth($map, length($map)), 1);
 }
 
@@ -219,6 +219,6 @@
 // @return {Number}
 // @hint Borrowed from Zurb Foundation _globals.scss
 //
-@function stripUnit($val) {
+@function strip-unit($val) {
     @return $val / ($val * 0 + 1);
 }
