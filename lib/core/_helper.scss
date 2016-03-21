@@ -39,10 +39,10 @@
     // Split fraction into map e.g. 1/2 -> (1, 2)
     $fractionMap: explode-fraction($fraction);
 
-    // Default width
-    $result: 100;
-
     @if($fractionMap) {
+
+        // Default width
+        $result: 100;
         $counter:     nth($fractionMap, 1);
         $denominator: nth($fractionMap, 2);
 
@@ -62,9 +62,11 @@
         } @else {
             $result: #{$calcedValue};
         }
+
+        @return #{$result};
     }
 
-    @return #{$result};
+    @return null;
 }
 
 //

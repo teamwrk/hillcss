@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## HEAD
+* Clean up Grunttasks: `dev, serve, test` (Default is `dev`)
+* Change layout-space to Rem unit
+* Fix `fraction-to-percent` to return `null` when fraction is incorrect
 * Use `hill-` Namespace for public Helper & Utilities methods
 * Rename `helpers -> helper` in all cases
 * Move Unittests of core methods to `tests/specs/core`

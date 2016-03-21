@@ -3,7 +3,7 @@
   "version": "1.0.0-rc6",
   "description": "A sass toolkit for intuitive layouting",
   "author": [
-    "Teamwrk <hire@twrk.io>",
+    "Teamwrk.io <hire@twrk.io>",
     "Vadim Hermann <contact@vadim-hermann.com>",
     "Andreas Klein <andy@ixis.io>"
   ],
@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/teamwrk/hillcss#readme",
   "keywords": [
-    "SASS",
+    "CSS",
     "Layouting",
-    "Mixins"
+    "Mixins",
+    "Sass",
+    "Toolkit"
   ],
   "devDependencies": {
     "bootcamp": "^1.1.7",

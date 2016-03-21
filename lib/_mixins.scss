@@ -3,15 +3,7 @@
 // @param  {String} $device The device breakpoint definition for the media query
 // @return {CSS}            CSS contents with inside of
 //                          the given media query
-// @Example
-//           // Simple MediaQuery for small screens only
-//           .example {
-//               color: blue;
-//
-//               @include hill-device-is(small) {
-//                   color: red;
-//               }
-//           }
+// @example                 Documentation 3.6
 //
 @mixin hill-device-is ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
@@ -37,13 +29,7 @@
 // @param  {String} $device The device breakpoint definition for the media query
 // @return {CSS}            CSS contents with inside of
 //                          the given media query
-// @Example
-//           // Simple MediaQuery for min small devices
-//           .example {
-//               @include hill-device-min(small) {
-//                   color: red;
-//               }
-//           }
+// @example                 Documentation 3.6
 //
 @mixin hill-device-min ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
@@ -58,13 +44,7 @@
 // @param  {String} $device The device breakpoint definition for the media query
 // @return {CSS}            CSS contents with inside of
 //                          the given media query
-// @Example
-//           // Simple MediaQuery for max large devices
-//           .example {
-//               @include hill-device-max(large) {
-//                   color: red;
-//               }
-//           }
+// @example                 Documentation 3.6
 //
 @mixin hill-device-max ($device) {
     @if global-variable-exists(hill-layout-breakpoints) {
@@ -80,13 +60,7 @@
 // @param  {String} $deviceMax The max device breakpoint definition
 // @return {CSS}            CSS contents with inside of
 //                          the given media query
-// @Example
-//           // Simple MediaQuery for max large devices
-//           .example {
-//               @include hill-device-between(medium, large) {
-//                   color: red;
-//               }
-//           }
+// @example                 Documentation 3.6
 //
 @mixin hill-device-between ($deviceMin, $deviceMax) {
     @if global-variable-exists(hill-layout-breakpoints) {
