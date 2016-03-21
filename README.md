@@ -1,4 +1,4 @@
-# Hill.css - A sass toolkit for intuitive layouting
+# Hillcss - A Sass Toolkit for Intuitive Layouting
 
 [![Build Status](https://api.travis-ci.org/teamwrk/hillcss.svg?branch=master)](https://travis-ci.org/teamwrk/hillcss)
 [![npm version](https://img.shields.io/npm/v/hillcss.svg)](https://www.npmjs.com/package/hillcss)
