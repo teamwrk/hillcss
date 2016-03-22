@@ -1,6 +1,20 @@
 @import 'helper';
 
 //
+// Placeholders for output optimizations
+//
+%_clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+//
 // Generates layout helper
 //
 @if ($hill-layout-general-css-output) {
@@ -11,29 +25,45 @@
             $multiplier: '';
         }
 
-        [#{$hill-html-prefix}-layout*="space-top#{$multiplier}"]       { margin-top:    #{$hill-layout-space * $index}; }
-        [#{$hill-html-prefix}-layout*="space-right#{$multiplier}"]     { margin-right:  #{$hill-layout-space * $index}; }
-        [#{$hill-html-prefix}-layout*="space-bottom#{$multiplier}"]    { margin-bottom: #{$hill-layout-space * $index}; }
-        [#{$hill-html-prefix}-layout*="space-left#{$multiplier}"]      { margin-left:   #{$hill-layout-space * $index}; }
+        [#{$hill-html-prefix}-layout*="space-top#{$multiplier}"]    { margin-top:    #{$hill-layout-space * $index}; }
+        [#{$hill-html-prefix}-layout*="space-right#{$multiplier}"]  { margin-right:  #{$hill-layout-space * $index}; }
+        [#{$hill-html-prefix}-layout*="space-bottom#{$multiplier}"] { margin-bottom: #{$hill-layout-space * $index}; }
+        [#{$hill-html-prefix}-layout*="space-left#{$multiplier}"]   { margin-left:   #{$hill-layout-space * $index}; }
     }
 
-    [#{$hill-html-prefix}-layout*="float-left"]     { float:   left; }
-    [#{$hill-html-prefix}-layout*="float-right"]    { float:   right; }
-    [#{$hill-html-prefix}-layout*="hide"]           { display: none; }
-    [#{$hill-html-prefix}-layout*="clear"]          {
-        &:before,
-        &:after {
-            content: " ";
-            display: table;
+    [#{$hill-html-prefix}-layout*="float-left"]  { float: left; }
+    [#{$hill-html-prefix}-layout*="float-right"] { float: right; }
+    [#{$hill-html-prefix}-layout*="clear"]       { @extend %_clearfix; }
+}
+
+//
+// Generates box row to float boxes inside
+// and box spaces
+//
+@if ($hill-layout-box-css-output or
+     $hill-layout-responsive-css-output) {
+
+    // Box rows
+    [#{$hill-html-prefix}-layout*="row"]  {
+        & > [#{$hill-html-prefix}-layout*="/"] {
+            float: left;
         }
-        &:after {
-            clear: both;
+
+        @extend %_clearfix;
+    }
+
+    // Box spaces
+    @if(strip-unit($hill-layout-box-space) > 0) {
+        [#{$hill-html-prefix}-layout*="/"] {
+            &:not(:last-child) {
+                margin-right: #{$hill-layout-box-space};
+            }
         }
     }
 }
 
 //
-// Generates boxes and rows
+// Generates boxes
 //
 @if ($hill-layout-box-css-output) {
 
@@ -43,36 +73,13 @@
     //
     @each $width in $hill-layout-boxes {
         [#{$hill-html-prefix}-layout*="box-#{$width}"] {
+            display: block;
             width: fraction-to-percent($width);
         }
     }
 
-    //
-    // Generates box row to float boxes inside
-    //
-    [#{$hill-html-prefix}-layout*="row"]  {
-        & > [#{$hill-html-prefix}-layout*="box-"] {
-            float: left;
-        }
-
-        &:before,
-        &:after {
-            content: " ";
-            display: table;
-        }
-        &:after {
-            clear: both;
-        }
-    }
-
-    @if(strip-unit($hill-layout-box-space) > 0) {
-        [#{$hill-html-prefix}-layout*="box-"] {
-            display: block;
-
-            &:not(:last-child) {
-                margin-right: #{$hill-layout-box-space};
-            }
-        }
+    [#{$hill-html-prefix}-layout*="box-0"] {
+        display: none;
     }
 }
 
@@ -80,16 +87,6 @@
 // Generates box breakpoints with relevant width sizes
 //
 @if ($hill-layout-responsive-css-output) {
-    @if(strip-unit($hill-layout-box-space) > 0) {
-        [#{$hill-html-prefix}-layout*="device-"] {
-            display: block;
-
-            &:not(:last-child) {
-                margin-right: #{$hill-layout-box-space};
-            }
-        }
-    }
-
     @each $breakpoint in $hill-layout-breakpoints {
         $breakpointName: nth($breakpoint, 1);
 
@@ -97,6 +94,7 @@
         @each $width in $hill-layout-boxes {
             @include hill-device-is ($breakpointName) {
                 [#{$hill-html-prefix}-layout*="device-#{$breakpointName}-#{$width}"] {
+                    display: block;
                     width: fraction-to-percent($width);
                 }
             };
@@ -105,9 +103,6 @@
         // -> box-small-0
         @include hill-device-is ($breakpointName) {
             [#{$hill-html-prefix}-layout*="device-#{$breakpointName}-0"] {
-
-                // Tried to exclude this into a placeholder. But this after that
-                // this selector is not rendered inside a media query condition
                 display: none;
             }
         }

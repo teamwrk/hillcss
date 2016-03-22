@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ## HEAD
+* Add placeholder `%_clearfix` in `_layout.scss` for smaller css output
+* Remove layout helper `hide` and implement instead `box-0`, `device-small-0` etc.
+* Improve `display: none` and `display: block` management for box and device helpers
+* Combine `row` and `space` output for `box-...` and `device-...` helpers
 * Use `hill-` Namespace for public Helper & Utilities methods
 * Rename `helpers -> helper` in all cases
 * Move Unittests of core methods to `tests/specs/core`
