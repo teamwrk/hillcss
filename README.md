@@ -15,4 +15,4 @@ See the [CHANGELOG](CHANGELOG.md).
 Both are very much appreciated! As for contributions, the goals of this project are to keep things very simple, so if we don't accept a feature addition, it's not necessarily because it's a bad idea. It just may not meet the goals of the project. Thanks!
 
 
-(c) 2016 by [teamwrk.io](https://teamwrk.io) Vadim Hermann & Andreas Klein
+© 2016 by [teamwrk.io](https://teamwrk.io) Vadim Hermann & Andreas Klein

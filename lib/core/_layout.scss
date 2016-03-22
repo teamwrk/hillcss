@@ -51,7 +51,12 @@
     // Generates box row to float boxes inside
     //
     [#{$hill-html-prefix}-layout*="row"]  {
+        margin-left: #{-($hill-layout-box-space/2)};
+        margin-right: #{-($hill-layout-box-space/2)};
+
         & > [#{$hill-html-prefix}-layout*="box-"] {
+            margin-left: #{$hill-layout-box-space/2};
+            margin-right: #{$hill-layout-box-space/2};
             float: left;
         }
 
@@ -68,10 +73,6 @@
     @if(strip-unit($hill-layout-box-space) > 0) {
         [#{$hill-html-prefix}-layout*="box-"] {
             display: block;
-
-            &:not(:last-child) {
-                margin-right: #{$hill-layout-box-space};
-            }
         }
     }
 }
@@ -83,10 +84,6 @@
     @if(strip-unit($hill-layout-box-space) > 0) {
         [#{$hill-html-prefix}-layout*="device-"] {
             display: block;
-
-            &:not(:last-child) {
-                margin-right: #{$hill-layout-box-space};
-            }
         }
     }
 

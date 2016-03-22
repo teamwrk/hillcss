@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## HEAD
+* Add box margins left/right and remove that :last-child crap
+
 * Clean up Grunttasks: `dev, serve, test` (Default is `dev`)
 * Change layout-space to Rem unit
 * Fix `fraction-to-percent` to return `null` when fraction is incorrect

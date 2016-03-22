@@ -1,20 +1,20 @@
 <img align="right" height="150" src="/docs/assets/hill_logo.png?raw=true">
 
-# Hillcss - A Sass Toolkit for Intuitive Layouting
+# hillcss - A Sass Toolkit for Intuitive Layouting
 
 [![Build Status](https://api.travis-ci.org/teamwrk/hillcss.svg?branch=master)](https://travis-ci.org/teamwrk/hillcss)
 [![npm version](https://img.shields.io/npm/v/hillcss.svg)](https://www.npmjs.com/package/hillcss)
 
-## 1 - Why Hillcss
+## 1 - Why hillcss
 
 Layouting should be separate from project Module styling. So we decided to create a toolkit of Sass functions and Markup helpers to realise a layouting framework that is lightweight and can be used independently.
 
-Hillcss covers all basic aspects of modern CSS layouting and it has also even more advantages:
+hillcss covers all basic aspects of modern CSS layouting and it has also even more advantages:
 
-<img align="right" alt="Why Hillcss Schema" width="55%" src="/docs/assets/hill_why.png?raw=true">
+<img align="right" alt="Why hillcss Schema" width="55%" src="/docs/assets/hill_why.png?raw=true">
 
 * Keep Focus on your Module Styles ...
-* ... Layouting is already set up with Hillcss!
+* ... Layouting is already set up with hillcss!
 * Fits perfectly into your Project
 * Generates only that parts you need
 * Very Lightweight 0.5KB (Full Configuration, GZip)
@@ -22,22 +22,22 @@ Hillcss covers all basic aspects of modern CSS layouting and it has also even mo
 * API for both Sass and HTML
 * Well thought out by developers for developers
 
-## 2 - Get Hillcss
+## 2 - Get hillcss
 
 ```cli
 $ npm i hillcss --save
 ```
 
-## 3 - Use Hillcss
+## 3 - Use hillcss
 
-Now load Hillcss into your Sass project. Load `hill-api.scss` instead of `hill.scss` file in order to use only the Sass API.
+Now load hillcss into your Sass project. Load `hill-api.scss` instead of `hill.scss` file in order to use only the Sass API.
 
 ```sass
 @import 'node_modules/hill/hill';
 ```
 
-Hillcss is splitted into different Parts. Each of this parts can be configured independently. Now, the first step is to configure Hillcss properly to fit into your project.
-The following _Scss_ configuration variables are defined globally and without a `!default` flag to overwrite the Hillcss defaults.
+hillcss is splitted into different Parts. Each of this parts can be configured independently. Now, the first step is to configure hillcss properly to fit into your project.
+The following _Scss_ configuration variables are defined globally and without a `!default` flag to overwrite the hillcss defaults.
 
 **Hints**
 
@@ -115,7 +115,7 @@ $hill-layout-box-space: 5%;
 
 ### 3.4 - [Layout] Spacing / General Helper
 
-Variable used for vertical and horizontal spacing between `block` or `inline-block` HTMLElements. On the other hand, Hillcss has a set of HTML API helper that are enabled in combination with space-helper.
+Variable used for vertical and horizontal spacing between `block` or `inline-block` HTMLElements. On the other hand, hillcss has a set of HTML API helper that are enabled in combination with space-helper.
 
 * **Default** `1.25rem`
 * **Type** Number
@@ -168,7 +168,7 @@ $hill-layout-space-multiplier: 3;
 
 ### 3.6 - [Layout] Breakpoints
 
-Hillcss has variables Breakpoints which are used for the HTML API of Boxes and for the Sass API. Breakpoints makes it possible to change Box Sizing and visibility on different screen sizes. It will also being considered to use the width of the surrounding container of a Box instead of the screen size ([Element Queries](http://ianstormtaylor.com/media-queries-are-a-hack/) could be the right choice here). (We planned this for v2.0 of Hillcss)
+hillcss has variables Breakpoints which are used for the HTML API of Boxes and for the Sass API. Breakpoints makes it possible to change Box Sizing and visibility on different screen sizes. It will also being considered to use the width of the surrounding container of a Box instead of the screen size ([Element Queries](http://ianstormtaylor.com/media-queries-are-a-hack/) could be the right choice here). (We planned this for v2.0 of hillcss)
 
 * **Default** `(small:  480px, medium: 992px, large:  1280px)`
 * **Type** Map
@@ -254,9 +254,9 @@ $hill-layer-order: (
 
 ### 3.8 - [Text] Sizes
 
-Hillcss comes not only with Layout helpers, **Text** is another Part of Hillcss. With a predefined Map of different Font-Sizes and the corresponding HTML and Sass API you can keep the font sizes of your project consistent.
+hillcss comes not only with Layout helpers, **Text** is another Part of hillcss. With a predefined Map of different Font-Sizes and the corresponding HTML and Sass API you can keep the font sizes of your project consistent.
 
-On the other hand, Hillcss has a set of HTML API alignment helper that are enabled in combination with text-helper.
+On the other hand, hillcss has a set of HTML API alignment helper that are enabled in combination with text-helper.
 
 * **Default** `(small-3x: 0.8rem, small-2x: 0.9rem, base: 1rem, large-2x: 1.2rem, large-3x: 1.4rem)`
 * **Type** Map
@@ -299,7 +299,7 @@ $hill-text-helper-css-output: true; // To render HTML API helper
 
 ### 3.9 - [Text] Root Font-Size
 
-For REM calculation it is up to you to change the root `font-size` of your project. Hillcss has a Sass Pixel to Rem calculation function on Board.
+For REM calculation it is up to you to change the root `font-size` of your project. hillcss has a Sass Pixel to Rem calculation function on Board.
 
 * **Default** `16px`
 * **Type** Number
