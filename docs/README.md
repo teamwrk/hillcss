@@ -168,7 +168,7 @@ $hill-layout-space-multiplier: 3;
 
 ### 3.6 - [Layout] Breakpoints
 
-hillcss has variables Breakpoints which are used for the HTML API of Boxes and for the Sass API. Breakpoints makes it possible to change Box Sizing and visibility on different screen sizes. It will also being considered to use the width of the surrounding container of a Box instead of the screen size ([Element Queries](http://ianstormtaylor.com/media-queries-are-a-hack/) could be the right choice here). (We planned this for v2.0 of hillcss)
+hillcss has variables Breakpoints which are used for the HTML API of Boxes and for the Sass API. Breakpoints makes it possible to change Box Sizing and visibility on different screen sizes. It will also being considered to use the width of the surrounding container of a Box instead of the screen size ([Element Queries](http://ianstormtaylor.com/media-queries-are-a-hack/) could be the right choice here). (We planned this for one of the next versions of hillcss)
 
 * **Default** `(small:  480px, medium: 992px, large:  1280px)`
 * **Type** Map

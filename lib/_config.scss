@@ -8,20 +8,25 @@
 // HTML Prefix / Namespace
 $hill-html-prefix: hill !default;
 
+// Render HTML API helpers
+// See Documentation for more details
+$hill-layout-box-css-output: true !default;
+$hill-layout-general-css-output: true !default;
+$hill-layout-responsive-css-output: false !default;
+$hill-text-helper-css-output: false !default;
+
 // Layout Boxes
 $hill-layout-boxes: (
     '1/4',
     '1/2',
     '3/4',
     '1/1') !default;
-$hill-layout-box-css-output: true !default;
 
 // Layout Box Gutter Space
 $hill-layout-box-space: 2% !default;
 
 // Layout Spaces / General
 $hill-layout-space: 1.25rem !default;
-$hill-layout-general-css-output: true !default;
 
 // Layout Space Multiplier
 $hill-layout-space-multiplier: 2 !default;
@@ -32,7 +37,6 @@ $hill-layout-breakpoints: (
     medium: 992px,
     large:  1280px
 ) !default;
-$hill-layout-responsive-css-output: false !default;
 
 // Layout Layers
 $hill-layer-order: (
@@ -51,4 +55,3 @@ $hill-text-sizes: (
     large-2x: 1.2rem,
     large-3x: 1.4rem
 ) !default;
-$hill-text-helper-css-output: false !default;
