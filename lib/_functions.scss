@@ -1,52 +1,23 @@
 @import 'core/helper';
 
 //
-// Return the font size of the given key
-// @param   {String} $property
-// @return  {String} Font size
-// @Example
-//           .example {
-//               font-size: hill-text-is('small')
-//           }
-//
-@function hill-text-is ($property) {
-    @return map-get($hill-text-sizes, $property);
-}
-
-//
 // Gets z-index value which was defined in the hill layer list.
 // @param  {String} $alias Alias of the z-index
 // @return {String} Return the calculated z-index value.
-// @example
-//    .modal {
-//        position: absolute;
-//        z-index: @layer('modal');
-//    }
-//    .page {
-//        position: absolute;
-//        z-index: @layer('page');
-//    }
-//
-//    $hill-layer-order: (
-//        'modal',
-//        'page'
-//    );
-//    Output:
-//    .modal -> z-index: 2
-//    .page -> z-index: 1
-//
-//    $hill-layer-order: (
-//        'highest',
-//        'center',
-//        'lowest'
-//    );
-//    Output:
-//    .highest -> z-index: 3
-//    .center -> z-index: 2
-//    .lowest -> z-index: 1
+// @example         Documentation 3.7
 //
 @function hill-layer($alias) {
     @return ((length($hill-layer-order) - index($hill-layer-order, $alias)) + 1);
+}
+
+//
+// Return the font size of the given key
+// @param   {String} $property
+// @return  {String} Font size
+// @example          Documentation 3.8
+//
+@function hill-text-is ($property) {
+    @return map-get($hill-text-sizes, $property);
 }
 
 //
@@ -55,14 +26,11 @@
 // Hint: The rem methods is the only method w/o `hill` namespace,
 //       because it is very often used and you don't want to write:
 //       `padding: hill-rem(10px) hill-rem(15px) hill-rem(20px) hill-rem(30px):`
-//
-// Examples:
-//      width: rem(200px);       // width: 12.5rem;
-//      margin: rem(10) rem(20); // margin: 0.625rem 1.25rem;
-//
-// @param {String} $pixel
-// @param {String} $base Optional rem value to get the right scope
+
+// @param {String}  $pixel
+// @param {String}  $base Optional rem value to get the right scope
 // @return {String} rem value
+// @example         Documentation 3.9
 //
 @function rem($pixel, $base: $hill-text-root) {
     @return strip-unit($pixel) / strip-unit($base) * 1rem;

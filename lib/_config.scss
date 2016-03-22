@@ -2,43 +2,48 @@
 // HINT: You can overwrite these settings without the `!default` flag in
 // your project custom configuration.
 //
+// See Docs 3.1
+//
 
-// Attribute name prefix for html -> <div hill-layout="..."></div>
+// HTML Prefix / Namespace
 $hill-html-prefix: hill !default;
 
-// Box width sizes for usage in html -> .."box-1/2"..
+// Layout Boxes
 $hill-layout-boxes: (
     '1/4',
     '1/2',
     '3/4',
     '1/1') !default;
+$hill-layout-box-css-output: true !default;
 
-// Box space definition. Set to 0%, if you want to disable spaces between boxes.
+// Layout Box Gutter Space
 $hill-layout-box-space: 2% !default;
 
-// Space definition for usage in html -> .."space-right"..
-// Percentage and rem values can be defined here too.
-$hill-layout-space: 20px !default;
+// Layout Spaces / General
+$hill-layout-space: 1.25rem !default;
+$hill-layout-general-css-output: true !default;
 
-// Multiplier of `$hill-layout-space`
-// For Example `space-bottom-2x`
-// If it has a value of 3, it means that
-// `space-bottom`, `space-bottom-2x` and `space-bottom-3x`
-// helper attributes are available in html.
+// Layout Space Multiplier
 $hill-layout-space-multiplier: 2 !default;
 
-// Breakpoints for html -> .."device-small-1/2".. and the sass helper for example
-// the 'hill-device-is' helper.
+// Layout Breakpoints
 $hill-layout-breakpoints: (
     small:  480px,
     medium: 992px,
     large:  1280px
 ) !default;
+$hill-layout-responsive-css-output: false !default;
 
-// Root Fontsize for Rem calculation
+// Layout Layers
+$hill-layer-order: (
+    'highest',
+    'lowest'
+) !default;
+
+// Text Root Font-Size
 $hill-text-root: 16px !default;
 
-// Text sizes for html -> .."small-2x".. and the 'textIs' helper
+// Text Sizes
 $hill-text-sizes: (
     small-3x: 0.8rem,
     small-2x: 0.9rem,
@@ -46,36 +51,4 @@ $hill-text-sizes: (
     large-2x: 1.2rem,
     large-3x: 1.4rem
 ) !default;
-
-// -------------------------------------------------------- Output Configuration
-// To configure the output css, overwrite these variables in your custom
-// settings file. For more check out the demo.
-
-// Layout helper general
-// Example -> <div hill-layout="space-right"></div>
-$hill-layout-general-css-output: true !default;
-
-// Layout helper box
-// like box width based on '$hill-layout-boxes', which can be used in HTML.
-// Example -> <div hill-layout="box-1/2"></div>
-$hill-layout-box-css-output: true !default;
-
-// Layout helper responsive
-// Breakpoint CSS classes for usage in HTML
-// Example -> <div hill-layout="device-small-1/2 device-medium-2/3"></div>
-$hill-layout-responsive-css-output: false !default;
-
-// Text helper
-// like 'right, left'.
-// Example -> <div hill-text="right"></div>
 $hill-text-helper-css-output: false !default;
-
-//
-// Definition of z-index layers. Can be use to manage layer order.
-// Top item has the highest z-index value and bottom item the lowest.
-// Check "layer" function in "_helper.scss" for more information
-//
-$hill-layer-order: (
-    'highest',
-    'lowest'
-) !default;

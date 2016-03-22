@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
     // Modules
-    // grunt.loadNpmTasks('grunt-init');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('bootcamp');
@@ -46,11 +45,7 @@ module.exports = function(grunt) {
                 tasks: ['sass', 'bootcamp', 'cmq']
             },
             css: {
-                files: '**/*.css',
-
-                options: {
-                    livereload: 1338
-                }
+                files: '**/*.css'
             }
         },
 
@@ -67,6 +62,19 @@ module.exports = function(grunt) {
     });
 
     // Tasks
-    grunt.registerTask('default', ['sass', 'bootcamp', 'cmq', 'watch']);
-    grunt.registerTask('test',    ['sass', 'bootcamp']);
+    grunt.registerTask('dev', [
+        'sass',
+        'cmq'
+    ]);
+    grunt.registerTask('serve', [
+        'dev',
+        'bootcamp',
+        'watch'
+    ]);
+    grunt.registerTask('test', [
+        'dev',
+        'bootcamp'
+    ]);
+
+    grunt.registerTask('default', ['dev']);
 };

@@ -32,6 +32,10 @@ $hill-layout-box-space: 0%;
         @include shouldBeEqual(fraction-to-percent('3/4'), '75%');
     }
 
+    @include it('[fraction-to-percent] should return `null` when input is not a correct fraction') {
+        @include shouldBeEqual(fraction-to-percent('abc'), null);
+    }
+
     @include it('[to-number] should cast strings to positive number') {
         @include shouldBeEqual(to-number('1'), 1);
         @include shouldBeEqual(to-number('22'), 22);

@@ -5,6 +5,9 @@
 * Remove layout helper `hide` and implement instead `box-0`, `device-small-0` etc.
 * Improve `display: none` and `display: block` management for box and device helpers
 * Combine `row` and `space` output for `box-...` and `device-...` helpers
+* Clean up Grunttasks: `dev, serve, test` (Default is `dev`)
+* Change layout-space to Rem unit
+* Fix `fraction-to-percent` to return `null` when fraction is incorrect
 * Use `hill-` Namespace for public Helper & Utilities methods
 * Rename `helpers -> helper` in all cases
 * Move Unittests of core methods to `tests/specs/core`
