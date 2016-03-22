@@ -45,20 +45,16 @@
 
     // Box rows
     [#{$hill-html-prefix}-layout*="row"]  {
+        margin-left: #{-($hill-layout-box-space/2)};
+        margin-right: #{-($hill-layout-box-space/2)};
+
         & > [#{$hill-html-prefix}-layout*="/"] {
             float: left;
+            margin-left: #{$hill-layout-box-space/2};
+            margin-right: #{$hill-layout-box-space/2};
         }
 
         @extend %_clearfix;
-    }
-
-    // Box spaces
-    @if(strip-unit($hill-layout-box-space) > 0) {
-        [#{$hill-html-prefix}-layout*="/"] {
-            &:not(:last-child) {
-                margin-right: #{$hill-layout-box-space};
-            }
-        }
     }
 }
 
