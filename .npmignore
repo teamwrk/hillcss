@@ -1,6 +1,6 @@
 *.css
 *.css.map
-/examples
+/dist
 /tests
 /griddl
 /.*

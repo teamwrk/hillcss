@@ -1,12 +1,9 @@
-example
-design
 dist
 issues
 node_modules
 
 *.css
 *.css.map
-*.log
 *.log
 *.sass-cache
 *.TODO
