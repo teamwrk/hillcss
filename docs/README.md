@@ -173,6 +173,7 @@ hillcss has variables Breakpoints which are used for the HTML API of Boxes and f
 * **Default** `(small:  480px, medium: 992px, large:  1280px)`
 * **Type** Map
 * **HTML API** Disabled by Default `$hill-layout-responsive-css-output: false !default;`
+* **WATCHOUT** It is important to keep the order of the Sass map from smallest to largest breakpoint. Otherwise, hillcss couldn't resolve the MediaQuery ranges correctly.
 
 **Sass Config**
 ```sass
