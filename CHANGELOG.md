@@ -45,4 +45,8 @@
 * Improve documentation and update dependencies in `hill-api.scss` and `hill.scss`
 * Add full documentation of the hillcss framework
 
+## v0.1.0 - 28-01-2016
+
+* Initial Release
+
 
