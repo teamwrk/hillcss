@@ -33,7 +33,7 @@ $ npm i hillcss --save
 Now load hillcss into your Sass project. Load `hill-api.scss` instead of `hill.scss` file in order to use only the Sass API.
 
 ```sass
-@import 'node_modules/hill/hill';
+@import 'node_modules/hillcss/hill';
 ```
 
 hillcss is splitted into different Parts. Each of this parts can be configured independently. Now, the first step is to configure hillcss properly to fit into your project.

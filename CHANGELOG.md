@@ -11,6 +11,14 @@
 
 ## HEAD
 
+## v1.0.1
+
+### Bug Fix
+* Change logic for `$multiplier` default in `_layout.scss`, to be more bulletproof (Issue #11)
+
+### Documentation
+* Correct typo `.../hill/...` to `.../hillcss/...` in documentation (Issue #10)
+
 ## v1.0.0 - 23-03-2016
 
 ![Happy Hillcss v1 Release](http://i.imgur.com/XmMMZKg.gif)

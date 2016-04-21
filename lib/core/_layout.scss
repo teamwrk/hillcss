@@ -19,10 +19,10 @@
 //
 @if ($hill-layout-general-css-output) {
     @for $index from 1 through $hill-layout-space-multiplier {
+        $multiplier: '';
+
         @if $index > 1 {
             $multiplier: "-#{$index}x";
-        } @else {
-            $multiplier: '';
         }
 
         [#{$hill-html-prefix}-layout*="space-top#{$multiplier}"]    { margin-top:    #{$hill-layout-space * $index}; }
