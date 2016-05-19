@@ -4,7 +4,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('bootcamp');
-    grunt.loadNpmTasks('grunt-combine-media-queries');
 
     // Grunt Tasks
     grunt.initConfig({
