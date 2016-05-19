@@ -15,6 +15,8 @@
 
 ### Bug Fix
 * Change logic for `$multiplier` default in `_layout.scss`, to be more bulletproof (Issue #11)
+* Remove MQCombiner package, it causes errors in latest sass versions > 3.4
+* Fix percentage issue in fraction-to-percent and write tests for that
 
 ### Documentation
 * Correct typo `.../hill/...` to `.../hillcss/...` in documentation (Issue #10)

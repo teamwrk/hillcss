@@ -35,7 +35,7 @@
 // @return {Number}           Percent representation of the given
 //                            fraction. Default is 100%.
 //
-@function fraction-to-percent ($fraction) {
+@function fraction-to-percent ($fraction, $spacing: $hill-layout-box-space) {
     // Split fraction into map e.g. 1/2 -> (1, 2)
     $fractionMap: explode-fraction($fraction);
 
@@ -47,9 +47,9 @@
         $denominator: nth($fractionMap, 2);
 
         // Fraction in percentage e.g. 1/2 -> 50
-        $calcedValue: ((100 / $denominator) * $counter);
+        $calcedValue: percentage(((100 / $denominator) * $counter) / 100);
 
-        @if($hill-layout-box-space > 0) {
+        @if($spacing > 0) {
 
             // Spaces between boxes.
             // E.g. 3 possible spaces between 4 boxes,
@@ -58,13 +58,13 @@
 
             // Calculate the correct space size, that we can combine
             // box size with space size to get always 100% total width.
-            $spaceSize: ((($hill-layout-box-space * $spaceCount) + $hill-layout-box-space) / $denominator);
-            $result:    #{$calcedValue - $spaceSize};
+            $spaceSize: ((($spacing * $spaceCount) + $spacing) / $denominator);
+            $result:    $calcedValue - $spaceSize;
         } @else {
-            $result: #{$calcedValue};
+            $result: $calcedValue;
         }
 
-        @return #{$result};
+        @return $result;
     }
 
     @return null;

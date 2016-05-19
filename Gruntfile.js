@@ -63,8 +63,7 @@ module.exports = function(grunt) {
 
     // Tasks
     grunt.registerTask('dev', [
-        'sass',
-        'cmq'
+        'sass'
     ]);
     grunt.registerTask('serve', [
         'dev',

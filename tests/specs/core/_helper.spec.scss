@@ -6,8 +6,6 @@
 // Dependencies
 @import '../../../lib/core/helper';
 
-$hill-layout-box-space: 0%;
-
 @include describe('Hill Internal Helpers') {
     @include it('[explode-fraction] should split fraction value into a map') {
         $value    : '1/2';
@@ -27,9 +25,20 @@ $hill-layout-box-space: 0%;
     }
 
     @include it('[fraction-to-percent] should convert fractions to percent values') {
-        @include shouldBeEqual(fraction-to-percent('1/2'), '50%');
-        @include shouldBeEqual(fraction-to-percent('1/1'), '100%');
-        @include shouldBeEqual(fraction-to-percent('3/4'), '75%');
+        @include shouldBeEqual(fraction-to-percent('1/2'), 48%);
+        @include shouldBeEqual(fraction-to-percent('1/1'), 98%);
+        @include shouldBeEqual(fraction-to-percent('3/4'), 73%);
+    }
+
+    @include it('[fraction-to-percent] should convert fractions to percent also when spacing is not in percents') {
+        @include shouldBeEqual(fraction-to-percent('1/2', 5), 45%);
+        @include shouldBeEqual(fraction-to-percent('1/1', 5), 95%);
+        @include shouldBeEqual(fraction-to-percent('3/4', 5), 70%);
+    }
+
+    @include it('[fraction-to-percent] (with 0% spacing) should convert fractions to percent') {
+        @include shouldBeEqual(fraction-to-percent('1/2', 0%), 50%);
+        @include shouldBeEqual(fraction-to-percent('1/1', 0%), 100%);
     }
 
     @include it('[fraction-to-percent] should return `null` when input is not a correct fraction') {
