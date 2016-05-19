@@ -11,7 +11,7 @@
 
 ## HEAD
 
-## v1.0.1
+## v1.0.1 - 19-05-2016
 
 ### Bug Fix
 * Change logic for `$multiplier` default in `_layout.scss`, to be more bulletproof (Issue #11)
