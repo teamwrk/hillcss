@@ -41,6 +41,10 @@
         @include shouldBeEqual(fraction-to-percent('1/1', 0%), 100%);
     }
 
+    @include it('[fraction-to-percent] should return col value without spacing when input gutter spacing is in fixed values like pixels') {
+        @include shouldBeEqual(fraction-to-percent('1/2', 10px), 50%);
+    }
+
     @include it('[fraction-to-percent] should return `null` when input is not a correct fraction') {
         @include shouldBeEqual(fraction-to-percent('abc'), null);
     }

@@ -10,6 +10,14 @@
 > - Polish
 
 ## HEAD
+
+### New Feature
+* **Enable Fixed Gutter Spacing** ([#15](https://github.com/teamwrk/hillcss/issues/15))
+    - Use Margins for fluid Gutter Spaces, otherwise use inner paddings
+    - Update documentation for percentage vs. pixel usage
+    - Update Unittest
+
+### Internal
 * Remove `grunt-combine-media-queries` from Gruntfile
 
 ## v1.0.1 - 19-05-2016

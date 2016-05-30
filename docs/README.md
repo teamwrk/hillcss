@@ -106,6 +106,7 @@ Default Gutter Space between Layout Boxes.
 
 * **Default** `2%`
 * **Type** Number
+* **Hint** If you need to create fixed box spacing, just use Pixel or Rem values. `$hill-layout-box-space: 10px;`
 
 **Sass Config**
 ```sass

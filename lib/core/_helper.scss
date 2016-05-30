@@ -49,7 +49,9 @@
         // Fraction in percentage e.g. 1/2 -> 50
         $calcedValue: percentage(((100 / $denominator) * $counter) / 100);
 
-        @if($spacing > 0) {
+        // Reduce columns width by gutter space only when spacing is gt zero
+        // and the unit of the spacing value is percentage or unitless.
+        @if($spacing > 0 and (unit($spacing) == '%' or unit($spacing) == '')) {
 
             // Spaces between boxes.
             // E.g. 3 possible spaces between 4 boxes,

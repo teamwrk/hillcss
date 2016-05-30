@@ -50,8 +50,16 @@
 
         & > [#{$hill-html-prefix}-layout*="/"] {
             float: left;
-            margin-left: #{$hill-layout-box-space/2};
-            margin-right: #{$hill-layout-box-space/2};
+
+            // Use Margins for fluid gutter spaces
+            // otherwise use inner paddings
+            @if (unit($hill-layout-box-space) == '%') {
+                margin-left: #{$hill-layout-box-space/2};
+                margin-right: #{$hill-layout-box-space/2};
+            } @else {
+                padding-left: #{$hill-layout-box-space/2};
+                padding-right: #{$hill-layout-box-space/2};
+            }
         }
 
         @extend %_clearfix;
