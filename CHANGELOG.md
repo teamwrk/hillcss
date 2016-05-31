@@ -11,6 +11,8 @@
 
 ## HEAD
 
+## v1.1.0 - 31-05-2016
+
 ### New Feature
 * **Enable Fixed Gutter Spacing** ([#15](https://github.com/teamwrk/hillcss/issues/15))
     - Use Margins for fluid Gutter Spaces, otherwise use inner paddings
